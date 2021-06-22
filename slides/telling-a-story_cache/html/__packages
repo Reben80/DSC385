@@ -1,0 +1,15 @@
+base
+shiny
+tidyverse
+ggplot2
+tibble
+tidyr
+readr
+purrr
+dplyr
+stringr
+forcats
+cowplot
+here
+nycflights13
+colorspace

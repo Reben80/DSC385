@@ -1,0 +1,47 @@
+---
+title: "DSC 385"
+description: Data Exploration, Visualization, and Foundations of Unsupervised Learning
+site: distill::distill_website
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+# Learn more about creating websites with Distill at:
+# https://rstudio.github.io/distill/website.html
+
+# Learn more about publishing to GitHub Pages at:
+# https://rstudio.github.io/distill/publish_website.html#github-pages
+
+```
+
+This is the home page for DSC 385 Data Exploration, Visualization, and Foundations of Unsupervised Learning.
+
+## Computing requirements
+
+To run any of the materials locally on your own machine, you will need the following:
+
+- A recent version of R, [download from here.](https://cloud.r-project.org/)
+- A recent version of RStudio, [download from here.](https://rstudio.com/products/rstudio/download/#download)
+- The following R packages:    
+  broom, cluster, colorspace, corrr, cowplot, distill, gapminder, GGally, gganimate,  ggiraph, ggdendro, ggdist, ggforce, ggplot2movies, ggpointdensity, ggraph, ggrepel, ggridges, ggtext, ggthemes, gifski, glue, knitr, learnr, lemon, magick, margins, MASS, Matrix, nycflights13, palmerpenguins, patchwork, plotly, plotROC, rgdal, rmarkdown, sf, tidymodels, tidyverse, transformr, treemapify, umap, xaringan
+
+You can install all required R packages at once by running the following code in the R command line:
+
+```{r eval = FALSE, echo = TRUE}
+install.packages(
+  c(
+    "broom", "cluster", "colorspace", "corrr", "cowplot", "distill", "gapminder", 
+    "GGally", "gganimate", "ggiraph", "ggdendro", "ggdist", "ggforce",
+    "ggplot2movies", "ggpointdensity", "ggraph",  "ggrepel", "ggridges",
+    "ggtext", "ggthemes", "gifski", "glue", "knitr", "learnr", "lemon", "magick",
+    "margins", "MASS", "Matrix", "nycflights13", "palmerpenguins", "patchwork", "plotly",
+    "plotROC", "rgdal", "rmarkdown", "sf", "tidymodels", "tidyverse", "transformr",
+    "treemapify", "umap", "xaringan"
+  )
+)
+```
+
+## Reuse {.appendix}
+
+Text and figures are licensed under Creative Commons Attribution [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Any computer code (R, HTML, CSS, etc.) in slides and worksheets, including in slide and worksheet sources, is also licensed under [MIT](https://github.com/wilkelab/SDS375/LICENSE.md). Note that figures in slides may be pulled in from external sources and may be licensed under different terms. For such images, image credits are available in the slide notes, accessible via pressing the letter 'p'.

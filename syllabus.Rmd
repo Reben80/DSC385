@@ -1,0 +1,134 @@
+---
+title: "Syllabus"
+description: ""
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Course title and instructor
+
+**Title:** DSC 385 Data Exploration, Visualization, and Foundations of Unsupervised Learning
+
+
+**Instructor:** Claus	O.	Wilke<br>
+**Email:** wilke@austin.utexas.edu<br>
+**GitHub:** [clauswilke](https://github.com/clauswilke) <br>
+
+**Teaching Assistant:**
+**Email:**
+
+## Purpose and contents of the class
+
+In this class, students will learn how to visualize data sets and how to reason about and communicate with data visualizations. A substantial component of this class will be dedicated to learning how to program in R. In addition, students will learn how to compile analyses and visualizations into reports, how to make the reports reproducible, and how to post reports on a website or blog.
+
+## Prerequisites
+
+Students are expected to have basic knowledge of statistics. Prior experience with the programming language R is beneficial but not strictly required.
+
+## Textbook
+
+This class draws heavily from materials presented in the following book:
+
+- Claus O. Wilke. [Fundamentals of Data Visualization.](https://clauswilke.com/dataviz) O'Reilly Media, 2019.
+
+Additionally, we will also make use of the following books:
+
+- Hadley Wickham, Danielle Navarro, and Thomas Lin Pedersen. [ggplot2: Elegant Graphics for Data Analysis, 3rd ed.](https://ggplot2-book.org/) Springer, to appear.
+
+- Kieran Healy. [Data Visualization: A Practical Introduction.](https://socviz.co/) Princeton University Press, 2018.
+
+All these books are freely available online and you do not need to purchase a physical copy of either book to succeed in this class.
+
+
+## Topics covered
+
+::: l-page
+------------------------------------------------------------------
+  Class Topic                       Coding concepts covered
+------- --------------------------- ------------------------------
+1.      Introduction                RStudio setup online, R Markdown
+
+2.      Aesthetic mappings          **ggplot2** quickstart
+
+3.      Telling a story
+
+4.      Visualizing amounts         `geom_col()`, `geom_point()`,
+                                    position adjustments
+
+5.      Coordinate systems and      coords and position scales
+        axes
+
+
+6.      Visualizing distributions 1 stats, `geom_density()`,
+                                    `geom_histogram()`
+
+7.      Visualizing distributions   violin plots, sina plots, ridgeline plots
+        2
+
+8.      Color scales                color and fill scales
+
+9.      Color spaces, color vision  **colorspace** package
+        deficiency
+
+10.     Figure design               ggplot themes
+
+11.     Data wrangling 1            `mutate()`, `filter()`, `arrange()`
+
+12.     Data wrangling 2            `group_by()`, `summarize()`, `count()`
+
+13.     Functions and functional    `map()`, `nest()`, **purrr** package
+        programming
+
+14.     Getting things into the     `fct_reorder()`, `fct_lump()`
+        right order
+
+15.     Visualizing proportions     bar charts, pie charts
+
+16.     Visualizing trends          `geom_smooth()`
+
+17.     Working with models         `lm`, `cor.test`, **broom** package
+
+18.     Visualizing uncertainty 1   frequency framing, error bars, **ggdist** package
+
+19.     Visualizing uncertainty 2   frequency framing, error bars, **ggdist** package
+
+20.     Dimension reduction 1       PCA
+
+21.     Dimension reduction 2       kernel PCA, t-SNE, UMAP
+
+22.     Clustering 1                k-means clustering
+
+23.     Clustering 2                hierarchical clustering
+        
+24.     Visualizing geospatial      `geom_sf()`, `coord_sf()`
+        data
+
+25.     Redundant coding, text      **ggrepel** package
+        annotations
+
+26.     Interactive plots           **ggiraph** package
+
+27.     Over-plotting               jittering, 2d histograms,
+                                    contour plots
+
+28.     Compound figures            **patchwork** package
+
+29.     Introduction to web design  HTML, CSS, **distill** package
+
+30.     Animations                  **gganimate** package
+
+----------------------------------------------------------------
+:::
+
+
+## Reuse {.appendix}
+
+Text and figures are licensed under Creative Commons Attribution [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Any computer code (R, HTML, CSS, etc.) in slides and worksheets, including in slide and worksheet sources, is also licensed under [MIT](https://github.com/wilkelab/SDS375/LICENSE.md). Note that figures in slides may be pulled in from external sources and may be licensed under different terms. For such images, image credits are available in the slide notes, accessible via pressing the letter 'p'.
+

@@ -1,0 +1,79 @@
+name: "DSC385"
+title: "DSC 385"
+description: |
+  DSC 385
+output_dir: "docs"
+theme: "theme.css"
+include: [".nojekyll"]
+navbar:
+  source_url: true
+  left:
+    - text: "Schedule"
+      href: schedule.html
+    - text: "Syllabus"
+      href: syllabus.html
+
+  right:
+    - text: "Slides"
+      menu:
+        - text: "Class 1: Introduction"
+          href: slides/introduction.html
+        - text: "Class 2: Aesthetic mappings"
+          href: slides/aesthetic-mappings.html
+        - text: "Class 3: Telling a story"
+          href: slides/telling-a-story.html
+        - text: "Class 4: Visualizing amounts"
+          href: slides/visualizing-amounts.html
+        - text: "Class 5: Coordinate systems and axes"
+          href: slides/coordinate-systems-axes.html
+        - text: "Class 6: Visualizing distributions 1"
+          href: slides/visualizing-distributions-1.html
+        - text: "Class 7: Visualizing distributions 2"
+          href: slides/visualizing-distributions-2.html
+        - text: "Class 8: Color scales"
+          href: slides/color-scales.html
+        - text: "Class 9: Color spaces and color-vision deficiency"
+          href: slides/color-spaces.html
+        - text: "Class 10: Figure design"
+          href: slides/figure-design.html
+        - text: "Class 11: Data wrangling 1"
+          href: slides/data-wrangling-1.html
+        - text: "Class 12: Data wrangling 2"
+          href: slides/data-wrangling-2.html
+        - text: "Class 13: Functions and functional programming"
+          href: slides/functional-programming.html
+        - text: "Class 14: Getting things into the right order"
+          href: slides/getting-things-in-order.html
+        - text: "Class 15: Visualizing proportions"
+          href: slides/visualizing-proportions.html
+        - text: "Class 16: Visualizing trends"
+          href: slides/visualizing-trends.html
+        - text: "Class 17: Working with models"
+          href: slides/working-with-models.html
+        - text: "Class 18: Visualizing uncertainty 1"
+          href: slides/visualizing-uncertainty.html
+        - text: "Class 19: Visualizing uncertainty 2"
+        - text: "Class 20: Dimension reduction 1"
+          href: slides/dimension-reduction-1.html
+        - text: "Class 21: Dimension reduction 2"
+          href: slides/dimension-reduction-2.html
+        - text: "Class 22: Clustering 1"
+          href: slides/clustering.html
+        - text: "Class 23: Clustering 2"
+        - text: "Class 24: Visualizing geospatial data"
+          href: slides/geospatial-data.html
+        - text: "Class 25: Redundant coding, text annotations"
+          href: slides/redundant-coding.html
+        - text: "Class 26: Interactive plots"
+          href: slides/interactive-plots.html
+        - text: "Class 27: Handling overlapping points"
+          href: slides/overplotting.html
+        - text: "Class 28: Compound figures"
+          href: slides/compound-figures.html
+        - text: "Class 29: Introduction to web design"
+          href: slides/web-design.html
+        - text: "Class 30: Animations"
+          href: slides/animations.html
+          
+
+output: distill::distill_article
