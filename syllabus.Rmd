@@ -53,7 +53,8 @@ All these books are freely available online and you do not need to purchase a ph
 ------------------------------------------------------------------
   Class Topic                       Coding concepts covered
 ------- --------------------------- ------------------------------
-1.      Introduction                RStudio setup online, R Markdown
+1.      Introduction, reproducible  RStudio setup online, R Markdown
+        workflows
 
 2.      Aesthetic mappings          **ggplot2** quickstart
 
@@ -66,8 +67,8 @@ All these books are freely available online and you do not need to purchase a ph
         axes
 
 
-6.      Visualizing distributions 1 stats, `geom_density()`,
-                                    `geom_histogram()`
+6.      Visualizing distributions   stats, `geom_density()`,
+        1                           `geom_histogram()`
 
 7.      Visualizing distributions   violin plots, sina plots, ridgeline plots
         2
@@ -86,18 +87,18 @@ All these books are freely available online and you do not need to purchase a ph
 13.     Functions and functional    `map()`, `nest()`, **purrr** package
         programming
 
-14.     Getting things into the     `fct_reorder()`, `fct_lump()`
+14.     Data quality and relevance  handling missing data, `is.na()`, `case_when()`
+
+15.     Getting things into the     `fct_reorder()`, `fct_lump()`
         right order
 
-15.     Visualizing proportions     bar charts, pie charts
+16.     Visualizing proportions     bar charts, pie charts
 
-16.     Visualizing trends          `geom_smooth()`
+17.     Visualizing trends          `geom_smooth()`
 
-17.     Working with models         `lm`, `cor.test`, **broom** package
+18.     Working with models         `lm`, `cor.test`, **broom** package
 
-18.     Visualizing uncertainty 1   frequency framing, error bars, **ggdist** package
-
-19.     Visualizing uncertainty 2   frequency framing, error bars, **ggdist** package
+19.     Visualizing uncertainty     frequency framing, error bars, **ggdist** package
 
 20.     Dimension reduction 1       PCA
 
@@ -107,22 +108,24 @@ All these books are freely available online and you do not need to purchase a ph
 
 23.     Clustering 2                hierarchical clustering
         
-24.     Visualizing geospatial      `geom_sf()`, `coord_sf()`
+24.     Data ethics and
+        providence 1
+
+25.     Data ethics and
+        providence 2
+
+26.     Visualizing geospatial      `geom_sf()`, `coord_sf()`
         data
 
-25.     Redundant coding, text      **ggrepel** package
+27.     Redundant coding, text      **ggrepel** package
         annotations
 
-26.     Interactive plots           **ggiraph** package
+28.     Interactive plots           **ggiraph** package
 
-27.     Over-plotting               jittering, 2d histograms,
+29.     Over-plotting               jittering, 2d histograms,
                                     contour plots
 
-28.     Compound figures            **patchwork** package
-
-29.     Introduction to web design  HTML, CSS, **distill** package
-
-30.     Animations                  **gganimate** package
+30.     Compound figures            **patchwork** package
 
 ----------------------------------------------------------------
 :::
