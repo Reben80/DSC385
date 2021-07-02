@@ -16,7 +16,6 @@ knitr::opts_chunk$set(echo = FALSE)
 
 **Title:** DSC 385 Data Exploration, Visualization, and Foundations of Unsupervised Learning
 
-
 **Instructor:** Claus	O.	Wilke<br>
 **Email:** wilke@austin.utexas.edu<br>
 **GitHub:** [clauswilke](https://github.com/clauswilke) <br>

@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ```
 
-This is the home page for DSC 385 Data Exploration, Visualization, and Foundations of Unsupervised Learning.
+This is the home page for [DSC 385 Data Exploration, Visualization, and Foundations of Unsupervised Learning.](https://ms-datascience.utexas.edu/courses/exploration-and-visualization)
 
 ## Computing requirements
 
