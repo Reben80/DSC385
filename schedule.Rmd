@@ -26,6 +26,20 @@ knitr::opts_chunk$set(echo = FALSE)
 
 - [Slides](slides/telling-a-story.html)  
 
+### 4. Visualizing amounts
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/visualizing-amounts.html)  
+- [Worksheet](worksheets/visualizing-amounts.Rmd)
+
+### 5. Coordinate systems and axes
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/coordinate-systems-axes.html)  
+- [Worksheet](worksheets/coordinate-systems-axes.Rmd)
+
 
 ## Reuse {.appendix}
 
