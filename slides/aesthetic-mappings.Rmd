@@ -237,7 +237,7 @@ ggdraw() +
 
 Figure from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.](https://clauswilke.com/dataviz)
 
----
+[//]: # "segment ends here"
 
 ---
 class: center middle
@@ -382,7 +382,7 @@ ggplot(temperatures, aes(month, temperature, fill = location)) +
 ```
 ]
 
----
+[//]: # "segment ends here"
 
 ---
 class: center middle
@@ -488,7 +488,7 @@ ggplot(temperatures, aes(month, temperature, color = location)) +
 ```
 ]
 
----
+[//]: # "segment ends here"
 
 ---
 

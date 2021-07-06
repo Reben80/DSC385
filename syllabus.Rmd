@@ -25,7 +25,17 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Purpose and contents of the class
 
-In this class, students will learn how to visualize data sets and how to reason about and communicate with data visualizations. A substantial component of this class will be dedicated to learning how to program in R. In addition, students will learn how to compile analyses and visualizations into reports, how to make the reports reproducible, and how to post reports on a website or blog.
+In this class, students will learn how to visualize data sets and how to reason about and communicate with data visualizations. Students will also learn how to assess data quality and providence, how to compile analyses and visualizations into reports, and how to make the reports reproducible. A substantial component of this class will be dedicated to learning how to program in R.
+
+What you will learn:
+
+- Data visualization
+- R programming
+- Reproducibility
+- Data quality and relevance
+- Data ethics and providence
+- Dimension reduction
+- Clustering
 
 ## Prerequisites
 
@@ -65,7 +75,6 @@ All these books are freely available online and you do not need to purchase a ph
 5.      Coordinate systems and      coords and position scales
         axes
 
-
 6.      Visualizing distributions   stats, `geom_density()`,
         1                           `geom_histogram()`
 
@@ -74,44 +83,45 @@ All these books are freely available online and you do not need to purchase a ph
 
 8.      Color scales                color and fill scales
 
-9.      Color spaces, color vision  **colorspace** package
-        deficiency
+9.      Visualizing proportions     bar charts, pie charts
 
-10.     Figure design               ggplot themes
+10.     Data wrangling 1            `mutate()`, `filter()`, `arrange()`
 
-11.     Data wrangling 1            `mutate()`, `filter()`, `arrange()`
+11.     Data wrangling 2            `group_by()`, `summarize()`, `count()`
 
-12.     Data wrangling 2            `group_by()`, `summarize()`, `count()`
+12.     Getting to know your data
+        1: Data providence
 
-13.     Functions and functional    `map()`, `nest()`, **purrr** package
-        programming
+13.     Getting to know your data   handling missing data, `is.na()`, `case_when()`
+        2: Data quality and 
+        relevance                   
 
-14.     Data quality and relevance  handling missing data, `is.na()`, `case_when()`
-
-15.     Getting things into the     `fct_reorder()`, `fct_lump()`
+14.     Getting things into the     `fct_reorder()`, `fct_lump()`
         right order
 
-16.     Visualizing proportions     bar charts, pie charts
+15.     Figure design               ggplot themes
 
-17.     Visualizing trends          `geom_smooth()`
+16.     Color spaces, color vision  **colorspace** package
+        deficiency
 
-18.     Working with models         `lm`, `cor.test`, **broom** package
+17.     Functions and functional    `map()`, `nest()`, **purrr** package
+        programming
 
-19.     Visualizing uncertainty     frequency framing, error bars, **ggdist** package
+18.     Visualizing trends          `geom_smooth()`
 
-20.     Dimension reduction 1       PCA
+19.     Working with models         `lm`, `cor.test`, **broom** package
 
-21.     Dimension reduction 2       kernel PCA, t-SNE, UMAP
+20.     Visualizing uncertainty     frequency framing, error bars, **ggdist** package
 
-22.     Clustering 1                k-means clustering
+21.     Dimension reduction 1       PCA
 
-23.     Clustering 2                hierarchical clustering
+22.     Dimension reduction 2       kernel PCA, t-SNE, UMAP
+
+23.     Clustering 1                k-means clustering
+
+24.     Clustering 2                hierarchical clustering
         
-24.     Data ethics and
-        providence 1
-
-25.     Data ethics and
-        providence 2
+25.     Data ethics
 
 26.     Visualizing geospatial      `geom_sf()`, `coord_sf()`
         data

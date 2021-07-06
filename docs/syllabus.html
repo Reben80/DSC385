@@ -2480,7 +2480,17 @@ Slides
 <p><strong>Instructor:</strong> Claus O. Wilke<br> <strong>Email:</strong> <a href="mailto:wilke@austin.utexas.edu" class="email">wilke@austin.utexas.edu</a><br> <strong>GitHub:</strong> <a href="https://github.com/clauswilke">clauswilke</a> <br></p>
 <p><strong>Teaching Assistant:</strong> <strong>Email:</strong></p>
 <h2 id="purpose-and-contents-of-the-class">Purpose and contents of the class</h2>
-<p>In this class, students will learn how to visualize data sets and how to reason about and communicate with data visualizations. A substantial component of this class will be dedicated to learning how to program in R. In addition, students will learn how to compile analyses and visualizations into reports, how to make the reports reproducible, and how to post reports on a website or blog.</p>
+<p>In this class, students will learn how to visualize data sets and how to reason about and communicate with data visualizations. Students will also learn how to assess data quality and providence, how to compile analyses and visualizations into reports, and how to make the reports reproducible. A substantial component of this class will be dedicated to learning how to program in R.</p>
+<p>What you will learn:</p>
+<ul>
+<li>Data visualization</li>
+<li>R programming</li>
+<li>Reproducibility</li>
+<li>Data quality and relevance</li>
+<li>Data ethics and providence</li>
+<li>Dimension reduction</li>
+<li>Clustering</li>
+</ul>
 <h2 id="prerequisites">Prerequisites</h2>
 <p>Students are expected to have basic knowledge of statistics. Prior experience with the programming language R is beneficial but not strictly required.</p>
 <h2 id="textbook">Textbook</h2>
@@ -2552,87 +2562,87 @@ Slides
 </tr>
 <tr class="odd">
 <td style="text-align: right;">9.</td>
-<td style="text-align: left;">Color spaces, color vision deficiency</td>
-<td style="text-align: left;"><strong>colorspace</strong> package</td>
+<td style="text-align: left;">Visualizing proportions</td>
+<td style="text-align: left;">bar charts, pie charts</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">10.</td>
-<td style="text-align: left;">Figure design</td>
-<td style="text-align: left;">ggplot themes</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">11.</td>
 <td style="text-align: left;">Data wrangling 1</td>
 <td style="text-align: left;"><code>mutate()</code>, <code>filter()</code>, <code>arrange()</code></td>
 </tr>
-<tr class="even">
-<td style="text-align: right;">12.</td>
+<tr class="odd">
+<td style="text-align: right;">11.</td>
 <td style="text-align: left;">Data wrangling 2</td>
 <td style="text-align: left;"><code>group_by()</code>, <code>summarize()</code>, <code>count()</code></td>
 </tr>
+<tr class="even">
+<td style="text-align: right;">12.</td>
+<td style="text-align: left;">Getting to know your data 1: Data providence</td>
+<td style="text-align: left;"></td>
+</tr>
 <tr class="odd">
 <td style="text-align: right;">13.</td>
+<td style="text-align: left;">Getting to know your data 2: Data quality and relevance</td>
+<td style="text-align: left;">handling missing data, <code>is.na()</code>, <code>case_when()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">14.</td>
+<td style="text-align: left;">Getting things into the right order</td>
+<td style="text-align: left;"><code>fct_reorder()</code>, <code>fct_lump()</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">15.</td>
+<td style="text-align: left;">Figure design</td>
+<td style="text-align: left;">ggplot themes</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">16.</td>
+<td style="text-align: left;">Color spaces, color vision deficiency</td>
+<td style="text-align: left;"><strong>colorspace</strong> package</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">17.</td>
 <td style="text-align: left;">Functions and functional programming</td>
 <td style="text-align: left;"><code>map()</code>, <code>nest()</code>, <strong>purrr</strong> package</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">14.</td>
-<td style="text-align: left;">Data quality and relevance</td>
-<td style="text-align: left;">handling missing data, <code>is.na()</code>, <code>case_when()</code></td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">15.</td>
-<td style="text-align: left;">Getting things into the right order</td>
-<td style="text-align: left;"><code>fct_reorder()</code>, <code>fct_lump()</code></td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">16.</td>
-<td style="text-align: left;">Visualizing proportions</td>
-<td style="text-align: left;">bar charts, pie charts</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">17.</td>
+<td style="text-align: right;">18.</td>
 <td style="text-align: left;">Visualizing trends</td>
 <td style="text-align: left;"><code>geom_smooth()</code></td>
 </tr>
-<tr class="even">
-<td style="text-align: right;">18.</td>
+<tr class="odd">
+<td style="text-align: right;">19.</td>
 <td style="text-align: left;">Working with models</td>
 <td style="text-align: left;"><code>lm</code>, <code>cor.test</code>, <strong>broom</strong> package</td>
 </tr>
-<tr class="odd">
-<td style="text-align: right;">19.</td>
+<tr class="even">
+<td style="text-align: right;">20.</td>
 <td style="text-align: left;">Visualizing uncertainty</td>
 <td style="text-align: left;">frequency framing, error bars, <strong>ggdist</strong> package</td>
 </tr>
-<tr class="even">
-<td style="text-align: right;">20.</td>
+<tr class="odd">
+<td style="text-align: right;">21.</td>
 <td style="text-align: left;">Dimension reduction 1</td>
 <td style="text-align: left;">PCA</td>
 </tr>
-<tr class="odd">
-<td style="text-align: right;">21.</td>
+<tr class="even">
+<td style="text-align: right;">22.</td>
 <td style="text-align: left;">Dimension reduction 2</td>
 <td style="text-align: left;">kernel PCA, t-SNE, UMAP</td>
 </tr>
-<tr class="even">
-<td style="text-align: right;">22.</td>
+<tr class="odd">
+<td style="text-align: right;">23.</td>
 <td style="text-align: left;">Clustering 1</td>
 <td style="text-align: left;">k-means clustering</td>
 </tr>
-<tr class="odd">
-<td style="text-align: right;">23.</td>
+<tr class="even">
+<td style="text-align: right;">24.</td>
 <td style="text-align: left;">Clustering 2</td>
 <td style="text-align: left;">hierarchical clustering</td>
 </tr>
-<tr class="even">
-<td style="text-align: right;">24.</td>
-<td style="text-align: left;">Data ethics and providence 1</td>
-<td style="text-align: left;"></td>
-</tr>
 <tr class="odd">
 <td style="text-align: right;">25.</td>
-<td style="text-align: left;">Data ethics and providence 2</td>
+<td style="text-align: left;">Data ethics</td>
 <td style="text-align: left;"></td>
 </tr>
 <tr class="even">

@@ -13,7 +13,19 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Lectures
 
-under construction...
+### 2. Aesthetic mappings
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/aesthetic-mappings.html)  
+- [Worksheet](worksheets/aesthetic-mappings.Rmd)
+
+### 3. Telling a story
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/telling-a-story.html)  
+
 
 ## Reuse {.appendix}
 
