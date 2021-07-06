@@ -31,6 +31,10 @@ income_by_age <- readRDS(here("datasets", "income_by_age.rds"))
 
 ## We often encounter datasets containing simple amounts
 
+---
+
+## We often encounter datasets containing simple amounts
+
 Example: Highest grossing movies Dec. 2017
 
 <br>
@@ -55,7 +59,7 @@ Data source: Box Office Mojo
 
 ---
 
-## We usually visualize amounts with bar plots
+## We can visualize amounts with bar plots
 
 <br>
 
@@ -85,7 +89,7 @@ boxoffice %>%
 
 ---
 
-## Bars can also run horizontal
+## Bars can also run horizontally
 
 <br>
 
@@ -147,7 +151,9 @@ stamp_ugly(p_box_axrot)
 
 ## Avoid rotated axis labels
 
-.center[
+<br>
+
+.center.move-up-1em[
 ![](`r knitr::fig_chunk("boxoffice-horizontal", "svg")`)
 ]
 
@@ -193,7 +199,7 @@ stamp_bad(p_box_noorder)
 
 <br>
 
-.center[
+.center.move-up-1em[
 ![](`r knitr::fig_chunk("boxoffice-horizontal", "svg")`)
 ]
 
@@ -203,7 +209,7 @@ stamp_bad(p_box_noorder)
 
 <br>
 
-.center[
+.center.move-up-1em[
 ```{r boxoffice-dotplot, echo = FALSE, fig.width = 7, fig.asp = .618, dev = "svg"}
 ggplot(boxoffice, aes(x = fct_reorder(title, desc(rank)), y = amount)) +
   geom_point(color = "#0072B2", size = 4) +
@@ -527,12 +533,18 @@ ggplot(boxoffice, aes(amount, fct_reorder(title, amount))) +
 ]
 
 ---
+class: center middle
+
+## Sometimes we need to count before visualization
+
+
+---
 background-image: url(https://raw.githubusercontent.com/allisonhorst/palmerpenguins/master/man/figures/logo.png)
 background-position: 95% 5%
 background-size: 8%
 
 
-## Sometimes we need to count before visualization
+## Goal: Visualize number of penguins per species
 
 .small-font[
 ```{r}
@@ -540,8 +552,6 @@ library(palmerpenguins)
 head(penguins)
 ```
 ]
-
-Goal: Visualize number of penguins per species
 
 ???
 
@@ -564,6 +574,9 @@ ggplot(penguins, aes(y = species)) + # note: no x aesthetic defined
 ]
 
 
+---
+
+## Getting the bars into the right order
 
 ---
 

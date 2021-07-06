@@ -24,6 +24,10 @@ class: center, middle, title-slide
 
 ## We often encounter datasets containing simple amounts
 
+---
+
+## We often encounter datasets containing simple amounts
+
 Example: Highest grossing movies Dec. 2017
 
 &lt;br&gt;
@@ -73,7 +77,7 @@ Data source: Box Office Mojo
 
 ---
 
-## We usually visualize amounts with bar plots
+## We can visualize amounts with bar plots
 
 &lt;br&gt;
 
@@ -83,7 +87,7 @@ Data source: Box Office Mojo
 
 ---
 
-## Bars can also run horizontal
+## Bars can also run horizontally
 
 &lt;br&gt;
 
@@ -104,7 +108,9 @@ Data source: Box Office Mojo
 
 ## Avoid rotated axis labels
 
-.center[
+&lt;br&gt;
+
+.center.move-up-1em[
 ![](visualizing-amounts_files/figure-html/boxoffice-horizontal-1.svg)
 ]
 
@@ -124,7 +130,7 @@ Data source: Box Office Mojo
 
 &lt;br&gt;
 
-.center[
+.center.move-up-1em[
 ![](visualizing-amounts_files/figure-html/boxoffice-horizontal-1.svg)
 ]
 
@@ -134,7 +140,7 @@ Data source: Box Office Mojo
 
 &lt;br&gt;
 
-.center[
+.center.move-up-1em[
 ![](visualizing-amounts_files/figure-html/boxoffice-dotplot-1.svg)&lt;!-- --&gt;
 ]
 
@@ -341,12 +347,18 @@ ggplot(boxoffice, aes(amount, fct_reorder(title, amount))) +
 ]
 
 ---
+class: center middle
+
+## Sometimes we need to count before visualization
+
+
+---
 background-image: url(https://raw.githubusercontent.com/allisonhorst/palmerpenguins/master/man/figures/logo.png)
 background-position: 95% 5%
 background-size: 8%
 
 
-## Sometimes we need to count before visualization
+## Goal: Visualize number of penguins per species
 
 .small-font[
 
@@ -369,8 +381,6 @@ head(penguins)
 ```
 ]
 
-Goal: Visualize number of penguins per species
-
 ???
 
 Image credit: [Artwork by @allison_horst](https://github.com/allisonhorst/palmerpenguins/#artwork)
@@ -392,6 +402,9 @@ ggplot(penguins, aes(y = species)) + # note: no x aesthetic defined
 ]
 
 
+---
+
+## Getting the bars into the right order
 
 ---
 
