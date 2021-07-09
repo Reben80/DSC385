@@ -321,8 +321,6 @@ key features<br>of the data<br>are obscured
 ![](`r knitr::fig_chunk("Americas-life-expect", "svg")`)
 ]
 
----
-
 [//]: # "segment ends here"
 
 ---
@@ -433,8 +431,6 @@ ggplot(income_by_age, aes(x = age_brief, y = median_income)) +
 .absolute-bottom-right[
 Data source: United States Census Bureau, 2016
 ]
-
----
 
 [//]: # "segment ends here"
 
@@ -707,14 +703,7 @@ ggplot(penguins_nomissing, aes(sex, fill = species)) +
 ```
 ]
 
----
-
 [//]: # "segment ends here"
-
----
-class: center middle
-
-## Further reading
 
 ---
 

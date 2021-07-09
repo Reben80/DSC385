@@ -525,9 +525,6 @@ ggplot(temps_long, aes(x = date, y = temperature, color = location)) +
 ```
 ]
 
-
----
-
 [//]: # "segment ends here"
 
 ---
@@ -849,15 +846,7 @@ ggplot(temperatures, aes(day_of_year, temperature, color = location)) +
 ```
 ]]
 
----
-
 [//]: # "segment ends here"
-
----
-
-class: center middle
-
-## Further reading
 
 ---
 
