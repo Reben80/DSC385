@@ -418,8 +418,6 @@ titanic %>%
 
 Figures redrawn from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.](https://clauswilke.com/dataviz)
 
----
-
 [//]: # "segment ends here"
 
 
@@ -585,9 +583,6 @@ ggplot(titanic, aes(age)) +
 ```
 ]
 
-
----
-
 [//]: # "segment ends here"
 
 
@@ -747,8 +742,6 @@ ggplot(titanic, aes(age)) +
 ```{r titanic-stat-demo8-out, ref.label = "titanic-stat-demo8", echo = FALSE, fig.width = 10, fig.asp = 0.3, dev = "svg"}
 ```
 ]
-
----
 
 [//]: # "segment ends here"
 

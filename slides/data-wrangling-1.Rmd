@@ -118,6 +118,47 @@ penguins %>%
 
 ---
 
+## Since R 4.1: Native pipe `|>`
+
+.tiny-font[
+```{r penguins-scatter3, eval = FALSE}
+penguins |>
+  ggplot(aes(bill_length_mm, bill_depth_mm, color = species)) + geom_point()
+```
+]
+
+.center[
+```{r penguins-scatter3-out, ref.label = "penguins-scatter3", echo = FALSE, warning=FALSE, fig.width=6, fig.asp = 0.618, dev = "svg"}
+```
+]
+
+---
+
+## Which to use? Native pipe or old-school pipe?
+
+--
+
+- `|>` is the future. If you can, use it.
+
+--
+
+- `%>%` works on older installations. It's the safe choice for now.
+
+--
+
+We use `%>%` here because many people still run R 3.x or 4.0.
+
+---
+
+[//]: # "segment ends here"
+
+---
+class: center middle
+
+## Choosing rows or columns, and sorting
+
+---
+
 ## Pick rows from a table: `filter()`
 
 <br>
@@ -203,6 +244,15 @@ penguins %>%
 ```
 ]
 
+---
+
+[//]: # "segment ends here"
+
+---
+class: center middle
+
+## Counting things
+
 
 ---
 
@@ -284,6 +334,15 @@ penguins %>%
 ]
 
 ---
+
+[//]: # "segment ends here"
+
+---
+class: center middle
+
+## Adding new columns to a table
+
+---
 ## Make a new table column: `mutate()`
 
 <br>
@@ -330,6 +389,9 @@ penguins %>%
 ```
 ]
 
+---
+
+[//]: # "segment ends here"
 
 ---
 

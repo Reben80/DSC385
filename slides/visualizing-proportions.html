@@ -14,7 +14,7 @@ class: center, middle, title-slide
 
 # Visualizing proportions
 ### Claus O. Wilke
-### last updated: 2021-03-09
+### last updated: 2021-07-15
 
 ---
 
@@ -213,10 +213,92 @@ Works well for time series and similar | ✖ | ✔ | ✖
 
 No one visualization fits all scenarios!
 
+---
+
+[//]: # "segment ends here"
+
+---
+class: center middle
+
+## Nested proportions: proportions of proportions
+
+---
+## Mosaic plots subdivide data along two dimensions
+
+.center[
+&lt;img src = "https://clauswilke.com/dataviz/nested_proportions_files/figure-html/bridges-mosaic-1.png", width = 75%&gt;&lt;/img&gt;
+]
+
+.absolute-bottom-right.tiny-font[
+Dataset: Bridges in Pittsburgh by construction material and era of construction
+]
+
+???
+
+Figure from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.](https://clauswilke.com/dataviz)
+
+---
+## Closely related to mosaic plot: Treemap
+
+.center[
+&lt;img src = "https://clauswilke.com/dataviz/nested_proportions_files/figure-html/bridges-treemap-1.png", width = 65%&gt;&lt;/img&gt;
+]
+
+???
+
+Figure from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.](https://clauswilke.com/dataviz)
+
+---
+## Treemaps work well for more complex cases
+
+.center.move-up-1em[
+&lt;img src = "https://clauswilke.com/dataviz/nested_proportions_files/figure-html/US-states-treemap-1.png", width = 80%&gt;&lt;/img&gt;
+]
+
+.absolute-bottom-right.tiny-font[
+Dataset: Land surface area of US states
+]
+
+
+???
+
+Figure from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.](https://clauswilke.com/dataviz)
+
+---
+## We can nest pie charts with clever coloring
+
+.center.move-up-1em[
+&lt;img src = "https://clauswilke.com/dataviz/nested_proportions_files/figure-html/bridges-nested-pie2-1.png", width = 70%&gt;&lt;/img&gt;
+]
+
+???
+
+Figure from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.](https://clauswilke.com/dataviz)
+
+---
+## Parallel sets can show many subdivisions at once
+
+.center[
+&lt;img src = "https://clauswilke.com/dataviz/nested_proportions_files/figure-html/bridges-parallel-sets1-1.png", width = 75%&gt;&lt;/img&gt;
+]
+
+???
+
+Figure from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.](https://clauswilke.com/dataviz)
 
 ---
 
-## Making pie charts with ggplot
+[//]: # "segment ends here"
+
+---
+class: center middle
+
+## Making pie charts with **ggplot2**
+
+
+---
+
+## Making pie charts with **ggplot2**
 
 We have three options:
 
@@ -240,7 +322,7 @@ We have three options:
 
 ---
 
-## Making pie charts with ggplot: polar coords
+## Making pie charts with **ggplot2**: polar coords
 
 .pull-left.tiny-font[
 
@@ -266,7 +348,7 @@ bundestag
 
 ---
 
-## Making pie charts with ggplot: polar coords
+## Making pie charts with **ggplot2**: polar coords
 
 .pull-left.tiny-font[
 
@@ -291,7 +373,7 @@ ggplot(bundestag) +
 
 ---
 
-## Making pie charts with ggplot: polar coords
+## Making pie charts with **ggplot2**: polar coords
 
 .pull-left.tiny-font[
 
@@ -317,7 +399,7 @@ ggplot(bundestag) +
 
 ---
 
-## Making pie charts with ggplot: polar coords
+## Making pie charts with **ggplot2**: polar coords
 
 .pull-left.tiny-font[
 
@@ -351,7 +433,7 @@ ggplot(bundestag) +
 
 ---
 
-## Making pie charts with ggplot: **ggforce** stat pie
+## Making pie charts with **ggplot2**: **ggforce** stat pie
 
 .pull-left.tiny-font[
 
@@ -376,7 +458,7 @@ ggplot(bundestag) +
 
 ---
 
-## Making pie charts with ggplot: **ggforce** stat pie
+## Making pie charts with **ggplot2**: **ggforce** stat pie
 
 .pull-left.tiny-font[
 
@@ -402,7 +484,7 @@ ggplot(bundestag) +
 
 ---
 
-## Making pie charts with ggplot: **ggforce** stat pie
+## Making pie charts with **ggplot2**: **ggforce** stat pie
 
 .pull-left.tiny-font[
 
@@ -430,7 +512,7 @@ ggplot(bundestag) +
 
 ---
 
-## Making pie charts with ggplot: **ggforce** stat pie
+## Making pie charts with **ggplot2**: **ggforce** stat pie
 
 .pull-left.tiny-font[
 
@@ -457,7 +539,7 @@ ggplot(bundestag) +
 
 ---
 
-## Making pie charts with ggplot: **ggforce** stat pie
+## Making pie charts with **ggplot2**: **ggforce** stat pie
 
 .pull-left.tiny-font[
 
@@ -484,7 +566,7 @@ ggplot(bundestag) +
 
 ---
 
-## Making pie charts with ggplot: **ggforce** manual comp.
+## Making pie charts with **ggplot2**: **ggforce** manual comp.
 
 .tiny-font[
 
@@ -509,7 +591,7 @@ pie_data
 
 ---
 
-## Making pie charts with ggplot: **ggforce** manual comp.
+## Making pie charts with **ggplot2**: **ggforce** manual comp.
 
 .tiny-font[
 
@@ -537,7 +619,7 @@ pie_data
 
 ---
 
-## Making pie charts with ggplot: **ggforce** manual comp.
+## Making pie charts with **ggplot2**: **ggforce** manual comp.
 
 .tiny-font[
 
@@ -565,7 +647,7 @@ pie_data
 
 ---
 
-## Making pie charts with ggplot: **ggforce** manual comp.
+## Making pie charts with **ggplot2**: **ggforce** manual comp.
 
 .tiny-font[
 
@@ -594,7 +676,7 @@ pie_data
 
 ---
 
-## Making pie charts with ggplot: **ggforce** manual comp.
+## Making pie charts with **ggplot2**: **ggforce** manual comp.
 
 .tiny-font[
 
@@ -626,7 +708,7 @@ pie_data
 
 ---
 
-## Making pie charts with ggplot: **ggforce** manual comp.
+## Making pie charts with **ggplot2**: **ggforce** manual comp.
 
 .pull-left.tiny-font[
 
@@ -648,7 +730,7 @@ ggplot(pie_data) +
 
 ---
 
-## Making pie charts with ggplot: **ggforce** manual comp.
+## Making pie charts with **ggplot2**: **ggforce** manual comp.
 
 .pull-left.tiny-font[
 
@@ -677,7 +759,7 @@ ggplot(pie_data) +
 
 ---
 
-## Making pie charts with ggplot: **ggforce** manual comp.
+## Making pie charts with **ggplot2**: **ggforce** manual comp.
 
 .pull-left.tiny-font[
 
@@ -706,7 +788,7 @@ ggplot(pie_data) +
 
 ---
 
-## Making pie charts with ggplot: **ggforce** manual comp.
+## Making pie charts with **ggplot2**: **ggforce** manual comp.
 
 .pull-left.tiny-font[
 
@@ -735,7 +817,7 @@ ggplot(pie_data) +
 
 ---
 
-## Making pie charts with ggplot: **ggforce** manual comp.
+## Making pie charts with **ggplot2**: **ggforce** manual comp.
 
 .pull-left.tiny-font[
 
@@ -764,7 +846,7 @@ ggplot(pie_data) +
 
 ---
 
-## Making pie charts with ggplot: **ggforce** manual comp.
+## Making pie charts with **ggplot2**: **ggforce** manual comp.
 
 .pull-left.xtiny-font[
 
@@ -801,7 +883,7 @@ ggplot(pie_data) +
 
 ---
 
-## Making pie charts with ggplot: **ggforce** manual comp.
+## Making pie charts with **ggplot2**: **ggforce** manual comp.
 
 .pull-left.xtiny-font[
 
@@ -838,7 +920,7 @@ ggplot(pie_data) +
 
 ---
 
-## Making pie charts with ggplot: **ggforce** manual comp.
+## Making pie charts with **ggplot2**: **ggforce** manual comp.
 
 .pull-left.xtiny-font[
 
@@ -873,6 +955,9 @@ ggplot(pie_data) +
 ![](visualizing-proportions_files/figure-html/bundestag-arc-bar8-out-1.svg)&lt;!-- --&gt;
 ]
 
+---
+
+[//]: # "segment ends here"
 
 ---
 

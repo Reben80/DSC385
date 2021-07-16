@@ -83,11 +83,11 @@ All these books are freely available online and you do not need to purchase a ph
 
 8.      Color scales                color and fill scales
 
-9.      Visualizing proportions     bar charts, pie charts
+9.      Data wrangling 1            `mutate()`, `filter()`, `arrange()`
 
-10.     Data wrangling 1            `mutate()`, `filter()`, `arrange()`
+10.     Data wrangling 2            `group_by()`, `summarize()`, `count()`
 
-11.     Data wrangling 2            `group_by()`, `summarize()`, `count()`
+11.     Visualizing proportions     bar charts, pie charts
 
 12.     Getting to know your data
         1: Data providence

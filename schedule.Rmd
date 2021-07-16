@@ -54,6 +54,27 @@ knitr::opts_chunk$set(echo = FALSE)
 - [Slides](slides/visualizing-distributions-2.html)  
 - [Worksheet](worksheets/visualizing-distributions-2.Rmd)
 
+### 8. Color scales  
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/color-scales.html)  
+- [Worksheet](worksheets/color-scales.Rmd)
+
+### 9. Data wrangling 1
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/data-wrangling-1.html)  
+- [Worksheet](worksheets/data-wrangling-1.Rmd)
+
+### 9. Data wrangling 2
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/data-wrangling-2.html)  
+- [Worksheet](worksheets/data-wrangling-2.Rmd)
+
 ## Reuse {.appendix}
 
 Text and figures are licensed under Creative Commons Attribution [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Any computer code (R, HTML, CSS, etc.) in slides and worksheets, including in slide and worksheet sources, is also licensed under [MIT](https://github.com/wilkelab/SDS375/LICENSE.md). Note that figures in slides may be pulled in from external sources and may be licensed under different terms. For such images, image credits are available in the slide notes, accessible via pressing the letter 'p'.
