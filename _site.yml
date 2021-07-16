@@ -32,12 +32,12 @@ navbar:
           href: slides/visualizing-distributions-2.html
         - text: "Class 8: Color scales"
           href: slides/color-scales.html
-        - text: "Class 9: Visualizing proportions"
-          href: slides/visualizing-proportions.html
-        - text: "Class 10: Data wrangling 1"
+        - text: "Class 9: Data wrangling 1"
           href: slides/data-wrangling-1.html
-        - text: "Class 11: Data wrangling 2"
+        - text: "Class 10: Data wrangling 2"
           href: slides/data-wrangling-2.html
+        - text: "Class 11: Visualizing proportions"
+          href: slides/visualizing-proportions.html
         - text: "Class 12: Getting to know your data 1"
         - text: "Class 13: Getting to know your data 2"
         - text: "Class 14: Getting things into the right order"
