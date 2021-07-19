@@ -68,7 +68,7 @@ knitr::opts_chunk$set(echo = FALSE)
 - [Slides](slides/data-wrangling-1.html)  
 - [Worksheet](worksheets/data-wrangling-1.Rmd)
 
-### 9. Data wrangling 2
+### 10. Data wrangling 2
 
 <p class="nospace">Materials:</p>
 

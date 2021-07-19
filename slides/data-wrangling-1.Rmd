@@ -155,7 +155,7 @@ We use `%>%` here because many people still run R 3.x or 4.0.
 ---
 class: center middle
 
-## Choosing rows or columns, and sorting
+## Picking rows or columns, and sorting
 
 ---
 
