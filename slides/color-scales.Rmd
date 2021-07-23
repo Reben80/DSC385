@@ -603,7 +603,6 @@ Figure redrawn from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reill
 </tr>
 </table>
 
----
 [//]: # "segment ends here"
 
 ---
@@ -905,8 +904,6 @@ colorspace::divergingx_palettes(plot = TRUE, n = 9) # all divergingx palettes
 ]
 
 
----
-
 [//]: # "segment ends here"
 
 ---
@@ -1017,8 +1014,6 @@ black	         | #000000   | 0, 0, 0
 ???
 
 Figure from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.](https://clauswilke.com/dataviz)
-
----
 
 [//]: # "segment ends here"
 
