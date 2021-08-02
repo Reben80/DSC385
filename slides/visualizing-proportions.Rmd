@@ -508,8 +508,6 @@ Works well for time series and similar | ✖ | ✔ | ✖
 
 No one visualization fits all scenarios!
 
----
-
 [//]: # "segment ends here"
 
 ---
@@ -580,8 +578,6 @@ Figure from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.
 ???
 
 Figure from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.](https://clauswilke.com/dataviz)
-
----
 
 [//]: # "segment ends here"
 
@@ -1189,8 +1185,6 @@ ggplot(pie_data) +
 ```{r bundestag-arc-bar8-out, ref.label = "bundestag-arc-bar8", echo = FALSE, message = FALSE, fig.width = 5.5, fig.asp = 0.618, dev = "svg"}
 ```
 ]
-
----
 
 [//]: # "segment ends here"
 

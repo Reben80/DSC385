@@ -104,6 +104,26 @@ knitr::opts_chunk$set(echo = FALSE)
 - [Slides](slides/figure-design.html)  
 - [Worksheet](worksheets/figure-design.Rmd)
 
+### 16. Color spaces, color vision deficiency
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/color-spaces.html)  
+- [Worksheet](worksheets/color-spaces.R)
+
+### 17. Functions and functional programming
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/functional-programming.html)  
+- Worksheet in preparation
+
+### 18. Visualizing trends
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/visualizing-trends.html)  
+- [Worksheet](worksheets/visualizing-trends.Rmd)
 
 ## Reuse {.appendix}
 

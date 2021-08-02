@@ -420,8 +420,6 @@ penguins %>%
 ```
 ]
 
----
-
 [//]: # "segment ends here"
 
 ---
@@ -1034,8 +1032,6 @@ Function           | Use case        | Documentation
 ]
 
 For more options, check out the [reference documentation](https://forcats.tidyverse.org/reference/index.html) of the **forcats** package
-
----
 
 [//]: # "segment ends here"
 

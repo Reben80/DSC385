@@ -338,7 +338,6 @@ ggplot(lincoln_temps) +
 ```
 ]
 
----
 
 [//]: # "segment ends here"
 
@@ -1060,11 +1059,7 @@ ggplot(penguins) +
 ```
 ]
 
----
-
 [//]: # "segment ends here"
-
-
 
 ---
 ## Further reading
