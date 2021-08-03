@@ -116,7 +116,7 @@ knitr::opts_chunk$set(echo = FALSE)
 <p class="nospace">Materials:</p>
 
 - [Slides](slides/functional-programming.html)  
-- Worksheet in preparation
+- *Worksheet in preparation*
 
 ### 18. Visualizing trends
 
