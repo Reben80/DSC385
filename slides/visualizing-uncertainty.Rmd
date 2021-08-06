@@ -190,7 +190,16 @@ This type of visualization is called "frequency framing"
 
 ---
 
-## Visualizing uncertainty of point estimates
+[//]: # "segment ends here"
+
+---
+class: center middle
+
+## Visualizing the uncertainty of point estimates
+
+---
+
+## Visualizing the uncertainty of point estimates
 
 --
 
@@ -781,7 +790,16 @@ ggplot(evrst_gg) +
 
 ---
 
-## Making a plot with error bars in R
+[//]: # "segment ends here"
+
+---
+class: center middle
+
+## Uncertainty visualizations in R
+
+---
+
+## Making a plot with error bars
 
 --
 
@@ -815,7 +833,7 @@ gapminder %>%
 
 ---
 
-## Making a plot with error bars in R
+## Making a plot with error bars
 
 .small-font[
 Example: Relationship between life expectancy and GDP per capita
@@ -886,7 +904,7 @@ gapminder %>%
 
 ---
 
-## Making a plot with error bars in R
+## Making a plot with error bars
 
 .tiny-font[
 ```{r}
@@ -899,7 +917,7 @@ lm_data
 
 ---
 
-## Making a plot with error bars in R
+## Making a plot with error bars
 
 .tiny-font[
 ```{r}
@@ -915,7 +933,7 @@ lm_data
 
 ---
 
-## Making a plot with error bars in R
+## Making a plot with error bars
 
 .tiny-font[
 ```{r}
@@ -932,7 +950,7 @@ lm_data
 
 ---
 
-## Making a plot with error bars in R
+## Making a plot with error bars
 
 .tiny-font[
 ```{r}
@@ -950,7 +968,7 @@ lm_data
 
 ---
 
-## Making a plot with error bars in R
+## Making a plot with error bars
 
 .tiny-font[
 ```{r}
@@ -970,7 +988,7 @@ lm_data
 
 ---
 
-## Making a plot with error bars in R
+## Making a plot with error bars
 
 .tiny-font[
 ```{r}
@@ -991,7 +1009,7 @@ lm_data
 
 ---
 
-## Making a plot with error bars in R
+## Making a plot with error bars
 
 .tiny-font.pull-left[
 ```{r gapminder-model, eval = FALSE}
@@ -1157,6 +1175,10 @@ lm_data %>%
 ```{r gapminder-quantiledots2-out, ref.label = "gapminder-quantiledots2", echo = FALSE, fig.width = 6, fig.asp = 0.618, dev = "svg"}
 ```
 ]
+
+---
+
+[//]: # "segment ends here"
 
 
 ---

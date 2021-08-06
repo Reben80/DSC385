@@ -14,7 +14,7 @@ class: center, middle, title-slide
 
 # Working with models
 ### Claus O. Wilke
-### last updated: 2021-03-19
+### last updated: 2021-08-06
 
 ---
 
@@ -330,9 +330,9 @@ glance(lm_out)
 
 ```
 # A tibble: 1 x 12
-  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC
-      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1     0.219         0.214  5.80      41.8 1.34e-9     1  -479.  963.  972.
+  r.squared adj.r.squared sigma statistic       p.value    df logLik   AIC   BIC
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     0.219         0.214  5.80      41.8 0.00000000134     1  -479.  963.  972.
 # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;
 ```
 ]
@@ -499,11 +499,11 @@ lm_data %&gt;%
 
 ```
 # A tibble: 3 x 13
-  species r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC
-  &lt;fct&gt;       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
-1 Adelie      0.219         0.214  5.80      41.8 1.34e- 9     1  -479.  963.
-2 Gentoo      0.494         0.490  4.63     118.  1.33e-19     1  -362.  730.
-3 Chinst…     0.412         0.403  5.51      46.2 3.75e- 9     1  -212.  429.
+  species   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC
+  &lt;fct&gt;         &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+1 Adelie        0.219         0.214  5.80      41.8 1.34e- 9     1  -479.  963.
+2 Gentoo        0.494         0.490  4.63     118.  1.33e-19     1  -362.  730.
+3 Chinstrap     0.412         0.403  5.51      46.2 3.75e- 9     1  -212.  429.
 # … with 4 more variables: BIC &lt;dbl&gt;, deviance &lt;dbl&gt;, df.residual &lt;int&gt;,
 #   nobs &lt;int&gt;
 ```
@@ -531,11 +531,11 @@ lm_summary
 
 ```
 # A tibble: 3 x 13
-  species r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC
-  &lt;fct&gt;       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
-1 Adelie      0.219         0.214  5.80      41.8 1.34e- 9     1  -479.  963.
-2 Gentoo      0.494         0.490  4.63     118.  1.33e-19     1  -362.  730.
-3 Chinst…     0.412         0.403  5.51      46.2 3.75e- 9     1  -212.  429.
+  species   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC
+  &lt;fct&gt;         &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+1 Adelie        0.219         0.214  5.80      41.8 1.34e- 9     1  -479.  963.
+2 Gentoo        0.494         0.490  4.63     118.  1.33e-19     1  -362.  730.
+3 Chinstrap     0.412         0.403  5.51      46.2 3.75e- 9     1  -212.  429.
 # … with 4 more variables: BIC &lt;dbl&gt;, deviance &lt;dbl&gt;, df.residual &lt;int&gt;,
 #   nobs &lt;int&gt;
 ```
@@ -591,6 +591,10 @@ ggplot(penguins, aes(body_mass_g, flipper_length_mm)) + geom_point() +
 .center[
 ![](working-with-models_files/figure-html/penguins-fit-w-labels-out-1.svg)&lt;!-- --&gt;
 ]
+
+---
+
+[//]: # "segment ends here"
 
 
 ---

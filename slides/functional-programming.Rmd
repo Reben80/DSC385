@@ -630,8 +630,6 @@ Note: This pipeline automatically processes all species in the dataset, whatever
 - Most modern programming languages are moving away from `for` loops<br>
   (examples: Python, Rust, JavaScript)
 
----
-
 [//]: # "segment ends here"
 
 ---
