@@ -529,7 +529,7 @@ $$\text{Var}(X) = \frac{1}{n}\sum_j (\bar x - x_j)^2 = \sigma_X^2$$
 
 Covariance of two variables $X$ and $Y$:
 
-$$\text{Cov}(X, Y) = \frac{1}{n}\sum_j (\bar x - x_j)(\bar y - y_j) = \sigma_{XY}^2$$
+$$\text{Cov}(X, Y) = \frac{1}{n}\sum_j (\bar x - x_j)(\bar y - y_j) = \sigma_{XY}$$
 
 ---
 
@@ -539,10 +539,10 @@ Covariance matrix of $n$ variables $X_1 \dots X_n$:
 
 $$\text{C} = \left(
 \begin{array}{cccc}
-  \sigma_{11}^2 & \sigma_{12}^2 & \dots & \sigma_{1n}^2  \\
-  \sigma_{21}^2 & \sigma_{22}^2 & \dots & \sigma_{2n}^2  \\
+  \sigma_{11}^2 & \sigma_{12} & \dots & \sigma_{1n}  \\
+  \sigma_{21} & \sigma_{22}^2 & \dots & \sigma_{2n} \\
   \vdots & \vdots & \ddots & \vdots \\
-  \sigma_{n1}^2 & \sigma_{n2}^2 & \dots & \sigma_{nn}^2  \\
+  \sigma_{n1} & \sigma_{n2} & \dots & \sigma_{nn}^2  \\
 \end{array}
 \right)$$
 
