@@ -188,8 +188,6 @@ ggplot(data, aes(x, y, fill = value)) +
 
 This type of visualization is called "frequency framing"
 
----
-
 [//]: # "segment ends here"
 
 ---
@@ -788,8 +786,6 @@ ggplot(evrst_gg) +
 ```
 ]
 
----
-
 [//]: # "segment ends here"
 
 ---
@@ -1175,8 +1171,6 @@ lm_data %>%
 ```{r gapminder-quantiledots2-out, ref.label = "gapminder-quantiledots2", echo = FALSE, fig.width = 6, fig.asp = 0.618, dev = "svg"}
 ```
 ]
-
----
 
 [//]: # "segment ends here"
 

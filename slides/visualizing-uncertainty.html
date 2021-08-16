@@ -14,7 +14,7 @@ class: center, middle, title-slide
 
 # Visualizing uncertainty
 ### Claus O. Wilke
-### last updated: 2021-08-06
+### last updated: 2021-08-13
 
 ---
 
@@ -100,8 +100,6 @@ Possible outcomes from 100 individual games played
 --
 
 This type of visualization is called "frequency framing"
-
----
 
 [//]: # "segment ends here"
 
@@ -253,8 +251,6 @@ Other visualization options: quantile dotplot
 ![](visualizing-uncertainty_files/figure-html/everest_margins6-1.svg)&lt;!-- --&gt;
 ]
 
----
-
 [//]: # "segment ends here"
 
 ---
@@ -308,7 +304,7 @@ lm_data
 ```
 
 ```
-# A tibble: 60 x 3
+# A tibble: 60 × 3
    continent  year data             
    &lt;fct&gt;     &lt;int&gt; &lt;list&gt;           
  1 Asia       1952 &lt;tibble [33 × 4]&gt;
@@ -342,7 +338,7 @@ lm_data
 ```
 
 ```
-# A tibble: 60 x 4
+# A tibble: 60 × 4
    continent  year data              fit   
    &lt;fct&gt;     &lt;int&gt; &lt;list&gt;            &lt;list&gt;
  1 Asia       1952 &lt;tibble [33 × 4]&gt; &lt;lm&gt;  
@@ -377,7 +373,7 @@ lm_data
 ```
 
 ```
-# A tibble: 60 x 5
+# A tibble: 60 × 5
    continent  year data              fit    tidy_out        
    &lt;fct&gt;     &lt;int&gt; &lt;list&gt;            &lt;list&gt; &lt;list&gt;          
  1 Asia       1952 &lt;tibble [33 × 4]&gt; &lt;lm&gt;   &lt;tibble [2 × 5]&gt;
@@ -413,7 +409,7 @@ lm_data
 ```
 
 ```
-# A tibble: 120 x 9
+# A tibble: 120 × 9
    continent  year data      fit    term    estimate std.error statistic p.value
    &lt;fct&gt;     &lt;int&gt; &lt;list&gt;    &lt;list&gt; &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
  1 Asia       1952 &lt;tibble … &lt;lm&gt;   (Inter…    15.8       9.27      1.71 9.78e-2
@@ -450,7 +446,7 @@ lm_data
 ```
 
 ```
-# A tibble: 120 x 7
+# A tibble: 120 × 7
    continent  year term           estimate std.error statistic  p.value
    &lt;fct&gt;     &lt;int&gt; &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
  1 Asia       1952 (Intercept)       15.8       9.27      1.71 0.0978  
@@ -489,7 +485,7 @@ lm_data
 ```
 
 ```
-# A tibble: 48 x 7
+# A tibble: 48 × 7
    continent  year term           estimate std.error statistic       p.value
    &lt;fct&gt;     &lt;int&gt; &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;
  1 Asia       1952 log(gdpPercap)     4.16     1.25       3.33 0.00228      
@@ -675,8 +671,6 @@ lm_data %&gt;%
 .pull-right[
 ![](visualizing-uncertainty_files/figure-html/gapminder-quantiledots2-out-1.svg)&lt;!-- --&gt;
 ]
-
----
 
 [//]: # "segment ends here"
 

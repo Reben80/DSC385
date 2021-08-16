@@ -508,8 +508,6 @@ PC 1 captures over 50% of the total variance in the dataset
 Overall bird size explains >50% of the variation in the various measurements
 ]
 
----
-
 [//]: # "segment ends here"
 
 ---
@@ -605,8 +603,6 @@ Components are uncorrelated
 .center[
 ![](`r knitr::fig_chunk("pca-scatter", "svg")`)
 ]
-
----
 
 [//]: # "segment ends here"
 
@@ -822,8 +818,6 @@ pca_fit %>%
 ```{r blue-jays-pca-eigenvalues-out, ref.label="blue-jays-pca-eigenvalues", fig.width=5., fig.asp = 0.75, echo=FALSE, warning=FALSE, dev = "svg"}
 ```
 ]
-
----
 
 [//]: # "segment ends here"
 
