@@ -112,6 +112,18 @@ table {
   margin-top: -3em;
 }
 
+.move-up-4em {
+  margin-top: -4em;
+}
+
+.move-up-5em {
+  margin-top: -5em;
+}
+
+.move-up-6em {
+  margin-top: -6em;
+}
+
 .move-down-1em {
   margin-top: 1em;
 }

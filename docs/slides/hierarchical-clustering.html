@@ -33,21 +33,20 @@ US_state_stats
 
 ```
 # A tibble: 50 × 20
-   state       homeownership multiunit income med_income poverty fed_spend smoke
-   &lt;chr&gt;               &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;
- 1 Alabama              71.1      15.5  22984      42081    17.1     11.7   24.8
- 2 Alaska               64.7      24.6  30726      66521     9.5     16.8   25  
- 3 Arizona              67.4      20.7  25680      50448    15.3      9.85  20.4
- 4 Arkansas             67.7      15.2  21274      39267    18        9.61  23.5
- 5 California           57.4      30.7  29188      60883    13.7      8.89  15.2
- 6 Colorado             67.6      25.6  30151      56456    12.2      9.15  19.9
- 7 Connecticut          69.2      34.6  36775      67740     9.2     14.8   16.5
- 8 Delaware             73.6      17.7  29007      57599    11        8.89  20.7
- 9 Florida              69.7      30    26551      47661    13.8      9.62  21.6
-10 Georgia              67.2      20.5  25134      49347    15.7      8.88  22.2
-# … with 40 more rows, and 12 more variables: murder &lt;dbl&gt;, robbery &lt;dbl&gt;,
-#   agg_assault &lt;dbl&gt;, larceny &lt;dbl&gt;, motor_theft &lt;dbl&gt;, soc_sec &lt;dbl&gt;,
-#   nuclear &lt;dbl&gt;, coal &lt;dbl&gt;, tr_deaths &lt;dbl&gt;, tr_deaths_no_alc &lt;dbl&gt;,
+   state       homeownership multiunit income med_income poverty fed_spend smoke murder robbery
+   &lt;chr&gt;               &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+ 1 Alabama              71.1      15.5  22984      42081    17.1     11.7   24.8    8.2   141. 
+ 2 Alaska               64.7      24.6  30726      66521     9.5     16.8   25      4.8    80.9
+ 3 Arizona              67.4      20.7  25680      50448    15.3      9.85  20.4    7.5   144. 
+ 4 Arkansas             67.7      15.2  21274      39267    18        9.61  23.5    6.7    91.1
+ 5 California           57.4      30.7  29188      60883    13.7      8.89  15.2    6.9   176. 
+ 6 Colorado             67.6      25.6  30151      56456    12.2      9.15  19.9    3.7    84.6
+ 7 Connecticut          69.2      34.6  36775      67740     9.2     14.8   16.5    2.9   113  
+ 8 Delaware             73.6      17.7  29007      57599    11        8.89  20.7    4.4   155. 
+ 9 Florida              69.7      30    26551      47661    13.8      9.62  21.6    5     169. 
+10 Georgia              67.2      20.5  25134      49347    15.7      8.88  22.2    6.2   155. 
+# … with 40 more rows, and 10 more variables: agg_assault &lt;dbl&gt;, larceny &lt;dbl&gt;, motor_theft &lt;dbl&gt;,
+#   soc_sec &lt;dbl&gt;, nuclear &lt;dbl&gt;, coal &lt;dbl&gt;, tr_deaths &lt;dbl&gt;, tr_deaths_no_alc &lt;dbl&gt;,
 #   unempl &lt;dbl&gt;, popdens2010 &lt;dbl&gt;
 ```
 ]
@@ -82,7 +81,45 @@ This visualization is called a dendrogram
 
 ---
 
-## Hierarchical clustering is useful with heatmaps
+## Cut the dendrogram to obtain defined clusters
+
+![](hierarchical-clustering_files/figure-html/US_states_dendro_cut-1.svg)&lt;!-- --&gt;
+
+---
+
+## Cut the dendrogram to obtain defined clusters
+
+![](hierarchical-clustering_files/figure-html/US_states_dendro_cut2-1.svg)&lt;!-- --&gt;
+
+---
+
+## Cut the dendrogram to obtain defined clusters
+
+![](hierarchical-clustering_files/figure-html/US_states_dendro_cut3-1.svg)&lt;!-- --&gt;
+
+---
+
+## Cut the dendrogram to obtain defined clusters
+
+![](hierarchical-clustering_files/figure-html/US_states_dendro_cut4-1.svg)&lt;!-- --&gt;
+
+---
+
+## Cut the dendrogram to obtain defined clusters
+
+![](hierarchical-clustering_files/figure-html/US_states_dendro_cut5-1.svg)&lt;!-- --&gt;
+
+---
+
+## Display clusters in PCA space
+
+.center[
+![](hierarchical-clustering_files/figure-html/US_states_pca_cluster-1.svg)&lt;!-- --&gt;
+]
+
+---
+
+## Hierarchical clustering can be useful with heatmaps
 
 .pull-left[
 Arbitrary ordering:
@@ -98,6 +135,18 @@ Ordering by clustering similarity:
 
 
 
+
+
+
+---
+
+[//]: # "segment ends here"
+
+---
+class: center middle
+
+
+## Hierarchical clustering via UPGMA
 
 
 ---
@@ -123,17 +172,6 @@ Examples:
 
 (See: https://en.wikipedia.org/wiki/Hierarchical_clustering)
  
-
----
-
-[//]: # "segment ends here"
-
----
-class: center middle
-
-
-## Hierarchical clustering via UPGMA
-
 
 ---
 
@@ -577,7 +615,593 @@ class: center middle
 
 ## Doing hierarchical clustering in R
 
-Section under construction...
+We'll cluster the US state stats dataset
+
+.tiny-font[
+
+```r
+US_state_stats 
+```
+
+```
+# A tibble: 50 × 20
+   state       homeownership multiunit income med_income poverty fed_spend smoke murder robbery
+   &lt;chr&gt;               &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+ 1 Alabama              71.1      15.5  22984      42081    17.1     11.7   24.8    8.2   141. 
+ 2 Alaska               64.7      24.6  30726      66521     9.5     16.8   25      4.8    80.9
+ 3 Arizona              67.4      20.7  25680      50448    15.3      9.85  20.4    7.5   144. 
+ 4 Arkansas             67.7      15.2  21274      39267    18        9.61  23.5    6.7    91.1
+ 5 California           57.4      30.7  29188      60883    13.7      8.89  15.2    6.9   176. 
+ 6 Colorado             67.6      25.6  30151      56456    12.2      9.15  19.9    3.7    84.6
+ 7 Connecticut          69.2      34.6  36775      67740     9.2     14.8   16.5    2.9   113  
+ 8 Delaware             73.6      17.7  29007      57599    11        8.89  20.7    4.4   155. 
+ 9 Florida              69.7      30    26551      47661    13.8      9.62  21.6    5     169. 
+10 Georgia              67.2      20.5  25134      49347    15.7      8.88  22.2    6.2   155. 
+# … with 40 more rows, and 10 more variables: agg_assault &lt;dbl&gt;, larceny &lt;dbl&gt;, motor_theft &lt;dbl&gt;,
+#   soc_sec &lt;dbl&gt;, nuclear &lt;dbl&gt;, coal &lt;dbl&gt;, tr_deaths &lt;dbl&gt;, tr_deaths_no_alc &lt;dbl&gt;,
+#   unempl &lt;dbl&gt;, popdens2010 &lt;dbl&gt;
+```
+]
+
+---
+## Step 1: Calculate the distance matrix
+
+.tiny-font[
+
+
+
+```r
+US_state_stats %&gt;%
+  column_to_rownames(var = "state") %&gt;%
+  scale() %&gt;%
+  dist(method = "euclidean")
+```
+
+```
+                 Alabama    Alaska   Arizona  Arkansas California  Colorado Connecticut  Delaware   Florida   Georgia    Hawaii     Idaho  Illinois   Indiana      Iowa    Kansas  Kentucky Louisiana
+Alaska         10.598996                                                                                                                                                                             
+Arizona         3.330008  9.367964                                                                                                                                                                   
+Arkansas        2.101623 10.258034  3.460202                                                                                                                                                         
+California      7.387598 10.417133  4.574415  7.213409                                                                                                                                               
+Colorado        5.853785  8.784506  3.584944  5.667544   4.905273                                                                                                                                    
+Connecticut     8.163739  9.632134  6.647566  8.581965   6.413761  6.054845                                                                                                                          
+Delaware        6.852026  6.873437  6.099149  6.443272   8.224788  5.836395    7.471686                                                                                                              
+Florida         3.817288 10.483883  3.058667  4.111477   5.074512  4.373974    6.059186  6.305386                                                                                                    
+Georgia         3.718662  9.954441  1.731379  3.841420   4.757818  3.278357    7.153667  6.451118  3.147390                                                                                          
+Hawaii          8.937729  6.700074  7.068674  8.508732   7.035466  6.118096    6.293809  6.878239  7.514385  7.792204                                                                                
+Idaho           5.597221  9.004979  4.419521  4.548114   6.607359  4.469112    7.676599  5.801041  5.045858  4.799015  6.969588                                                                      
+Illinois        5.254690 10.316944  3.192744  5.609923   4.396773  3.944139    5.238648  6.674979  3.160311  3.311714  7.447009  6.015498                                                            
+Indiana         3.604745 10.172037  3.853444  3.882761   7.044651  4.062005    7.864817  6.213848  3.787589  3.140930  8.375538  5.298522  4.811957                                                  
+Iowa            5.007138  9.958779  4.840562  4.587101   7.634487  4.002106    6.966781  5.674885  4.667862  4.859556  7.354684  3.935105  5.395395  3.885737                                        
+Kansas          4.408601  7.409098  3.060602  4.442553   6.598661  3.512435    7.294319  3.735978  4.258347  3.615391  6.183604  3.905887  4.316269  4.282286  2.020848                              
+Kentucky        2.896963  8.930716  5.257548  3.631240   9.364228  6.754618   10.274920  6.475033  5.154735  4.953492  9.129675  6.531273  7.275413  3.384898  5.400969  5.740308                    
+Louisiana       2.187868  9.890864  2.803839  2.411572   6.355365  5.410132    7.975901  6.748584  3.939756  3.518586  8.236106  4.961559  5.256562  4.220968  5.384255  4.020284  3.898974          
+Maine           5.449459  9.500632  5.356080  4.816331   7.595522  5.251686    6.878787  5.995987  4.764959  5.823169  6.944840  3.188682  6.143050  5.141585  3.249026  4.222520  5.968985  5.401479
+Maryland        7.611163  9.273961  6.327444  8.668010   6.722458  6.408493    4.868335  7.423132  6.638708  6.740797  7.515811  8.851332  5.771450  7.475384  8.018422  6.383880  9.115635  7.319302
+Massachusetts   7.963086  9.781969  6.354021  8.072120   5.455518  5.195148    3.060985  7.225595  5.278116  6.487500  5.717072  7.309502  5.055135  7.032772  6.492189  6.865981  9.469819  7.491380
+                   Maine  Maryland Massachusetts  Michigan Minnesota Mississippi  Missouri   Montana  Nebraska    Nevada New Hampshire New Jersey New Mexico  New York North Carolina North Dakota
+Alaska                                                                                                                                                                                            
+Arizona                                                                                                                                                                                           
+Arkansas                                                                                                                                                                                          
+California                                                                                                                                                                                        
+Colorado                                                                                                                                                                                          
+Connecticut                                                                                                                                                                                       
+Delaware                                                                                                                                                                                          
+Florida                                                                                                                                                                                           
+Georgia                                                                                                                                                                                           
+Hawaii                                                                                                                                                                                            
+Idaho                                                                                                                                                                                             
+Illinois                                                                                                                                                                                          
+Indiana                                                                                                                                                                                           
+Iowa                                                                                                                                                                                              
+Kansas                                                                                                                                                                                            
+Kentucky                                                                                                                                                                                          
+Louisiana                                                                                                                                                                                         
+Maine                                                                                                                                                                                             
+Maryland        8.589605                                                                                                                                                                          
+Massachusetts   6.619401  5.444320                                                                                                                                                                
+                    Ohio  Oklahoma    Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee     Texas      Utah   Vermont  Virginia Washington West Virginia Wisconsin
+Alaska                                                                                                                                                                                 
+Arizona                                                                                                                                                                                
+Arkansas                                                                                                                                                                               
+California                                                                                                                                                                             
+Colorado                                                                                                                                                                               
+Connecticut                                                                                                                                                                            
+Delaware                                                                                                                                                                               
+Florida                                                                                                                                                                                
+Georgia                                                                                                                                                                                
+Hawaii                                                                                                                                                                                 
+Idaho                                                                                                                                                                                  
+Illinois                                                                                                                                                                               
+Indiana                                                                                                                                                                                
+Iowa                                                                                                                                                                                   
+Kansas                                                                                                                                                                                 
+Kentucky                                                                                                                                                                               
+Louisiana                                                                                                                                                                              
+Maine                                                                                                                                                                                  
+Maryland                                                                                                                                                                               
+Massachusetts                                                                                                                                                                          
+ [ reached getOption("max.print") -- omitted 29 rows ]
+```
+]
+
+---
+## Step 1: Calculate the distance matrix
+
+.tiny-font[
+
+```r
+US_state_stats %&gt;%
+  column_to_rownames(var = "state") %&gt;%
+  scale() %&gt;%
+  dist(method = "manhattan")
+```
+
+```
+                 Alabama    Alaska   Arizona  Arkansas California  Colorado Connecticut  Delaware   Florida   Georgia    Hawaii     Idaho  Illinois   Indiana      Iowa    Kansas  Kentucky Louisiana
+Alaska         39.364617                                                                                                                                                                             
+Arizona        11.457393 34.256754                                                                                                                                                                   
+Arkansas        7.563727 36.979698 12.282109                                                                                                                                                         
+California     27.092569 35.778165 17.267495 27.473571                                                                                                                                               
+Colorado       20.486385 26.830814 12.303813 18.723663  16.577681                                                                                                                                    
+Connecticut    27.881993 32.490872 23.810292 29.803273  23.519703 20.333207                                                                                                                          
+Delaware       25.565431 24.114268 22.085864 24.654841  28.860191 18.919099   28.283941                                                                                                              
+Florida        14.757703 37.487025 10.813581 15.947303  14.771631 15.949390   21.862262 21.536576                                                                                                    
+Georgia        12.722919 35.663923  6.033199 13.493929  15.433219 12.168010   26.520525 22.328604  9.602667                                                                                          
+Hawaii         34.819691 19.783897 27.766370 32.305331  24.016901 21.547728   20.223625 23.485511 28.690091 30.706527                                                                                
+Idaho          19.745449 32.227050 15.412817 15.999750  23.900019 15.496762   26.810291 20.777305 18.505853 17.569117 23.408972                                                                      
+Illinois       19.534776 36.554042 11.861539 21.097936  12.472733 12.717012   17.823019 22.194732  9.976896 11.117761 25.943819 22.116396                                                            
+Indiana        12.753238 35.519382 12.812347 14.848398  22.206667 13.352968   26.441818 20.677876 12.183197 10.113156 30.437677 16.207176 15.523156                                                  
+Iowa           16.887848 36.070057 15.710044 15.935214  26.912765 12.974164   25.517710 18.651812 15.708193 15.867194 25.775804 13.555946 19.622490 12.111341                                        
+Kansas         16.132276 28.312776 10.999284 15.758134  24.228312 12.783725   26.664013 13.944676 15.248182 12.667386 22.191425 12.943138 16.005273 12.645178  6.528961                              
+Kentucky        8.879573 33.818930 18.687634 11.872833  35.856603 23.981172   37.865451 24.475962 18.640994 17.745640 34.148013 20.581355 27.759876 10.986555 18.385613 19.250124                    
+Louisiana       7.341806 35.810798 10.924207  8.575925  24.205810 18.792486   26.200688 24.897868 14.158552 12.542016 29.682396 17.218745 20.217441 13.946551 17.005256 13.780842 11.500321          
+Maine          18.893906 31.188934 18.303720 17.954955  26.770330 16.574771   25.198845 19.631394 17.253112 20.260276 23.406068  9.825994 22.515036 16.250223  9.054923 13.491801 20.787123 17.698318
+Maryland       25.805656 31.675335 20.806442 29.704523  24.095626 19.793805   15.526273 27.350394 23.930061 22.707238 26.258090 31.258360 19.061221 26.788525 27.085683 21.811227 34.558648 24.019984
+Massachusetts  27.610370 32.348280 22.706743 28.991138  20.095868 17.844923    9.836393 25.796140 19.106424 23.719136 17.807773 26.258625 18.528311 23.938428 22.671947 24.176227 35.593178 23.416700
+                   Maine  Maryland Massachusetts  Michigan Minnesota Mississippi  Missouri   Montana  Nebraska    Nevada New Hampshire New Jersey New Mexico  New York North Carolina North Dakota
+Alaska                                                                                                                                                                                            
+Arizona                                                                                                                                                                                           
+Arkansas                                                                                                                                                                                          
+California                                                                                                                                                                                        
+Colorado                                                                                                                                                                                          
+Connecticut                                                                                                                                                                                       
+Delaware                                                                                                                                                                                          
+Florida                                                                                                                                                                                           
+Georgia                                                                                                                                                                                           
+Hawaii                                                                                                                                                                                            
+Idaho                                                                                                                                                                                             
+Illinois                                                                                                                                                                                          
+Indiana                                                                                                                                                                                           
+Iowa                                                                                                                                                                                              
+Kansas                                                                                                                                                                                            
+Kentucky                                                                                                                                                                                          
+Louisiana                                                                                                                                                                                         
+Maine                                                                                                                                                                                             
+Maryland       30.761983                                                                                                                                                                          
+Massachusetts  23.673133 18.172812                                                                                                                                                                
+                    Ohio  Oklahoma    Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee     Texas      Utah   Vermont  Virginia Washington West Virginia Wisconsin
+Alaska                                                                                                                                                                                 
+Arizona                                                                                                                                                                                
+Arkansas                                                                                                                                                                               
+California                                                                                                                                                                             
+Colorado                                                                                                                                                                               
+Connecticut                                                                                                                                                                            
+Delaware                                                                                                                                                                               
+Florida                                                                                                                                                                                
+Georgia                                                                                                                                                                                
+Hawaii                                                                                                                                                                                 
+Idaho                                                                                                                                                                                  
+Illinois                                                                                                                                                                               
+Indiana                                                                                                                                                                                
+Iowa                                                                                                                                                                                   
+Kansas                                                                                                                                                                                 
+Kentucky                                                                                                                                                                               
+Louisiana                                                                                                                                                                              
+Maine                                                                                                                                                                                  
+Maryland                                                                                                                                                                               
+Massachusetts                                                                                                                                                                          
+ [ reached getOption("max.print") -- omitted 29 rows ]
+```
+]
+
+---
+
+## Step 1: Calculate the distance matrix
+
+.tiny-font[
+
+```r
+US_state_stats %&gt;%
+  column_to_rownames(var = "state") %&gt;%
+  scale() %&gt;%
+  dist(method = "maximum")
+```
+
+```
+                 Alabama    Alaska   Arizona  Arkansas California  Colorado Connecticut  Delaware   Florida   Georgia    Hawaii     Idaho  Illinois   Indiana      Iowa    Kansas  Kentucky Louisiana
+Alaska         5.0230030                                                                                                                                                                             
+Arizona        1.8008087 5.0313330                                                                                                                                                                   
+Arkansas       0.9729239 4.3482712 1.8791047                                                                                                                                                         
+California     3.3092126 5.3811939 2.4154837 2.7012130                                                                                                                                               
+Colorado       2.7795090 5.0146730 1.5829457 2.8578051  2.4637933                                                                                                                                    
+Connecticut    3.6364712 5.1312933 2.9255781 4.0873715  2.8502707 2.6410745                                                                                                                          
+Delaware       3.5402592 3.6328111 3.5485892 2.8655274  3.9130835 3.5319291   3.6485494                                                                                                              
+Florida        1.7813269 5.2395836 1.6050686 1.8181819  2.9710449 2.5837690   2.6959090 3.7568397                                                                                                    
+Georgia        2.4271769 5.2312535 0.8018184 2.5054729  2.3671740 1.3229045   3.0695498 3.7485097 2.2314368                                                                                          
+Hawaii         3.6822218 4.5481918 3.0120101 3.4456765  4.0055004 3.2800948   3.5008704 3.4541417 3.9739610 3.7531854                                                                                
+Idaho          2.4160750 4.4149114 2.1887403 1.8399567  3.2850578 2.3458157   3.7593481 2.9321676 2.6237046 2.3696855 3.1381676                                                                      
+Illinois       2.2162604 5.2395836 1.5110566 2.1867323  2.8502707 2.5343795   2.9061736 3.7568397 1.8440448 1.5356266 3.9660762 2.8377070                                                            
+Indiana        1.5564577 5.2229235 2.1840278 1.5241176  3.8299617 2.3422906   3.4184782 3.7401797 2.1801508 1.6142814 3.7374157 3.0913080 2.5343795                                                  
+Iowa           2.8742961 4.8480725 2.5827009 2.2494491  3.8164642 2.5446210   3.0165492 3.3653287 2.2705136 2.1922888 3.6743370 2.5413004 2.4845160 2.1840278                                        
+Kansas         2.2156803 2.9542017 1.4290311 1.8877119  2.8985804 1.6833646   2.8657218 1.6313258 1.8137702 1.6488820 2.6781328 2.4617812 1.9164620 3.0069948 0.9178838                              
+Kentucky       1.5414323 3.6016173 2.6271638 1.6459340  4.2730978 2.7854267   3.8616143 2.5322061 2.2473329 2.2705848 3.6716989 3.4184782 2.7854267 1.6165849 2.6271638 3.4501308                    
+Louisiana      1.0503158 4.6564820 0.9997552 1.3330069  2.6087224 2.5827009   3.6074659 3.1737382 2.0411668 1.5659206 3.6033734 3.1242349 1.8673220 2.2961162 3.5824560 1.9214210 2.1934040          
+Maine          2.8326397 5.0729831 2.5410444 2.2077927  3.7923094 3.3275812   3.0033650 3.5902393 2.5227929 2.9752491 3.5481795 2.3097329 2.7367953 3.0648016 2.5147940 2.4352748 2.9620893 3.5407996
+Maryland       3.4064270 4.8564026 3.1247996 3.7419898  3.5670360 3.4444384   2.9159526 3.5653120 3.2288227 3.5686674 3.3325172 4.1425999 3.7366825 3.3075913 3.7894089 2.8867025 3.4666471 3.2437733
+Massachusetts  3.2186734 5.0646531 2.9995576 3.3466821  2.2991351 3.0292250   1.9575245 3.5819093 2.0301622 2.6044228 3.8004944 3.2923835 2.3299369 2.9120370 3.0061926 3.0814208 3.3551731 2.9992655
+                   Maine  Maryland Massachusetts  Michigan Minnesota Mississippi  Missouri   Montana  Nebraska    Nevada New Hampshire New Jersey New Mexico  New York North Carolina North Dakota
+Alaska                                                                                                                                                                                            
+Arizona                                                                                                                                                                                           
+Arkansas                                                                                                                                                                                          
+California                                                                                                                                                                                        
+Colorado                                                                                                                                                                                          
+Connecticut                                                                                                                                                                                       
+Delaware                                                                                                                                                                                          
+Florida                                                                                                                                                                                           
+Georgia                                                                                                                                                                                           
+Hawaii                                                                                                                                                                                            
+Idaho                                                                                                                                                                                             
+Illinois                                                                                                                                                                                          
+Indiana                                                                                                                                                                                           
+Iowa                                                                                                                                                                                              
+Kansas                                                                                                                                                                                            
+Kentucky                                                                                                                                                                                          
+Louisiana                                                                                                                                                                                         
+Maine                                                                                                                                                                                             
+Maryland       4.0416882                                                                                                                                                                          
+Massachusetts  3.0501224 2.9992655                                                                                                                                                                
+                    Ohio  Oklahoma    Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee     Texas      Utah   Vermont  Virginia Washington West Virginia Wisconsin
+Alaska                                                                                                                                                                                 
+Arizona                                                                                                                                                                                
+Arkansas                                                                                                                                                                               
+California                                                                                                                                                                             
+Colorado                                                                                                                                                                               
+Connecticut                                                                                                                                                                            
+Delaware                                                                                                                                                                               
+Florida                                                                                                                                                                                
+Georgia                                                                                                                                                                                
+Hawaii                                                                                                                                                                                 
+Idaho                                                                                                                                                                                  
+Illinois                                                                                                                                                                               
+Indiana                                                                                                                                                                                
+Iowa                                                                                                                                                                                   
+Kansas                                                                                                                                                                                 
+Kentucky                                                                                                                                                                               
+Louisiana                                                                                                                                                                              
+Maine                                                                                                                                                                                  
+Maryland                                                                                                                                                                               
+Massachusetts                                                                                                                                                                          
+ [ reached getOption("max.print") -- omitted 29 rows ]
+```
+]
+
+---
+## Step 1: Calculate the distance matrix
+
+.tiny-font[
+
+```r
+US_state_stats %&gt;%
+  column_to_rownames(var = "state") %&gt;%
+  scale() %&gt;%
+  dist(method = "euclidean")
+```
+
+```
+                 Alabama    Alaska   Arizona  Arkansas California  Colorado Connecticut  Delaware   Florida   Georgia    Hawaii     Idaho  Illinois   Indiana      Iowa    Kansas  Kentucky Louisiana
+Alaska         10.598996                                                                                                                                                                             
+Arizona         3.330008  9.367964                                                                                                                                                                   
+Arkansas        2.101623 10.258034  3.460202                                                                                                                                                         
+California      7.387598 10.417133  4.574415  7.213409                                                                                                                                               
+Colorado        5.853785  8.784506  3.584944  5.667544   4.905273                                                                                                                                    
+Connecticut     8.163739  9.632134  6.647566  8.581965   6.413761  6.054845                                                                                                                          
+Delaware        6.852026  6.873437  6.099149  6.443272   8.224788  5.836395    7.471686                                                                                                              
+Florida         3.817288 10.483883  3.058667  4.111477   5.074512  4.373974    6.059186  6.305386                                                                                                    
+Georgia         3.718662  9.954441  1.731379  3.841420   4.757818  3.278357    7.153667  6.451118  3.147390                                                                                          
+Hawaii          8.937729  6.700074  7.068674  8.508732   7.035466  6.118096    6.293809  6.878239  7.514385  7.792204                                                                                
+Idaho           5.597221  9.004979  4.419521  4.548114   6.607359  4.469112    7.676599  5.801041  5.045858  4.799015  6.969588                                                                      
+Illinois        5.254690 10.316944  3.192744  5.609923   4.396773  3.944139    5.238648  6.674979  3.160311  3.311714  7.447009  6.015498                                                            
+Indiana         3.604745 10.172037  3.853444  3.882761   7.044651  4.062005    7.864817  6.213848  3.787589  3.140930  8.375538  5.298522  4.811957                                                  
+Iowa            5.007138  9.958779  4.840562  4.587101   7.634487  4.002106    6.966781  5.674885  4.667862  4.859556  7.354684  3.935105  5.395395  3.885737                                        
+Kansas          4.408601  7.409098  3.060602  4.442553   6.598661  3.512435    7.294319  3.735978  4.258347  3.615391  6.183604  3.905887  4.316269  4.282286  2.020848                              
+Kentucky        2.896963  8.930716  5.257548  3.631240   9.364228  6.754618   10.274920  6.475033  5.154735  4.953492  9.129675  6.531273  7.275413  3.384898  5.400969  5.740308                    
+Louisiana       2.187868  9.890864  2.803839  2.411572   6.355365  5.410132    7.975901  6.748584  3.939756  3.518586  8.236106  4.961559  5.256562  4.220968  5.384255  4.020284  3.898974          
+Maine           5.449459  9.500632  5.356080  4.816331   7.595522  5.251686    6.878787  5.995987  4.764959  5.823169  6.944840  3.188682  6.143050  5.141585  3.249026  4.222520  5.968985  5.401479
+Maryland        7.611163  9.273961  6.327444  8.668010   6.722458  6.408493    4.868335  7.423132  6.638708  6.740797  7.515811  8.851332  5.771450  7.475384  8.018422  6.383880  9.115635  7.319302
+Massachusetts   7.963086  9.781969  6.354021  8.072120   5.455518  5.195148    3.060985  7.225595  5.278116  6.487500  5.717072  7.309502  5.055135  7.032772  6.492189  6.865981  9.469819  7.491380
+                   Maine  Maryland Massachusetts  Michigan Minnesota Mississippi  Missouri   Montana  Nebraska    Nevada New Hampshire New Jersey New Mexico  New York North Carolina North Dakota
+Alaska                                                                                                                                                                                            
+Arizona                                                                                                                                                                                           
+Arkansas                                                                                                                                                                                          
+California                                                                                                                                                                                        
+Colorado                                                                                                                                                                                          
+Connecticut                                                                                                                                                                                       
+Delaware                                                                                                                                                                                          
+Florida                                                                                                                                                                                           
+Georgia                                                                                                                                                                                           
+Hawaii                                                                                                                                                                                            
+Idaho                                                                                                                                                                                             
+Illinois                                                                                                                                                                                          
+Indiana                                                                                                                                                                                           
+Iowa                                                                                                                                                                                              
+Kansas                                                                                                                                                                                            
+Kentucky                                                                                                                                                                                          
+Louisiana                                                                                                                                                                                         
+Maine                                                                                                                                                                                             
+Maryland        8.589605                                                                                                                                                                          
+Massachusetts   6.619401  5.444320                                                                                                                                                                
+                    Ohio  Oklahoma    Oregon Pennsylvania Rhode Island South Carolina South Dakota Tennessee     Texas      Utah   Vermont  Virginia Washington West Virginia Wisconsin
+Alaska                                                                                                                                                                                 
+Arizona                                                                                                                                                                                
+Arkansas                                                                                                                                                                               
+California                                                                                                                                                                             
+Colorado                                                                                                                                                                               
+Connecticut                                                                                                                                                                            
+Delaware                                                                                                                                                                               
+Florida                                                                                                                                                                                
+Georgia                                                                                                                                                                                
+Hawaii                                                                                                                                                                                 
+Idaho                                                                                                                                                                                  
+Illinois                                                                                                                                                                               
+Indiana                                                                                                                                                                                
+Iowa                                                                                                                                                                                   
+Kansas                                                                                                                                                                                 
+Kentucky                                                                                                                                                                               
+Louisiana                                                                                                                                                                              
+Maine                                                                                                                                                                                  
+Maryland                                                                                                                                                                               
+Massachusetts                                                                                                                                                                          
+ [ reached getOption("max.print") -- omitted 29 rows ]
+```
+]
+
+---
+## Step 2: Cluster and plot
+
+.tiny-font.pull-left[
+
+```r
+dist_out &lt;- US_state_stats %&gt;%
+  column_to_rownames(var = "state") %&gt;%
+  scale() %&gt;%
+  dist(method = "euclidean")
+
+hc_out &lt;- hclust(
+  dist_out, method = "average"
+)
+
+library(ggdendro)
+ggdendrogram(hc_out, rotate = TRUE)
+```
+
+`method = "average"`: UPGMA
+]
+
+.pull-right.width-40.move-up-6em[
+![](hierarchical-clustering_files/figure-html/US_states_simple_dendro-out-1.svg)&lt;!-- --&gt;
+]
+---
+## Step 2: Cluster and plot
+
+.tiny-font.pull-left[
+
+```r
+dist_out &lt;- US_state_stats %&gt;%
+  column_to_rownames(var = "state") %&gt;%
+  scale() %&gt;%
+  dist(method = "euclidean")
+
+hc_out &lt;- hclust(
+  dist_out, method = "ward.D2"
+)
+
+library(ggdendro)
+ggdendrogram(hc_out, rotate = TRUE)
+```
+`method = "ward.D2"`: Ward's minimum variance method 
+
+]
+
+.pull-right.width-40.move-up-6em[
+![](hierarchical-clustering_files/figure-html/US_states_simple_dendro2-out-1.svg)&lt;!-- --&gt;
+]
+
+---
+## Step 2: Cluster and plot
+
+.tiny-font.pull-left[
+
+```r
+dist_out &lt;- US_state_stats %&gt;%
+  column_to_rownames(var = "state") %&gt;%
+  scale() %&gt;%
+  dist(method = "euclidean")
+
+hc_out &lt;- hclust(
+  dist_out, method = "complete"
+)
+
+library(ggdendro)
+ggdendrogram(hc_out, rotate = TRUE)
+```
+
+`method = "complete"`: complete linkage method 
+
+]
+
+.pull-right.width-40.move-up-6em[
+![](hierarchical-clustering_files/figure-html/US_states_simple_dendro3-out-1.svg)&lt;!-- --&gt;
+]
+
+---
+## We can also plot manually
+
+.tiny-font.pull-left[
+
+```r
+ddata &lt;- dendro_data(
+  hc_out,
+  type = "rectangle"
+)
+segments &lt;- segment(ddata)
+labels &lt;- label(ddata)
+
+ggplot() + 
+  geom_segment(
+    data = segments,
+    aes(x, y, xend = xend, yend = yend)
+  ) + 
+  geom_text(
+    data = labels,
+    aes(x, y - .5, label = label),
+    hjust = 1,
+    size = 8/.pt
+  ) +
+  coord_flip(ylim = c(-5, 12))
+```
+]
+
+.pull-right.width-45.move-up-3em[
+![](hierarchical-clustering_files/figure-html/US_states_dendro_manual-out-1.svg)&lt;!-- --&gt;
+]
+
+
+---
+## Assign clusters by cutting the dendrogram
+
+.tiny-font[
+
+
+
+```r
+# cut dendrogram at height 5
+cutree(hc_out, h = 5) 
+```
+
+```
+       Alabama         Alaska        Arizona       Arkansas     California       Colorado 
+             1              2              1              1              3              4 
+   Connecticut       Delaware        Florida        Georgia         Hawaii          Idaho 
+             5              6              4              1              7              8 
+      Illinois        Indiana           Iowa         Kansas       Kentucky      Louisiana 
+             4              1              8              8              9              1 
+         Maine       Maryland  Massachusetts       Michigan      Minnesota    Mississippi 
+             8             10              5              4              4              9 
+      Missouri        Montana       Nebraska         Nevada  New Hampshire     New Jersey 
+             1              8              8             11             12              5 
+    New Mexico       New York North Carolina   North Dakota           Ohio       Oklahoma 
+             9              3              1             13              1              1 
+        Oregon   Pennsylvania   Rhode Island South Carolina   South Dakota      Tennessee 
+             4              4             14              1              8              1 
+         Texas           Utah        Vermont       Virginia     Washington  West Virginia 
+             4             15             12             10              4              9 
+     Wisconsin        Wyoming 
+             4             13 
+```
+]
+
+---
+## Assign clusters by cutting the dendrogram
+
+.tiny-font[
+
+```r
+# cut dendrogram at height 8
+cutree(hc_out, h = 8) 
+```
+
+```
+       Alabama         Alaska        Arizona       Arkansas     California       Colorado 
+             1              2              1              1              3              4 
+   Connecticut       Delaware        Florida        Georgia         Hawaii          Idaho 
+             5              4              4              1              3              4 
+      Illinois        Indiana           Iowa         Kansas       Kentucky      Louisiana 
+             4              1              4              4              1              1 
+         Maine       Maryland  Massachusetts       Michigan      Minnesota    Mississippi 
+             4              5              5              4              4              1 
+      Missouri        Montana       Nebraska         Nevada  New Hampshire     New Jersey 
+             1              4              4              3              6              5 
+    New Mexico       New York North Carolina   North Dakota           Ohio       Oklahoma 
+             1              3              1              6              1              1 
+        Oregon   Pennsylvania   Rhode Island South Carolina   South Dakota      Tennessee 
+             4              4              3              1              4              1 
+         Texas           Utah        Vermont       Virginia     Washington  West Virginia 
+             4              4              6              5              4              1 
+     Wisconsin        Wyoming 
+             4              6 
+```
+]
+
+---
+## Assign clusters by cutting the dendrogram
+
+.tiny-font[
+
+```r
+# cut dendrogram so there are 4 clusters
+cutree(hc_out, k = 4) 
+```
+
+```
+       Alabama         Alaska        Arizona       Arkansas     California       Colorado 
+             1              2              1              1              3              1 
+   Connecticut       Delaware        Florida        Georgia         Hawaii          Idaho 
+             3              1              1              1              3              1 
+      Illinois        Indiana           Iowa         Kansas       Kentucky      Louisiana 
+             1              1              1              1              1              1 
+         Maine       Maryland  Massachusetts       Michigan      Minnesota    Mississippi 
+             1              3              3              1              1              1 
+      Missouri        Montana       Nebraska         Nevada  New Hampshire     New Jersey 
+             1              1              1              3              4              3 
+    New Mexico       New York North Carolina   North Dakota           Ohio       Oklahoma 
+             1              3              1              4              1              1 
+        Oregon   Pennsylvania   Rhode Island South Carolina   South Dakota      Tennessee 
+             1              1              3              1              1              1 
+         Texas           Utah        Vermont       Virginia     Washington  West Virginia 
+             1              1              4              3              1              1 
+     Wisconsin        Wyoming 
+             1              4 
+```
+]
+
+---
+
+## Add cluster info into scatterplot
+
+.pull-left.tiny-font[
+
+```r
+# cut dendrogram so there are 4 clusters
+cluster &lt;- cutree(hc_out, k = 4)
+
+US_state_stats %&gt;%
+  left_join(
+    tibble(
+      state = names(cluster),
+      cluster = factor(cluster)
+    )
+  ) %&gt;%
+  ggplot(aes(income, tr_deaths)) +
+  geom_point(aes(color = cluster))
+```
+]
+
+
+.pull-right[
+![](hierarchical-clustering_files/figure-html/US_states_cluster_scatter-out-1.svg)&lt;!-- --&gt;
+]
+
 
 ---
 
@@ -587,7 +1211,11 @@ Section under construction...
 
 ## Further reading
 
-- **ggdendro2** reference documentation: 
+- Wikipedia: [Hierarchical clustering](https://en.wikipedia.org/wiki/Hierarchical_clustering)
+
+- **ggdendro** documentation: [Introduction to ggdendro](https://cran.r-project.org/web/packages/ggdendro/vignettes/ggdendro.html)
+
+- **ggdendro** documentation: [reference documentation (pdf)](https://cran.r-project.org/web/packages/ggdendro/ggdendro.pdf)
 
 
 

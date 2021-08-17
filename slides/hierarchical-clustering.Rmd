@@ -27,7 +27,6 @@ library(kableExtra)
 library(ggforce)
 library(broom)
 
-
 US_regions <- read_csv(here("datasets", "US_regions.csv"))
 US_state_stats <- read_csv(here("datasets", "US_state_stats.csv")) %>%
   filter(state != "District of Columbia")
@@ -102,15 +101,14 @@ class: middle, center
 
 
 .center[
-```{r US_states_dendro, echo = FALSE, fig.width = 12, fig.asp = .4, dev = "svg"}
-dhc <- US_state_stats %>%
+```{r US_states_dendro, echo = FALSE, fig.width = 12, fig.asp = .45, dev = "svg"}
+hc <- US_state_stats %>%
   column_to_rownames(var = "state") %>%
   scale() %>%
   dist(method = "euclidean") %>%
-  hclust(method = "ward.D2") %>%
-  as.dendrogram()
+  hclust(method = "ward.D2")
 
-ddata <- dendro_data(dhc, type = "rectangle")
+ddata <- dendro_data(as.dendrogram(hc), type = "rectangle")
 segments <- segment(ddata)
 labels <- label(ddata) %>%
   left_join(US_regions, by = c("label" = "state"))
@@ -146,7 +144,212 @@ This visualization is called a dendrogram
 
 ---
 
-## Hierarchical clustering is useful with heatmaps
+## Cut the dendrogram to obtain defined clusters
+
+```{r US_states_dendro_cut, echo = FALSE, fig.width = 12, fig.asp = .45, dev = "svg"}
+cut_height <- 14.7
+clusters <- cutree(hc, h = cut_height)
+clustered_labels <- left_join(
+  labels,
+  tibble(label = names(clusters), cluster = factor(clusters)),
+  by = "label"
+) 
+
+ggplot() + 
+  geom_segment(data = segments, aes(x, -y, xend = xend, yend = -yend)) + 
+  geom_text(
+    data = clustered_labels,
+    aes(x, -y+.5, label = label, color = cluster),
+    hjust = 0,
+    angle = 90,
+    key_glyph = "point",
+    size = 4
+  ) +
+  geom_hline(yintercept = -cut_height, linetype = 2) +
+  scale_color_viridis_d(option = "B", begin = 0.2, end = 0.8) +
+  scale_x_continuous(name = NULL) +
+  scale_y_continuous(name = NULL, limits = c(-20, 6), expand = c(0, 0)) +
+  theme_void(16)
+```
+
+---
+
+## Cut the dendrogram to obtain defined clusters
+
+```{r US_states_dendro_cut2, echo = FALSE, fig.width = 12, fig.asp = .45, dev = "svg"}
+cut_height <- 10.9
+clusters <- cutree(hc, h = cut_height)
+clustered_labels <- left_join(
+  labels,
+  tibble(label = names(clusters), cluster = factor(clusters)),
+  by = "label"
+) 
+
+ggplot() + 
+  geom_segment(data = segments, aes(x, -y, xend = xend, yend = -yend)) + 
+  geom_text(
+    data = clustered_labels,
+    aes(x, -y+.5, label = label, color = cluster),
+    hjust = 0,
+    angle = 90,
+    key_glyph = "point",
+    size = 4
+  ) +
+  geom_hline(yintercept = -cut_height, linetype = 2) +
+  scale_color_viridis_d(option = "B", begin = 0.2, end = 0.8) +
+  scale_x_continuous(name = NULL) +
+  scale_y_continuous(name = NULL, limits = c(-20, 6), expand = c(0, 0)) +
+  theme_void(16)
+```
+
+---
+
+## Cut the dendrogram to obtain defined clusters
+
+```{r US_states_dendro_cut3, echo = FALSE, fig.width = 12, fig.asp = .45, dev = "svg"}
+cut_height <- 7.5
+clusters <- cutree(hc, h = cut_height)
+clustered_labels <- left_join(
+  labels,
+  tibble(label = names(clusters), cluster = factor(clusters)),
+  by = "label"
+) 
+
+ggplot() + 
+  geom_segment(data = segments, aes(x, -y, xend = xend, yend = -yend)) + 
+  geom_text(
+    data = clustered_labels,
+    aes(x, -y+.5, label = label, color = cluster),
+    hjust = 0,
+    angle = 90,
+    key_glyph = "point",
+    size = 4
+  ) +
+  geom_hline(yintercept = -cut_height, linetype = 2) +
+  scale_color_viridis_d(option = "B", begin = 0.05, end = 0.95) +
+  scale_x_continuous(name = NULL) +
+  scale_y_continuous(name = NULL, limits = c(-20, 6), expand = c(0, 0)) +
+  theme_void(16)
+```
+
+---
+
+## Cut the dendrogram to obtain defined clusters
+
+```{r US_states_dendro_cut4, echo = FALSE, fig.width = 12, fig.asp = .45, dev = "svg"}
+cut_height <- 5.0
+clusters <- cutree(hc, h = cut_height)
+clustered_labels <- left_join(
+  labels,
+  tibble(label = names(clusters), cluster = factor(clusters)),
+  by = "label"
+) 
+
+ggplot() + 
+  geom_segment(data = segments, aes(x, -y, xend = xend, yend = -yend)) + 
+  geom_text(
+    data = clustered_labels,
+    aes(x, -y+.5, label = label, color = cluster),
+    hjust = 0,
+    angle = 90,
+    key_glyph = "point",
+    size = 4
+  ) +
+  geom_hline(yintercept = -cut_height, linetype = 2) +
+  scale_color_viridis_d(option = "B", begin = 0.05, end = 0.95) +
+  scale_x_continuous(name = NULL) +
+  scale_y_continuous(name = NULL, limits = c(-20, 6), expand = c(0, 0)) +
+  theme_void(16)
+```
+
+---
+
+## Cut the dendrogram to obtain defined clusters
+
+```{r US_states_dendro_cut5, echo = FALSE, fig.width = 12, fig.asp = .45, dev = "svg"}
+cut_height <- 10.9
+clusters <- cutree(hc, h = cut_height)
+clustered_labels <- left_join(
+  labels,
+  tibble(label = names(clusters), cluster = factor(clusters)),
+  by = "label"
+) 
+
+ggplot() + 
+  geom_segment(data = segments, aes(x, -y, xend = xend, yend = -yend)) + 
+  geom_text(
+    data = clustered_labels,
+    aes(x, -y+.5, label = label, color = cluster),
+    hjust = 0,
+    angle = 90,
+    key_glyph = "point",
+    size = 4
+  ) +
+  geom_hline(yintercept = -cut_height, linetype = 2) +
+  scale_color_viridis_d(option = "B", begin = 0.2, end = 0.8) +
+  scale_x_continuous(name = NULL) +
+  scale_y_continuous(name = NULL, limits = c(-20, 6), expand = c(0, 0)) +
+  theme_void(16)
+```
+
+---
+
+## Display clusters in PCA space
+
+.center[
+```{r US_states_pca_cluster, echo = FALSE, message = FALSE, fig.width = 8., fig.asp = .618, dev = "svg"}
+pca_fit %>%
+  # add PCs to the original dataset
+  augment(US_state_stats) %>%
+  left_join(
+    tibble(state = names(clusters), cluster = factor(clusters)),
+    by = "state"
+  ) %>%
+  left_join(US_regions, by = "state") %>%
+  ggplot(aes(.fittedPC1, .fittedPC2)) +
+  geom_point(aes(color = cluster, fill = cluster, shape = region), size = 3) +
+  scale_shape_manual(
+    values = c(21, 22, 23, 24),
+    name = NULL
+  ) +
+  scale_color_viridis_d(
+    name = "cluster",
+    option = "B", begin = 0, end = 0.8
+  ) +
+  scale_fill_viridis_d(
+    name = "cluster",
+    option = "B", begin = 0.4, end = 1
+  ) +
+  scale_x_continuous(
+    name = "PC 1",
+    limits = c(-5, 6),
+    breaks = c(-4, -2, 0, 2, 4, 6)
+  ) +
+  scale_y_continuous(
+    name = "PC 2",
+    limits = c(-4, 3)
+  ) +
+  guides(
+    color = guide_legend(
+      order = 1,
+      override.aes = list(shape = 21)
+    ),
+    fill = guide_legend(
+      order = 1
+    ),
+    shape = guide_legend(
+      order = 2,
+      override.aes = list(fill = "gray80")
+    )
+  ) +
+  coord_fixed() +
+  theme_minimal_grid(rel_small = 1)
+```
+]
+
+---
+
+## Hierarchical clustering can be useful with heatmaps
 
 .pull-left[
 Arbitrary ordering:
@@ -328,6 +531,18 @@ df_long %>%
   )
 ```
 
+
+---
+
+[//]: # "segment ends here"
+
+---
+class: center middle
+
+
+## Hierarchical clustering via UPGMA
+
+
 ---
 
 ## Hierarchical clustering methods require two ingredients
@@ -351,17 +566,6 @@ Examples:
 
 (See: https://en.wikipedia.org/wiki/Hierarchical_clustering)
  
-
----
-
-[//]: # "segment ends here"
-
----
-class: center middle
-
-
-## Hierarchical clustering via UPGMA
-
 
 ---
 
@@ -819,7 +1023,239 @@ class: center middle
 
 ## Doing hierarchical clustering in R
 
-Section under construction...
+We'll cluster the US state stats dataset
+
+.tiny-font[
+```{r}
+US_state_stats 
+```
+]
+
+---
+## Step 1: Calculate the distance matrix
+
+.tiny-font[
+```{r echo = FALSE}
+options(width = 200)
+```
+
+```{r}
+US_state_stats %>%
+  column_to_rownames(var = "state") %>%
+  scale() %>%
+  dist(method = "euclidean")
+```
+]
+
+---
+## Step 1: Calculate the distance matrix
+
+.tiny-font[
+```{r}
+US_state_stats %>%
+  column_to_rownames(var = "state") %>%
+  scale() %>%
+  dist(method = "manhattan")
+```
+]
+
+---
+
+## Step 1: Calculate the distance matrix
+
+.tiny-font[
+```{r}
+US_state_stats %>%
+  column_to_rownames(var = "state") %>%
+  scale() %>%
+  dist(method = "maximum")
+```
+]
+
+---
+## Step 1: Calculate the distance matrix
+
+.tiny-font[
+```{r}
+US_state_stats %>%
+  column_to_rownames(var = "state") %>%
+  scale() %>%
+  dist(method = "euclidean")
+```
+]
+
+---
+## Step 2: Cluster and plot
+
+.tiny-font.pull-left[
+```{r US_states_simple_dendro, eval = FALSE}
+dist_out <- US_state_stats %>%
+  column_to_rownames(var = "state") %>%
+  scale() %>%
+  dist(method = "euclidean")
+
+hc_out <- hclust(
+  dist_out, method = "average"
+)
+
+library(ggdendro)
+ggdendrogram(hc_out, rotate = TRUE)
+```
+
+`method = "average"`: UPGMA
+]
+
+.pull-right.width-40.move-up-6em[
+```{r US_states_simple_dendro-out, ref.label="US_states_simple_dendro", fig.width = 3.5, fig.asp = 2, echo=FALSE, warning=FALSE, dev = "svg"}
+```
+]
+---
+## Step 2: Cluster and plot
+
+.tiny-font.pull-left[
+```{r US_states_simple_dendro2, eval = FALSE}
+dist_out <- US_state_stats %>%
+  column_to_rownames(var = "state") %>%
+  scale() %>%
+  dist(method = "euclidean")
+
+hc_out <- hclust(
+  dist_out, method = "ward.D2"
+)
+
+library(ggdendro)
+ggdendrogram(hc_out, rotate = TRUE)
+```
+`method = "ward.D2"`: Ward's minimum variance method 
+
+]
+
+.pull-right.width-40.move-up-6em[
+```{r US_states_simple_dendro2-out, ref.label="US_states_simple_dendro2", fig.width = 3.5, fig.asp = 2, echo=FALSE, warning=FALSE, dev = "svg"}
+```
+]
+
+---
+## Step 2: Cluster and plot
+
+.tiny-font.pull-left[
+```{r US_states_simple_dendro3, eval = FALSE}
+dist_out <- US_state_stats %>%
+  column_to_rownames(var = "state") %>%
+  scale() %>%
+  dist(method = "euclidean")
+
+hc_out <- hclust(
+  dist_out, method = "complete"
+)
+
+library(ggdendro)
+ggdendrogram(hc_out, rotate = TRUE)
+```
+
+`method = "complete"`: complete linkage method 
+
+]
+
+.pull-right.width-40.move-up-6em[
+```{r US_states_simple_dendro3-out, ref.label="US_states_simple_dendro3", fig.width = 3.5, fig.asp = 2, echo=FALSE, warning=FALSE, dev = "svg"}
+```
+]
+
+---
+## We can also plot manually
+
+.tiny-font.pull-left[
+```{r US_states_dendro_manual, eval = FALSE}
+ddata <- dendro_data(
+  hc_out,
+  type = "rectangle"
+)
+segments <- segment(ddata)
+labels <- label(ddata)
+
+ggplot() + 
+  geom_segment(
+    data = segments,
+    aes(x, y, xend = xend, yend = yend)
+  ) + 
+  geom_text(
+    data = labels,
+    aes(x, y - .5, label = label),
+    hjust = 1,
+    size = 8/.pt
+  ) +
+  coord_flip(ylim = c(-5, 12))
+```
+]
+
+.pull-right.width-45.move-up-3em[
+```{r US_states_dendro_manual-out, ref.label="US_states_dendro_manual", fig.width = 3.7, fig.asp = 1.6, echo=FALSE, warning=FALSE, dev = "svg"}
+```
+]
+
+
+---
+## Assign clusters by cutting the dendrogram
+
+.tiny-font[
+```{r echo = FALSE}
+options(width = 100)
+```
+
+```{r}
+# cut dendrogram at height 5
+cutree(hc_out, h = 5) 
+```
+]
+
+---
+## Assign clusters by cutting the dendrogram
+
+.tiny-font[
+```{r}
+# cut dendrogram at height 8
+cutree(hc_out, h = 8) 
+```
+]
+
+---
+## Assign clusters by cutting the dendrogram
+
+.tiny-font[
+```{r}
+# cut dendrogram so there are 4 clusters
+cutree(hc_out, k = 4) 
+```
+]
+
+---
+
+## Add cluster info into scatterplot
+
+.pull-left.tiny-font[
+```{r US_states_cluster_scatter, eval = FALSE}
+# cut dendrogram so there are 4 clusters
+cluster <- cutree(hc_out, k = 4)
+
+US_state_stats %>%
+  left_join(
+    tibble(
+      state = names(cluster),
+      cluster = factor(cluster)
+    )
+  ) %>%
+  ggplot(aes(income, tr_deaths)) +
+  geom_point(aes(color = cluster))
+```
+]
+
+
+.pull-right[
+```{r US_states_cluster_scatter-out, ref.label="US_states_cluster_scatter", fig.width = 5.5, fig.asp = .618, echo=FALSE, warning=FALSE, message = FALSE, dev = "svg"}
+```
+]
+
 
 ---
 
@@ -829,7 +1265,11 @@ Section under construction...
 
 ## Further reading
 
-- **ggdendro2** reference documentation: 
+- Wikipedia: [Hierarchical clustering](https://en.wikipedia.org/wiki/Hierarchical_clustering)
+
+- **ggdendro** documentation: [Introduction to ggdendro](https://cran.r-project.org/web/packages/ggdendro/vignettes/ggdendro.html)
+
+- **ggdendro** documentation: [reference documentation (pdf)](https://cran.r-project.org/web/packages/ggdendro/ggdendro.pdf)
 
 
 
