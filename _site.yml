@@ -58,9 +58,10 @@ navbar:
           href: slides/dimension-reduction-1.html
         - text: "Class 22: Dimension reduction 2"
           href: slides/dimension-reduction-2.html
-        - text: "Class 23: Clustering 1"
+        - text: "Class 23: Clustering"
           href: slides/clustering.html
-        - text: "Class 24: Clustering 2"
+        - text: "Class 24: Hierarchical clustering"
+          href: slides/hierarchical-clustering.html
         - text: "Class 25: Data ethics"
         - text: "Class 26: Visualizing geospatial data"
           href: slides/geospatial-data.html

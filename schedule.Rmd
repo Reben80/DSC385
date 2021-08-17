@@ -153,14 +153,14 @@ knitr::opts_chunk$set(echo = FALSE)
 - [Slides](slides/dimension-reduction-2.html)  
 - [Worksheet](worksheets/dimension-reduction-2.Rmd)
 
-### 23. Clustering 1
+### 23. Clustering
 
 <p class="nospace">Materials:</p>
 
 - [Slides](slides/clustering.html)  
 - [Worksheet](worksheets/clustering.Rmd)
 
-### 24. Clustering 2
+### 24. Hierarchical clustering
 
 <p class="nospace">Materials:</p>
 
