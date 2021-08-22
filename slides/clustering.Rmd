@@ -1078,9 +1078,6 @@ class: center middle
 From George Seif (2018) [The 5 Clustering Algorithms Data Scientists Need to Know](https://towardsdatascience.com/the-5-clustering-algorithms-data-scientists-need-to-know-a36d136ef68)
 ]
 
-
----
-
 [//]: # "segment ends here"
 
 ---
@@ -1324,8 +1321,6 @@ tibble(centers = 1:15) %>%
 .small-font[
 Plot suggests number of clusters of about 3
 ]]
-
----
 
 [//]: # "segment ends here"
 

@@ -531,9 +531,6 @@ df_long %>%
   )
 ```
 
-
----
-
 [//]: # "segment ends here"
 
 ---
@@ -1010,8 +1007,6 @@ dt %>%
 
 ]
 
----
-
 [//]: # "segment ends here"
 
 ---
@@ -1255,9 +1250,6 @@ US_state_stats %>%
 ```{r US_states_cluster_scatter-out, ref.label="US_states_cluster_scatter", fig.width = 5.5, fig.asp = .618, echo=FALSE, warning=FALSE, message = FALSE, dev = "svg"}
 ```
 ]
-
-
----
 
 [//]: # "segment ends here"
 

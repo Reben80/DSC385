@@ -470,6 +470,11 @@ girafe(
 )
 ```
 
+
+---
+
+[//]: # "segment ends here"
+
 ---
 
 class: center middle
@@ -580,18 +585,6 @@ hovering displays species names
 ]
 
 ]
-
----
-
-## Interlude: A brief intro to CSS
-
---
-
-CSS is the language used to style web pages
-
---
-
-Many online tutorials, e.g.: https://www.w3schools.com/css/default.asp
 
 ---
 
@@ -760,6 +753,32 @@ girafe(
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Click to open a state's wikipedia page
 ]
 ]
+
+---
+
+[//]: # "segment ends here"
+
+---
+class: center middle
+
+## A (very) brief intro to CSS
+
+---
+
+## A (very) brief intro to CSS
+
+--
+
+CSS is the language used to style web pages
+
+--
+
+Many online tutorials, e.g.: https://www.w3schools.com/css/default.asp
+
+
+---
+
+[//]: # "segment ends here"
 
 ---
 

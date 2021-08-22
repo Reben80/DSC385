@@ -556,6 +556,10 @@ Figure redrawn from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reill
 
 ---
 
+[//]: # "segment ends here"
+
+---
+
 class: center middle
 
 ## Direct labeling in R
@@ -932,6 +936,10 @@ mtcars_named %>%
 ]
 
 `box.padding` controls how far labels are placed from data points
+---
+
+[//]: # "segment ends here"
+
 ---
 
 ## Further reading
