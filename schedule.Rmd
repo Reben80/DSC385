@@ -167,6 +167,10 @@ knitr::opts_chunk$set(echo = FALSE)
 - [Slides](slides/hierarchical-clustering.html)  
 - *Worksheet in preparation*
 
+### 25. Data ethics
+
+*Materials in preparation*
+
 ### 26. Visualizing geospatial data
 
 <p class="nospace">Materials:</p>
