@@ -192,7 +192,7 @@ knitr::opts_chunk$set(echo = FALSE)
 - [Slides](slides/interactive-plots.html)  
 - [Worksheet](worksheets/interactive-plots.Rmd)
 
-### 29. Over-plotting
+### 29. Dealing with issues of overplotting
 
 <p class="nospace">Materials:</p>
 

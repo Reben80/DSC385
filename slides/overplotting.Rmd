@@ -1,5 +1,5 @@
 ---
-title: "Handling overlapping points"
+title: "Dealing with issues of overplotting"
 author: "Claus O. Wilke"
 date: "last updated: `r Sys.Date()`"
 output:
@@ -74,6 +74,10 @@ stamp_bad(p_mpg_solid)
 ???
 
 Figure redrawn from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.](https://clauswilke.com/dataviz)
+
+--
+
+Technical term for this problem: overplotting
 
 ---
 
@@ -163,6 +167,7 @@ ggplot(mpg, aes(y = cty, x = displ, color = drv, fill = drv)) +
   )
 ```
 ]
+
 
 ???
 
@@ -799,6 +804,10 @@ palette: ag_GrnYl
 .absolute-bottom-left[
 palette: SunsetDark
 ]
+
+
+---
+[//]: # "segment ends here"
 
 ---
 class: center middle

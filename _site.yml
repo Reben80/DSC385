@@ -69,7 +69,7 @@ navbar:
           href: slides/redundant-coding.html
         - text: "Class 28: Interactive plots"
           href: slides/interactive-plots.html
-        - text: "Class 29: Handling overlapping points"
+        - text: "Class 29: Overplotting"
           href: slides/overplotting.html
         - text: "Class 30: Compound figures"
           href: slides/compound-figures.html
