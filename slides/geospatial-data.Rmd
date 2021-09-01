@@ -149,8 +149,6 @@ Alaska is the largest state; 2.2 the size of Texas
 
 Figure from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.](https://clauswilke.com/dataviz)
 
----
-
 [//]: # "segment ends here"
 
 ---
@@ -234,8 +232,6 @@ Each state is shown as an equally sized square
 
 Figure from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.](https://clauswilke.com/dataviz)
 
----
-
 [//]: # "segment ends here"
 
 ---
@@ -287,8 +283,6 @@ Location of individual wind turbines in the Shiloh Wind Farm
 ???
 
 Figure from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.](https://clauswilke.com/dataviz)
-
----
 
 [//]: # "segment ends here"
 
@@ -693,7 +687,6 @@ ggplot(texas_income) +
 Reference: https://spatialreference.org/ref/epsg/3338/
 ]
 
----
 
 [//]: # "segment ends here"
 

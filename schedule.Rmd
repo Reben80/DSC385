@@ -192,6 +192,19 @@ knitr::opts_chunk$set(echo = FALSE)
 - [Slides](slides/interactive-plots.html)  
 - [Worksheet](worksheets/interactive-plots.Rmd)
 
+### 29. Over-plotting
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/overplotting.html)  
+- [Worksheet](worksheets/overplotting.Rmd)
+
+### 30. Compound figures
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/compound-figures.html)  
+- [Worksheet](worksheets/compound-figures.Rmd)
 
 
 ## Reuse {.appendix}

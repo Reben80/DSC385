@@ -474,8 +474,6 @@ girafe(
 ```
 ]
 
----
-
 [//]: # "segment ends here"
 
 ---
@@ -757,8 +755,6 @@ girafe(
 ]
 ]
 
----
-
 [//]: # "segment ends here"
 
 ---
@@ -778,8 +774,6 @@ CSS is the language used to style web pages
 
 Many online tutorials, e.g.: https://www.w3schools.com/css/default.asp
 
-
----
 
 [//]: # "segment ends here"
 
