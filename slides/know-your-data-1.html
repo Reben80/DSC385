@@ -21,6 +21,260 @@ class: center, middle, title-slide
 
 
 
+
+
+---
+class: center, middle
+
+## Assessing data quality
+
+---
+
+## Components of data quality
+
+.pull-left.width-35[
+- Accuracy
+
+- Precision
+
+- Usability
+
+- Completeness
+
+- Consistency
+
+- Accessibility
+
+- Relevance
+]
+
+---
+
+## Components of data quality
+
+.pull-left.width-35[
+- **Accuracy**
+
+- Precision
+
+- Usability
+
+- Completeness
+
+- Consistency
+
+- Accessibility
+
+- Relevance
+]
+
+.pull-right.width-65[
+Does the data contain any systematic errors or biases?
+]
+
+---
+
+## Components of data quality
+
+.pull-left.width-35[
+- Accuracy
+
+- **Precision**
+
+- Usability
+
+- Completeness
+
+- Consistency
+
+- Accessibility
+
+- Relevance
+]
+
+.pull-right.width-65[
+Does the data contain any systematic errors or biases?
+
+How affected are observations by random errors/noise?
+]
+
+---
+
+## Accuracy means low bias, precision means low noise
+
+&lt;img src = "know-your-data-1_files/accuracy-precision.svg", width = 52%, style = "position: absolute;  top: 21%; left: 21%;"&gt;&lt;/img&gt;
+
+
+---
+
+## Components of data quality
+
+.pull-left.width-35[
+- Accuracy
+
+- Precision
+
+- **Usability**
+
+- Completeness
+
+- Consistency
+
+- Accessibility
+
+- Relevance
+]
+
+.pull-right.width-65[
+Does the data contain any systematic errors or biases?
+
+How affected are observations by random errors/noise?
+
+Is the data documented? Is it machine-readable?
+]
+
+---
+
+## Usability requires a data dictionary
+
+**Data Dictionary**&lt;br&gt;
+A "centralized repository of information about data such as meaning, relationships to other data, origin, usage, and format" ([Wikipedia](https://en.wikipedia.org/wiki/Data_dictionary))
+
+&lt;br&gt;
+Example: [Palmer penguins reference page](https://allisonhorst.github.io/palmerpenguins/reference/penguins.html)
+
+---
+
+## Components of data quality
+
+.pull-left.width-35[
+- Accuracy
+
+- Precision
+
+- Usability
+
+- **Completeness**
+
+- Consistency
+
+- Accessibility
+
+- Relevance
+]
+
+.pull-right.width-65[
+Does the data contain any systematic errors or biases?
+
+How affected are observations by random errors/noise?
+
+Is the data documented? Is it machine-readable?
+
+Are entire records missing? Are observations missing?
+]
+
+---
+
+## Components of data quality
+
+.pull-left.width-35[
+- Accuracy
+
+- Precision
+
+- Usability
+
+- Completeness
+
+- **Consistency**
+
+- Accessibility
+
+- Relevance
+]
+
+.pull-right.width-65[
+Does the data contain any systematic errors or biases?
+
+How affected are observations by random errors/noise?
+
+Is the data documented? Is it machine-readable?
+
+Are entire records missing? Are observations missing?
+
+Does data vary among sources or over time?
+]
+
+---
+
+## Components of data quality
+
+.pull-left.width-35[
+- Accuracy
+
+- Precision
+
+- Usability
+
+- Completeness
+
+- Consistency
+
+- **Accessibility**
+
+- Relevance
+]
+
+.pull-right.width-65[
+Does the data contain any systematic errors or biases?
+
+How affected are observations by random errors/noise?
+
+Is the data documented? Is it machine-readable?
+
+Are entire records missing? Are observations missing?
+
+Does data vary among sources or over time?
+
+Do you have access to the data? Can you obtain it?
+]
+
+---
+
+## Components of data quality
+
+.pull-left.width-35[
+- Accuracy
+
+- Precision
+
+- Usability
+
+- Completeness
+
+- Consistency
+
+- Accessibility
+
+- **Relevance**
+]
+
+.pull-right.width-65[
+Does the data contain any systematic errors or biases?
+
+How affected are observations by random errors/noise?
+
+Is the data documented? Is it machine-readable?
+
+Are entire records missing? Are observations missing?
+
+Does data vary among sources or over time?
+
+Do you have access to the data? Can you obtain it?
+
+Can you use the data to address your question?
+]
+
 ---
 class: center middle
 
@@ -683,50 +937,80 @@ unique(NCbirths$Weeks)
 ]
 
 
+
+---
+
+## In some cases, nonsensical values indicate missingness
+
+.pull-left[
+Before recoding -999 to `NA`:
+.xtiny-font[
+
+```r
+ggplot(NCbirths, aes(Weeks)) +
+  geom_histogram()
+```
+
+![](know-your-data-1_files/figure-html/weeks-histo-flawed-1.svg)&lt;!-- --&gt;
+]]
+
+.pull-right[
+After recoding -999 to `NA`:
+.xtiny-font[
+
+```r
+ggplot(NCbirths, aes(Weeks)) +
+  geom_histogram()
+```
+
+![](know-your-data-1_files/figure-html/weeks-histo-fixed-1.svg)&lt;!-- --&gt;
+]]
+
+
 ---
 
 ## Consider recoding categorical variables
 
-Marital status is encoded as 1/2:
+Sex of the baby is encoded as 1/2:
 
 .small-font[
 
 ```r
 NCbirths %&gt;%
-  pull(Marital)
+  pull(Sex)
 ```
 
 ```
-   [1] 1 1 1 1 1 1 1 2 1 2 1 2 1 2 2 1 1 1 1 1 1 1 2 1 2 1 2 1 2 1 1 1 1 1
-  [35] 1 1 2 1 1 1 2 1 1 2 1 1 2 2 1 1 1 1 1 1 2 1 1 2 2 1 1 1 1 2 1 1 1 1
-  [69] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 2 1 1 1 1 2 1 1 1 1 1 1 1
- [103] 1 1 2 1 1 1 2 1 1 1 1 2 1 1 1 1 2 1 2 1 1 2 1 2 1 1 1 2 1 2 1 1 1 1
- [137] 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 2 1 1 2 2 1 2 1 1 1 1 1 1 2
- [171] 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 2 2 1 2 1 2 1 1 1 1 2 1 1 1 1 1 1 2
- [205] 2 1 1 1 1 1 1 2 1 2 2 1 1 2 1 1 1 1 1 2 2 1 1 2 1 1 1 1 1 2 2 1 1 1
- [239] 2 1 2 1 1 2 2 1 2 1 2 1 1 1 1 1 2 1 1 1 2 1 1 2 2 1 2 1 1 1 2 2 1 1
- [273] 1 1 1 2 1 2 1 2 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 1 1 1
- [307] 1 1 2 1 2 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 2 2 1 1 2 1 1 2 1 1 2 1 1
- [341] 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 2 2 1 1 2 1 1 2 1
- [375] 1 1 1 1 1 1 1 1 1 1 1 2 1 2 1 1 1 1 2 1 1 1 1 2 1 1 2 2 1 2 2 1 1 1
- [409] 2 1 2 1 1 2 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 2 1 2 1
- [443] 1 1 1 1 1 2 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 1 2 1 1 1 1 1
- [477] 1 1 1 1 1 1 1 1 1 1 1 2 1 1 2 1 2 2 2 2 1 1 1 1 2 1 2 1 1 2 1 1 1 1
- [511] 1 1 2 2 2 1 1 1 1 2 1 1 2 1 1 1 1 1 2 1 2 1 1 2 2 2 1 1 1 1 2 1 1 2
- [545] 1 1 1 1 1 1 1 2 2 1 1 1 1 2 1 1 1 1 1 1 2 2 1 1 1 2 1 1 1 1 1 2 1 1
- [579] 1 1 2 2 2 1 1 1 1 2 1 2 1 1 1 1 1 1 1 1 1 1 2 1 2 1 2 2 1 2 1 1 2 1
- [613] 1 1 1 1 1 2 2 1 1 1 1 1 2 1 1 1 1 2 1 1 1 1 2 1 1 1 1 1 1 2 2 1 1 1
- [647] 1 1 1 1 2 2 2 1 2 1 2 1 1 1 1 2 1 1 2 1 2 1 1 1 1 1 1 1 1 2 1 1 2 1
- [681] 1 1 1 2 1 1 2 1 2 2 2 1 2 2 1 2 1 2 2 1 2 1 1 2 1 1 1 1 1 1 1 1 1 1
- [715] 2 1 1 2 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2
- [749] 1 1 1 1 1 1 1 1 1 1 1 1 2 1 2 2 1 1 1 1 2 1 1 1 2 2 2 1 1 1 2 2 1 1
- [783] 1 1 1 2 1 1 2 1 2 1 1 1 1 1 1 1 1 2 2 2 1 2 1 1 1 1 1 2 1 1 1 2 1 1
- [817] 2 1 2 1 2 1 2 2 1 1 1 1 1 1 2 1 1 1 1 1 1 1 2 1 1 1 1 2 1 1 1 2 1 1
- [851] 1 1 1 1 1 1 1 1 1 2 1 2 1 2 1 1 2 2 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1
- [885] 1 1 2 1 1 1 2 1 1 1 2 1 1 2 1 1 1 1 1 1 1 1 1 2 1 1 2 1 1 1 2 2 1 1
- [919] 1 1 1 1 1 2 2 2 1 1 1 1 2 1 1 1 1 1 1 2 2 1 1 1 1 1 2 1 1 1 1 1 1 1
- [953] 2 1 1 2 2 2 1 2 1 2 2 1 2 2 1 1 1 1 2 2 2 1 1 1 1 1 2 1 1 1 2 2 2 1
- [987] 1 1 1 2 1 1 1 1 2 2 1 1 1 2
+   [1] 1 2 1 1 1 1 2 2 2 2 1 2 2 2 2 1 1 1 1 1 2 2 2 2 2 1 2 2 1 2 1 2 2 1
+  [35] 2 2 1 2 1 2 2 1 2 1 1 1 2 1 1 2 2 1 2 2 2 1 1 2 1 2 1 2 1 2 2 1 1 2
+  [69] 1 1 2 2 1 1 2 2 1 1 2 1 2 2 2 1 1 1 2 2 2 1 1 1 1 1 1 1 1 2 2 1 1 1
+ [103] 1 2 2 1 2 1 2 1 1 2 1 2 1 1 2 2 1 1 2 1 2 1 2 1 1 2 2 1 1 1 2 2 2 1
+ [137] 1 1 1 2 1 1 2 1 1 1 1 2 2 1 1 1 1 2 2 2 2 2 2 2 1 2 1 1 1 1 1 2 2 2
+ [171] 1 1 1 1 2 1 2 1 1 1 2 2 2 2 2 1 2 1 2 1 2 2 1 2 1 1 1 1 2 2 1 1 2 1
+ [205] 2 1 1 2 1 2 1 1 1 1 1 2 1 2 2 1 2 2 1 1 2 2 2 2 1 2 1 2 1 1 1 1 2 2
+ [239] 2 1 2 2 2 2 2 2 1 1 2 1 2 1 2 2 1 2 2 1 1 2 2 1 1 1 2 2 1 2 2 1 2 1
+ [273] 2 1 1 1 1 1 2 2 1 1 1 1 2 1 1 1 2 2 2 2 1 2 1 2 2 1 1 2 1 1 1 1 1 2
+ [307] 2 2 1 2 2 1 1 1 1 2 1 1 2 1 2 1 2 1 2 2 2 1 2 2 2 1 1 1 2 2 1 2 1 2
+ [341] 1 2 1 1 1 2 1 1 1 2 2 1 2 2 2 2 1 1 1 2 1 2 1 2 1 2 1 1 2 2 2 2 1 2
+ [375] 1 2 1 2 2 1 1 2 2 1 2 2 2 1 2 1 1 2 2 1 2 2 2 1 2 1 2 2 2 2 2 2 2 1
+ [409] 1 2 2 1 1 1 1 2 1 1 1 1 1 1 1 2 1 2 2 2 1 2 1 2 2 1 1 2 2 2 1 1 2 2
+ [443] 1 2 1 2 1 1 1 2 1 2 1 1 2 1 1 2 1 2 2 1 2 2 2 2 2 1 2 1 1 2 1 1 2 2
+ [477] 1 2 2 2 2 1 2 1 1 1 2 1 1 1 1 2 1 1 2 1 2 1 1 1 2 2 2 1 2 2 1 1 1 2
+ [511] 2 2 1 2 1 2 1 2 2 2 1 1 1 1 2 1 1 1 2 2 1 1 1 1 2 2 1 1 1 2 2 1 2 1
+ [545] 2 1 1 1 2 2 2 1 1 1 1 2 2 1 2 2 1 2 2 1 1 2 2 1 1 1 2 2 1 2 1 1 1 2
+ [579] 1 1 1 1 2 2 1 1 1 2 2 1 1 2 1 2 2 1 1 1 2 1 1 2 1 1 2 2 1 2 1 1 1 1
+ [613] 2 2 2 1 2 1 2 1 1 2 1 1 1 2 2 1 1 2 1 2 2 2 2 2 1 1 2 1 1 2 1 2 2 1
+ [647] 1 2 2 1 2 2 1 1 1 2 2 2 2 2 1 2 1 1 1 2 1 2 1 1 2 2 1 2 1 1 2 2 2 1
+ [681] 2 1 2 2 1 2 2 2 2 2 1 2 1 1 1 2 1 2 2 1 2 2 1 2 1 2 1 2 1 2 2 2 1 1
+ [715] 2 2 1 2 1 1 1 1 2 2 1 2 1 1 1 2 2 2 2 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2
+ [749] 1 2 1 1 1 1 2 2 2 1 2 2 2 2 1 2 1 1 1 2 2 1 2 2 1 1 2 1 1 1 2 2 2 2
+ [783] 2 2 2 2 1 2 2 2 1 1 2 1 1 2 1 1 2 2 1 2 1 1 2 1 2 1 2 2 2 2 2 2 1 1
+ [817] 1 1 2 1 1 2 2 1 1 2 1 1 2 1 2 1 1 2 1 2 2 1 1 1 2 1 2 2 2 2 1 1 1 2
+ [851] 1 1 1 1 1 2 2 1 2 1 1 2 1 1 2 1 1 2 1 1 2 2 2 1 1 1 2 1 2 2 1 2 2 1
+ [885] 1 2 1 1 1 1 2 2 2 1 2 2 1 1 2 2 2 1 2 1 1 1 2 1 1 2 2 2 1 2 1 1 1 2
+ [919] 1 1 1 1 1 1 1 2 2 1 1 2 1 1 1 1 2 1 2 1 2 1 1 2 1 2 1 2 2 1 2 1 2 2
+ [953] 1 2 2 1 2 1 2 1 2 1 2 2 1 1 2 2 1 2 1 2 1 2 2 2 1 2 2 1 1 2 2 1 2 1
+ [987] 1 2 1 2 1 1 2 2 1 1 2 2 1 1
  [ reached getOption("max.print") -- omitted 450 entries ]
 ```
 ]
@@ -735,269 +1019,162 @@ NCbirths %&gt;%
 
 ## Consider recoding categorical variables
 
-Recode as `"married"`/`"not married"`:
+Recode as `"male"`/`"female"`:
 
 .small-font[
 
 ```r
 NCbirths %&gt;%
   mutate(
-    Marital = ifelse(Marital == 1, "married", "not married")
+    Sex = ifelse(Sex == 1, "male", "female")
   ) %&gt;%
-  pull(Marital)
+  pull(Sex)
 ```
 
 ```
-   [1] "married"     "married"     "married"     "married"    
-   [5] "married"     "married"     "married"     "not married"
-   [9] "married"     "not married" "married"     "not married"
-  [13] "married"     "not married" "not married" "married"    
-  [17] "married"     "married"     "married"     "married"    
-  [21] "married"     "married"     "not married" "married"    
-  [25] "not married" "married"     "not married" "married"    
-  [29] "not married" "married"     "married"     "married"    
-  [33] "married"     "married"     "married"     "married"    
-  [37] "not married" "married"     "married"     "married"    
-  [41] "not married" "married"     "married"     "not married"
-  [45] "married"     "married"     "not married" "not married"
-  [49] "married"     "married"     "married"     "married"    
-  [53] "married"     "married"     "not married" "married"    
-  [57] "married"     "not married" "not married" "married"    
-  [61] "married"     "married"     "married"     "not married"
-  [65] "married"     "married"     "married"     "married"    
-  [69] "married"     "married"     "married"     "married"    
-  [73] "married"     "married"     "married"     "married"    
-  [77] "married"     "married"     "married"     "married"    
-  [81] "married"     "married"     "married"     "married"    
-  [85] "married"     "married"     "married"     "not married"
-  [89] "married"     "not married" "married"     "married"    
-  [93] "married"     "married"     "not married" "married"    
-  [97] "married"     "married"     "married"     "married"    
- [101] "married"     "married"     "married"     "married"    
- [105] "not married" "married"     "married"     "married"    
- [109] "not married" "married"     "married"     "married"    
- [113] "married"     "not married" "married"     "married"    
- [117] "married"     "married"     "not married" "married"    
- [121] "not married" "married"     "married"     "not married"
- [125] "married"     "not married" "married"     "married"    
- [129] "married"     "not married" "married"     "not married"
- [133] "married"     "married"     "married"     "married"    
- [137] "married"     "married"     "married"     "married"    
- [141] "not married" "married"     "married"     "married"    
- [145] "married"     "married"     "married"     "married"    
- [149] "married"     "married"     "married"     "married"    
- [153] "not married" "married"     "married"     "married"    
- [157] "not married" "married"     "married"     "not married"
- [161] "not married" "married"     "not married" "married"    
- [165] "married"     "married"     "married"     "married"    
- [169] "married"     "not married" "married"     "married"    
- [173] "married"     "married"     "married"     "married"    
- [177] "married"     "married"     "married"     "married"    
- [181] "married"     "married"     "married"     "not married"
- [185] "married"     "married"     "not married" "not married"
- [189] "married"     "not married" "married"     "not married"
- [193] "married"     "married"     "married"     "married"    
- [197] "not married" "married"     "married"     "married"    
- [201] "married"     "married"     "married"     "not married"
- [205] "not married" "married"     "married"     "married"    
- [209] "married"     "married"     "married"     "not married"
- [213] "married"     "not married" "not married" "married"    
- [217] "married"     "not married" "married"     "married"    
- [221] "married"     "married"     "married"     "not married"
- [225] "not married" "married"     "married"     "not married"
- [229] "married"     "married"     "married"     "married"    
- [233] "married"     "not married" "not married" "married"    
- [237] "married"     "married"     "not married" "married"    
- [241] "not married" "married"     "married"     "not married"
- [245] "not married" "married"     "not married" "married"    
- [249] "not married" "married"     "married"     "married"    
- [253] "married"     "married"     "not married" "married"    
- [257] "married"     "married"     "not married" "married"    
- [261] "married"     "not married" "not married" "married"    
- [265] "not married" "married"     "married"     "married"    
- [269] "not married" "not married" "married"     "married"    
- [273] "married"     "married"     "married"     "not married"
- [277] "married"     "not married" "married"     "not married"
- [281] "married"     "married"     "married"     "married"    
- [285] "married"     "married"     "married"     "not married"
- [289] "married"     "married"     "married"     "married"    
- [293] "married"     "married"     "married"     "married"    
- [297] "married"     "married"     "married"     "married"    
- [301] "married"     "not married" "not married" "married"    
- [305] "married"     "married"     "married"     "married"    
- [309] "not married" "married"     "not married" "married"    
- [313] "married"     "married"     "married"     "married"    
- [317] "married"     "married"     "married"     "married"    
- [321] "not married" "married"     "married"     "married"    
- [325] "married"     "married"     "married"     "not married"
- [329] "not married" "married"     "married"     "not married"
- [333] "married"     "married"     "not married" "married"    
- [337] "married"     "not married" "married"     "married"    
- [341] "married"     "married"     "married"     "married"    
- [345] "not married" "married"     "married"     "married"    
- [349] "married"     "married"     "married"     "married"    
- [353] "married"     "married"     "married"     "married"    
- [357] "not married" "married"     "married"     "married"    
- [361] "married"     "married"     "married"     "married"    
- [365] "married"     "not married" "not married" "married"    
- [369] "married"     "not married" "married"     "married"    
- [373] "not married" "married"     "married"     "married"    
- [377] "married"     "married"     "married"     "married"    
- [381] "married"     "married"     "married"     "married"    
- [385] "married"     "not married" "married"     "not married"
- [389] "married"     "married"     "married"     "married"    
- [393] "not married" "married"     "married"     "married"    
- [397] "married"     "not married" "married"     "married"    
- [401] "not married" "not married" "married"     "not married"
- [405] "not married" "married"     "married"     "married"    
- [409] "not married" "married"     "not married" "married"    
- [413] "married"     "not married" "married"     "married"    
- [417] "married"     "married"     "married"     "married"    
- [421] "married"     "married"     "not married" "married"    
- [425] "married"     "married"     "married"     "married"    
- [429] "married"     "married"     "not married" "married"    
- [433] "married"     "married"     "married"     "married"    
- [437] "married"     "married"     "not married" "married"    
- [441] "not married" "married"     "married"     "married"    
- [445] "married"     "married"     "married"     "not married"
- [449] "married"     "married"     "married"     "married"    
- [453] "not married" "married"     "married"     "married"    
- [457] "married"     "married"     "married"     "married"    
- [461] "married"     "married"     "married"     "married"    
- [465] "married"     "not married" "married"     "married"    
- [469] "married"     "married"     "not married" "married"    
- [473] "married"     "married"     "married"     "married"    
- [477] "married"     "married"     "married"     "married"    
- [481] "married"     "married"     "married"     "married"    
- [485] "married"     "married"     "married"     "not married"
- [489] "married"     "married"     "not married" "married"    
- [493] "not married" "not married" "not married" "not married"
- [497] "married"     "married"     "married"     "married"    
- [501] "not married" "married"     "not married" "married"    
- [505] "married"     "not married" "married"     "married"    
- [509] "married"     "married"     "married"     "married"    
- [513] "not married" "not married" "not married" "married"    
- [517] "married"     "married"     "married"     "not married"
- [521] "married"     "married"     "not married" "married"    
- [525] "married"     "married"     "married"     "married"    
- [529] "not married" "married"     "not married" "married"    
- [533] "married"     "not married" "not married" "not married"
- [537] "married"     "married"     "married"     "married"    
- [541] "not married" "married"     "married"     "not married"
- [545] "married"     "married"     "married"     "married"    
- [549] "married"     "married"     "married"     "not married"
- [553] "not married" "married"     "married"     "married"    
- [557] "married"     "not married" "married"     "married"    
- [561] "married"     "married"     "married"     "married"    
- [565] "not married" "not married" "married"     "married"    
- [569] "married"     "not married" "married"     "married"    
- [573] "married"     "married"     "married"     "not married"
- [577] "married"     "married"     "married"     "married"    
- [581] "not married" "not married" "not married" "married"    
- [585] "married"     "married"     "married"     "not married"
- [589] "married"     "not married" "married"     "married"    
- [593] "married"     "married"     "married"     "married"    
- [597] "married"     "married"     "married"     "married"    
- [601] "not married" "married"     "not married" "married"    
- [605] "not married" "not married" "married"     "not married"
- [609] "married"     "married"     "not married" "married"    
- [613] "married"     "married"     "married"     "married"    
- [617] "married"     "not married" "not married" "married"    
- [621] "married"     "married"     "married"     "married"    
- [625] "not married" "married"     "married"     "married"    
- [629] "married"     "not married" "married"     "married"    
- [633] "married"     "married"     "not married" "married"    
- [637] "married"     "married"     "married"     "married"    
- [641] "married"     "not married" "not married" "married"    
- [645] "married"     "married"     "married"     "married"    
- [649] "married"     "married"     "not married" "not married"
- [653] "not married" "married"     "not married" "married"    
- [657] "not married" "married"     "married"     "married"    
- [661] "married"     "not married" "married"     "married"    
- [665] "not married" "married"     "not married" "married"    
- [669] "married"     "married"     "married"     "married"    
- [673] "married"     "married"     "married"     "not married"
- [677] "married"     "married"     "not married" "married"    
- [681] "married"     "married"     "married"     "not married"
- [685] "married"     "married"     "not married" "married"    
- [689] "not married" "not married" "not married" "married"    
- [693] "not married" "not married" "married"     "not married"
- [697] "married"     "not married" "not married" "married"    
- [701] "not married" "married"     "married"     "not married"
- [705] "married"     "married"     "married"     "married"    
- [709] "married"     "married"     "married"     "married"    
- [713] "married"     "married"     "not married" "married"    
- [717] "married"     "not married" "married"     "married"    
- [721] "married"     "married"     "married"     "married"    
- [725] "married"     "married"     "not married" "married"    
- [729] "married"     "married"     "married"     "married"    
- [733] "married"     "married"     "married"     "married"    
- [737] "married"     "married"     "married"     "married"    
- [741] "married"     "married"     "married"     "married"    
- [745] "married"     "married"     "not married" "not married"
- [749] "married"     "married"     "married"     "married"    
- [753] "married"     "married"     "married"     "married"    
- [757] "married"     "married"     "married"     "married"    
- [761] "not married" "married"     "not married" "not married"
- [765] "married"     "married"     "married"     "married"    
- [769] "not married" "married"     "married"     "married"    
- [773] "not married" "not married" "not married" "married"    
- [777] "married"     "married"     "not married" "not married"
- [781] "married"     "married"     "married"     "married"    
- [785] "married"     "not married" "married"     "married"    
- [789] "not married" "married"     "not married" "married"    
- [793] "married"     "married"     "married"     "married"    
- [797] "married"     "married"     "married"     "not married"
- [801] "not married" "not married" "married"     "not married"
- [805] "married"     "married"     "married"     "married"    
- [809] "married"     "not married" "married"     "married"    
- [813] "married"     "not married" "married"     "married"    
- [817] "not married" "married"     "not married" "married"    
- [821] "not married" "married"     "not married" "not married"
- [825] "married"     "married"     "married"     "married"    
- [829] "married"     "married"     "not married" "married"    
- [833] "married"     "married"     "married"     "married"    
- [837] "married"     "married"     "not married" "married"    
- [841] "married"     "married"     "married"     "not married"
- [845] "married"     "married"     "married"     "not married"
- [849] "married"     "married"     "married"     "married"    
- [853] "married"     "married"     "married"     "married"    
- [857] "married"     "married"     "married"     "not married"
- [861] "married"     "not married" "married"     "not married"
- [865] "married"     "married"     "not married" "not married"
- [869] "married"     "married"     "married"     "married"    
- [873] "married"     "married"     "married"     "married"    
- [877] "married"     "not married" "married"     "married"    
- [881] "married"     "married"     "married"     "married"    
- [885] "married"     "married"     "not married" "married"    
- [889] "married"     "married"     "not married" "married"    
- [893] "married"     "married"     "not married" "married"    
- [897] "married"     "not married" "married"     "married"    
- [901] "married"     "married"     "married"     "married"    
- [905] "married"     "married"     "married"     "not married"
- [909] "married"     "married"     "not married" "married"    
- [913] "married"     "married"     "not married" "not married"
- [917] "married"     "married"     "married"     "married"    
- [921] "married"     "married"     "married"     "not married"
- [925] "not married" "not married" "married"     "married"    
- [929] "married"     "married"     "not married" "married"    
- [933] "married"     "married"     "married"     "married"    
- [937] "married"     "not married" "not married" "married"    
- [941] "married"     "married"     "married"     "married"    
- [945] "not married" "married"     "married"     "married"    
- [949] "married"     "married"     "married"     "married"    
- [953] "not married" "married"     "married"     "not married"
- [957] "not married" "not married" "married"     "not married"
- [961] "married"     "not married" "not married" "married"    
- [965] "not married" "not married" "married"     "married"    
- [969] "married"     "married"     "not married" "not married"
- [973] "not married" "married"     "married"     "married"    
- [977] "married"     "married"     "not married" "married"    
- [981] "married"     "married"     "not married" "not married"
- [985] "not married" "married"     "married"     "married"    
- [989] "married"     "not married" "married"     "married"    
- [993] "married"     "married"     "not married" "not married"
- [997] "married"     "married"     "married"     "not married"
+   [1] "male"   "female" "male"   "male"   "male"   "male"   "female"
+   [8] "female" "female" "female" "male"   "female" "female" "female"
+  [15] "female" "male"   "male"   "male"   "male"   "male"   "female"
+  [22] "female" "female" "female" "female" "male"   "female" "female"
+  [29] "male"   "female" "male"   "female" "female" "male"   "female"
+  [36] "female" "male"   "female" "male"   "female" "female" "male"  
+  [43] "female" "male"   "male"   "male"   "female" "male"   "male"  
+  [50] "female" "female" "male"   "female" "female" "female" "male"  
+  [57] "male"   "female" "male"   "female" "male"   "female" "male"  
+  [64] "female" "female" "male"   "male"   "female" "male"   "male"  
+  [71] "female" "female" "male"   "male"   "female" "female" "male"  
+  [78] "male"   "female" "male"   "female" "female" "female" "male"  
+  [85] "male"   "male"   "female" "female" "female" "male"   "male"  
+  [92] "male"   "male"   "male"   "male"   "male"   "male"   "female"
+  [99] "female" "male"   "male"   "male"   "male"   "female" "female"
+ [106] "male"   "female" "male"   "female" "male"   "male"   "female"
+ [113] "male"   "female" "male"   "male"   "female" "female" "male"  
+ [120] "male"   "female" "male"   "female" "male"   "female" "male"  
+ [127] "male"   "female" "female" "male"   "male"   "male"   "female"
+ [134] "female" "female" "male"   "male"   "male"   "male"   "female"
+ [141] "male"   "male"   "female" "male"   "male"   "male"   "male"  
+ [148] "female" "female" "male"   "male"   "male"   "male"   "female"
+ [155] "female" "female" "female" "female" "female" "female" "male"  
+ [162] "female" "male"   "male"   "male"   "male"   "male"   "female"
+ [169] "female" "female" "male"   "male"   "male"   "male"   "female"
+ [176] "male"   "female" "male"   "male"   "male"   "female" "female"
+ [183] "female" "female" "female" "male"   "female" "male"   "female"
+ [190] "male"   "female" "female" "male"   "female" "male"   "male"  
+ [197] "male"   "male"   "female" "female" "male"   "male"   "female"
+ [204] "male"   "female" "male"   "male"   "female" "male"   "female"
+ [211] "male"   "male"   "male"   "male"   "male"   "female" "male"  
+ [218] "female" "female" "male"   "female" "female" "male"   "male"  
+ [225] "female" "female" "female" "female" "male"   "female" "male"  
+ [232] "female" "male"   "male"   "male"   "male"   "female" "female"
+ [239] "female" "male"   "female" "female" "female" "female" "female"
+ [246] "female" "male"   "male"   "female" "male"   "female" "male"  
+ [253] "female" "female" "male"   "female" "female" "male"   "male"  
+ [260] "female" "female" "male"   "male"   "male"   "female" "female"
+ [267] "male"   "female" "female" "male"   "female" "male"   "female"
+ [274] "male"   "male"   "male"   "male"   "male"   "female" "female"
+ [281] "male"   "male"   "male"   "male"   "female" "male"   "male"  
+ [288] "male"   "female" "female" "female" "female" "male"   "female"
+ [295] "male"   "female" "female" "male"   "male"   "female" "male"  
+ [302] "male"   "male"   "male"   "male"   "female" "female" "female"
+ [309] "male"   "female" "female" "male"   "male"   "male"   "male"  
+ [316] "female" "male"   "male"   "female" "male"   "female" "male"  
+ [323] "female" "male"   "female" "female" "female" "male"   "female"
+ [330] "female" "female" "male"   "male"   "male"   "female" "female"
+ [337] "male"   "female" "male"   "female" "male"   "female" "male"  
+ [344] "male"   "male"   "female" "male"   "male"   "male"   "female"
+ [351] "female" "male"   "female" "female" "female" "female" "male"  
+ [358] "male"   "male"   "female" "male"   "female" "male"   "female"
+ [365] "male"   "female" "male"   "male"   "female" "female" "female"
+ [372] "female" "male"   "female" "male"   "female" "male"   "female"
+ [379] "female" "male"   "male"   "female" "female" "male"   "female"
+ [386] "female" "female" "male"   "female" "male"   "male"   "female"
+ [393] "female" "male"   "female" "female" "female" "male"   "female"
+ [400] "male"   "female" "female" "female" "female" "female" "female"
+ [407] "female" "male"   "male"   "female" "female" "male"   "male"  
+ [414] "male"   "male"   "female" "male"   "male"   "male"   "male"  
+ [421] "male"   "male"   "male"   "female" "male"   "female" "female"
+ [428] "female" "male"   "female" "male"   "female" "female" "male"  
+ [435] "male"   "female" "female" "female" "male"   "male"   "female"
+ [442] "female" "male"   "female" "male"   "female" "male"   "male"  
+ [449] "male"   "female" "male"   "female" "male"   "male"   "female"
+ [456] "male"   "male"   "female" "male"   "female" "female" "male"  
+ [463] "female" "female" "female" "female" "female" "male"   "female"
+ [470] "male"   "male"   "female" "male"   "male"   "female" "female"
+ [477] "male"   "female" "female" "female" "female" "male"   "female"
+ [484] "male"   "male"   "male"   "female" "male"   "male"   "male"  
+ [491] "male"   "female" "male"   "male"   "female" "male"   "female"
+ [498] "male"   "male"   "male"   "female" "female" "female" "male"  
+ [505] "female" "female" "male"   "male"   "male"   "female" "female"
+ [512] "female" "male"   "female" "male"   "female" "male"   "female"
+ [519] "female" "female" "male"   "male"   "male"   "male"   "female"
+ [526] "male"   "male"   "male"   "female" "female" "male"   "male"  
+ [533] "male"   "male"   "female" "female" "male"   "male"   "male"  
+ [540] "female" "female" "male"   "female" "male"   "female" "male"  
+ [547] "male"   "male"   "female" "female" "female" "male"   "male"  
+ [554] "male"   "male"   "female" "female" "male"   "female" "female"
+ [561] "male"   "female" "female" "male"   "male"   "female" "female"
+ [568] "male"   "male"   "male"   "female" "female" "male"   "female"
+ [575] "male"   "male"   "male"   "female" "male"   "male"   "male"  
+ [582] "male"   "female" "female" "male"   "male"   "male"   "female"
+ [589] "female" "male"   "male"   "female" "male"   "female" "female"
+ [596] "male"   "male"   "male"   "female" "male"   "male"   "female"
+ [603] "male"   "male"   "female" "female" "male"   "female" "male"  
+ [610] "male"   "male"   "male"   "female" "female" "female" "male"  
+ [617] "female" "male"   "female" "male"   "male"   "female" "male"  
+ [624] "male"   "male"   "female" "female" "male"   "male"   "female"
+ [631] "male"   "female" "female" "female" "female" "female" "male"  
+ [638] "male"   "female" "male"   "male"   "female" "male"   "female"
+ [645] "female" "male"   "male"   "female" "female" "male"   "female"
+ [652] "female" "male"   "male"   "male"   "female" "female" "female"
+ [659] "female" "female" "male"   "female" "male"   "male"   "male"  
+ [666] "female" "male"   "female" "male"   "male"   "female" "female"
+ [673] "male"   "female" "male"   "male"   "female" "female" "female"
+ [680] "male"   "female" "male"   "female" "female" "male"   "female"
+ [687] "female" "female" "female" "female" "male"   "female" "male"  
+ [694] "male"   "male"   "female" "male"   "female" "female" "male"  
+ [701] "female" "female" "male"   "female" "male"   "female" "male"  
+ [708] "female" "male"   "female" "female" "female" "male"   "male"  
+ [715] "female" "female" "male"   "female" "male"   "male"   "male"  
+ [722] "male"   "female" "female" "male"   "female" "male"   "male"  
+ [729] "male"   "female" "female" "female" "female" "male"   "male"  
+ [736] "male"   "male"   "male"   "male"   "female" "female" "female"
+ [743] "female" "female" "female" "female" "female" "female" "male"  
+ [750] "female" "male"   "male"   "male"   "male"   "female" "female"
+ [757] "female" "male"   "female" "female" "female" "female" "male"  
+ [764] "female" "male"   "male"   "male"   "female" "female" "male"  
+ [771] "female" "female" "male"   "male"   "female" "male"   "male"  
+ [778] "male"   "female" "female" "female" "female" "female" "female"
+ [785] "female" "female" "male"   "female" "female" "female" "male"  
+ [792] "male"   "female" "male"   "male"   "female" "male"   "male"  
+ [799] "female" "female" "male"   "female" "male"   "male"   "female"
+ [806] "male"   "female" "male"   "female" "female" "female" "female"
+ [813] "female" "female" "male"   "male"   "male"   "male"   "female"
+ [820] "male"   "male"   "female" "female" "male"   "male"   "female"
+ [827] "male"   "male"   "female" "male"   "female" "male"   "male"  
+ [834] "female" "male"   "female" "female" "male"   "male"   "male"  
+ [841] "female" "male"   "female" "female" "female" "female" "male"  
+ [848] "male"   "male"   "female" "male"   "male"   "male"   "male"  
+ [855] "male"   "female" "female" "male"   "female" "male"   "male"  
+ [862] "female" "male"   "male"   "female" "male"   "male"   "female"
+ [869] "male"   "male"   "female" "female" "female" "male"   "male"  
+ [876] "male"   "female" "male"   "female" "female" "male"   "female"
+ [883] "female" "male"   "male"   "female" "male"   "male"   "male"  
+ [890] "male"   "female" "female" "female" "male"   "female" "female"
+ [897] "male"   "male"   "female" "female" "female" "male"   "female"
+ [904] "male"   "male"   "male"   "female" "male"   "male"   "female"
+ [911] "female" "female" "male"   "female" "male"   "male"   "male"  
+ [918] "female" "male"   "male"   "male"   "male"   "male"   "male"  
+ [925] "male"   "female" "female" "male"   "male"   "female" "male"  
+ [932] "male"   "male"   "male"   "female" "male"   "female" "male"  
+ [939] "female" "male"   "male"   "female" "male"   "female" "male"  
+ [946] "female" "female" "male"   "female" "male"   "female" "female"
+ [953] "male"   "female" "female" "male"   "female" "male"   "female"
+ [960] "male"   "female" "male"   "female" "female" "male"   "male"  
+ [967] "female" "female" "male"   "female" "male"   "female" "male"  
+ [974] "female" "female" "female" "male"   "female" "female" "male"  
+ [981] "male"   "female" "female" "male"   "female" "male"   "male"  
+ [988] "female" "male"   "female" "male"   "male"   "female" "female"
+ [995] "male"   "male"   "female" "female" "male"   "male"  
  [ reached getOption("max.print") -- omitted 450 entries ]
 ```
 ]
@@ -1390,6 +1567,41 @@ NCbirths %&gt;%
 
 
 
+---
+
+## Make pairwise scatter plots
+
+--
+
+
+
+.tiny-font[
+
+```r
+ggplot(NCbirths, aes(Plural, Sex, color = Sex)) + geom_point(position = "jitter", size = .5)
+ggplot(NCbirths, aes(Plural, MomAge, color = Sex)) + geom_point(position = "jitter", size = .5)
+```
+]
+
+.center[
+![](know-your-data-1_files/figure-html/NCbirths-pairs-out-1.svg)&lt;!-- --&gt;![](know-your-data-1_files/figure-html/NCbirths-pairs-out-2.svg)&lt;!-- --&gt;
+]
+
+---
+
+## Make pairwise scatter plots
+
+.tiny-font[
+
+```r
+ggplot(NCbirths, aes(Weeks, Plural, color = Sex)) + geom_point(position = "jitter", size = .5)
+ggplot(NCbirths, aes(Weeks, Gained, color = Sex)) + geom_point(position = "jitter", size = .5)
+```
+]
+
+.center[
+![](know-your-data-1_files/figure-html/NCbirths-pairs2-out-1.svg)&lt;!-- --&gt;![](know-your-data-1_files/figure-html/NCbirths-pairs2-out-2.svg)&lt;!-- --&gt;
+]
 
 ---
 
@@ -1401,7 +1613,7 @@ NCbirths %&gt;%
 
 ## Further reading
 
-
+Wikipedia: [Data dictionary](https://en.wikipedia.org/wiki/Data_dictionary)
 
 
     </textarea>

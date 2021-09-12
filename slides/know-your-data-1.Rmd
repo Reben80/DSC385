@@ -35,6 +35,270 @@ theme_set(theme_gray(16)) # 16 for full width, 18 for half width
 update_geom_defaults("point", list(size = 2)) # 2 for full width, 2.5 for half width
 ```
 
+```{r echo = FALSE, eval = FALSE}
+Possibly interesting datasets:
+https://www.kaggle.com/uciml/pima-indians-diabetes-database
+(excellent, has license, but no missing values, no categories; also has no data dictionary)
+
+https://www.kaggle.com/abcsds/pokemon
+(excellent, has missing values, has license, has data dictionary, has no categories)
+
+https://www.kaggle.com/nicapotato/womens-ecommerce-clothing-reviews
+
+```
+
+---
+class: center, middle
+
+## Assessing data quality
+
+---
+
+## Components of data quality
+
+.pull-left.width-35[
+- Accuracy
+
+- Precision
+
+- Usability
+
+- Completeness
+
+- Consistency
+
+- Accessibility
+
+- Relevance
+]
+
+---
+
+## Components of data quality
+
+.pull-left.width-35[
+- **Accuracy**
+
+- Precision
+
+- Usability
+
+- Completeness
+
+- Consistency
+
+- Accessibility
+
+- Relevance
+]
+
+.pull-right.width-65[
+Does the data contain any systematic errors or biases?
+]
+
+---
+
+## Components of data quality
+
+.pull-left.width-35[
+- Accuracy
+
+- **Precision**
+
+- Usability
+
+- Completeness
+
+- Consistency
+
+- Accessibility
+
+- Relevance
+]
+
+.pull-right.width-65[
+Does the data contain any systematic errors or biases?
+
+How affected are observations by random errors/noise?
+]
+
+---
+
+## Accuracy means low bias, precision means low noise
+
+<img src = "know-your-data-1_files/accuracy-precision.svg", width = 52%, style = "position: absolute;  top: 21%; left: 21%;"></img>
+
+
+---
+
+## Components of data quality
+
+.pull-left.width-35[
+- Accuracy
+
+- Precision
+
+- **Usability**
+
+- Completeness
+
+- Consistency
+
+- Accessibility
+
+- Relevance
+]
+
+.pull-right.width-65[
+Does the data contain any systematic errors or biases?
+
+How affected are observations by random errors/noise?
+
+Is the data documented? Is it machine-readable?
+]
+
+---
+
+## Usability requires a data dictionary
+
+**Data Dictionary**<br>
+A "centralized repository of information about data such as meaning, relationships to other data, origin, usage, and format" ([Wikipedia](https://en.wikipedia.org/wiki/Data_dictionary))
+
+<br>
+Example: [Palmer penguins reference page](https://allisonhorst.github.io/palmerpenguins/reference/penguins.html)
+
+---
+
+## Components of data quality
+
+.pull-left.width-35[
+- Accuracy
+
+- Precision
+
+- Usability
+
+- **Completeness**
+
+- Consistency
+
+- Accessibility
+
+- Relevance
+]
+
+.pull-right.width-65[
+Does the data contain any systematic errors or biases?
+
+How affected are observations by random errors/noise?
+
+Is the data documented? Is it machine-readable?
+
+Are entire records missing? Are observations missing?
+]
+
+---
+
+## Components of data quality
+
+.pull-left.width-35[
+- Accuracy
+
+- Precision
+
+- Usability
+
+- Completeness
+
+- **Consistency**
+
+- Accessibility
+
+- Relevance
+]
+
+.pull-right.width-65[
+Does the data contain any systematic errors or biases?
+
+How affected are observations by random errors/noise?
+
+Is the data documented? Is it machine-readable?
+
+Are entire records missing? Are observations missing?
+
+Does data vary among sources or over time?
+]
+
+---
+
+## Components of data quality
+
+.pull-left.width-35[
+- Accuracy
+
+- Precision
+
+- Usability
+
+- Completeness
+
+- Consistency
+
+- **Accessibility**
+
+- Relevance
+]
+
+.pull-right.width-65[
+Does the data contain any systematic errors or biases?
+
+How affected are observations by random errors/noise?
+
+Is the data documented? Is it machine-readable?
+
+Are entire records missing? Are observations missing?
+
+Does data vary among sources or over time?
+
+Do you have access to the data? Can you obtain it?
+]
+
+---
+
+## Components of data quality
+
+.pull-left.width-35[
+- Accuracy
+
+- Precision
+
+- Usability
+
+- Completeness
+
+- Consistency
+
+- Accessibility
+
+- **Relevance**
+]
+
+.pull-right.width-65[
+Does the data contain any systematic errors or biases?
+
+How affected are observations by random errors/noise?
+
+Is the data documented? Is it machine-readable?
+
+Are entire records missing? Are observations missing?
+
+Does data vary among sources or over time?
+
+Do you have access to the data? Can you obtain it?
+
+Can you use the data to address your question?
+]
+
 ---
 class: center middle
 
@@ -331,16 +595,46 @@ unique(NCbirths$Weeks)
 ]
 
 
+
+---
+
+## In some cases, nonsensical values indicate missingness
+
+.pull-left[
+Before recoding -999 to `NA`:
+.xtiny-font[
+```{r eval = FALSE}
+ggplot(NCbirths, aes(Weeks)) +
+  geom_histogram()
+```
+
+```{r weeks-histo-flawed, echo = FALSE, message = FALSE, warning = FALSE, fig.width=6., fig.asp = 0.618, dev = "svg"}
+read_csv("https://wilkelab.org/DSC385/datasets/NCbirths.csv") %>%
+  ggplot(aes(Weeks)) +
+  geom_histogram()
+```
+]]
+
+.pull-right[
+After recoding -999 to `NA`:
+.xtiny-font[
+```{r weeks-histo-fixed, message = FALSE, warning = FALSE, fig.width=6., fig.asp = 0.618, dev = "svg"}
+ggplot(NCbirths, aes(Weeks)) +
+  geom_histogram()
+```
+]]
+
+
 ---
 
 ## Consider recoding categorical variables
 
-Marital status is encoded as 1/2:
+Sex of the baby is encoded as 1/2:
 
 .small-font[
 ```{r}
 NCbirths %>%
-  pull(Marital)
+  pull(Sex)
 ```
 ]
 
@@ -348,15 +642,15 @@ NCbirths %>%
 
 ## Consider recoding categorical variables
 
-Recode as `"married"`/`"not married"`:
+Recode as `"male"`/`"female"`:
 
 .small-font[
 ```{r}
 NCbirths %>%
   mutate(
-    Marital = ifelse(Marital == 1, "married", "not married")
+    Sex = ifelse(Sex == 1, "male", "female")
   ) %>%
-  pull(Marital)
+  pull(Sex)
 ```
 ]
 
@@ -462,6 +756,46 @@ NCbirths %>%
 options(width = 74)
 ```
 
+---
+
+## Make pairwise scatter plots
+
+--
+
+```{r echo = FALSE}
+NCbirths <- NCbirths %>%
+  mutate(
+    Sex = ifelse(Sex == 1, "male", "female")
+  )
+```
+
+.tiny-font[
+```{r NCbirths-pairs, eval = FALSE}
+ggplot(NCbirths, aes(Plural, Sex, color = Sex)) + geom_point(position = "jitter", size = .5)
+ggplot(NCbirths, aes(Plural, MomAge, color = Sex)) + geom_point(position = "jitter", size = .5)
+```
+]
+
+.center[
+```{r NCbirths-pairs-out, ref.label='NCbirths-pairs', echo = FALSE, warning = FALSE, fig.width=4.8, fig.asp = .618, dev = "svg"}
+```
+]
+
+---
+
+## Make pairwise scatter plots
+
+.tiny-font[
+```{r NCbirths-pairs2, eval = FALSE}
+ggplot(NCbirths, aes(Weeks, Plural, color = Sex)) + geom_point(position = "jitter", size = .5)
+ggplot(NCbirths, aes(Weeks, Gained, color = Sex)) + geom_point(position = "jitter", size = .5)
+```
+]
+
+.center[
+```{r NCbirths-pairs2-out, ref.label='NCbirths-pairs2', echo = FALSE, warning = FALSE, fig.width=4.8, fig.asp = .618, dev = "svg"}
+```
+]
 
 ---
 
@@ -473,6 +807,6 @@ options(width = 74)
 
 ## Further reading
 
-
+Wikipedia: [Data dictionary](https://en.wikipedia.org/wiki/Data_dictionary)
 
 
