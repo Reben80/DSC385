@@ -1,0 +1,149 @@
+---
+title: "Getting to know your data 1"
+author: "Claus O. Wilke"
+date: "last updated: `r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: [default, "Wilke-slides-theme.css"]
+    lib_dir: libs
+    nature:
+      ratio: '16:9'
+      highlightStyle: github
+      highlightLines: true
+      slideNumberFormat: ''
+      titleSlideClass: [center, middle]
+---
+
+```{r setup, include=FALSE, echo=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(comment = "")
+
+library(tidyverse)
+library(here)
+library(cowplot)
+
+NCbirths <- read_csv(here("datasets", "NCbirths.csv"), na = c("", "NA", "#N/A"))
+NCbirths2 <- read_csv(here("datasets", "NCbirths.csv"), na = c("", "NA"))
+
+# ggplot2 settings so plots scale well for slide size 
+theme_set(theme_gray(16)) # 16 for full width, 18 for half width 
+update_geom_defaults("point", list(size = 2)) # 2 for full width, 2.5 for half width
+```
+
+---
+class: center middle
+
+## Data cleaning in R
+
+---
+
+## Recoding binary variables: `if_else()`
+
+Marital status is encoded as 1/2:
+
+.small-font[
+```{r}
+NCbirths %>%
+  pull(Marital) # `pull()` extracts the given column
+```
+]
+
+---
+
+## Recoding binary variables: `if_else()`
+
+Recode as `"married"`, `"not married"`:
+
+.small-font[
+```{r}
+NCbirths %>%
+  mutate(
+    Marital = ifelse(Marital == 1, "married", "not married")
+  ) %>%
+  pull(Marital)
+```
+]
+
+---
+
+## Recoding multivariate variables: `case_when()`
+
+The mother's race is encoded as integers from 1 through 8:
+
+.small-font[
+```{r}
+NCbirths %>%
+  pull(RaceMom)
+```
+]
+
+---
+
+## Recoding multivariate variables: `case_when()`
+
+The mother's race is encoded as integers from 1 through 8:
+
+.small-font[
+```{r}
+NCbirths %>%
+  pull(RaceMom) %>%
+  unique() # list all the unique values (ordered by first occurrence)
+```
+]
+
+---
+
+## Recoding multivariate variables: `case_when()`
+
+We use `case_when()` to recode multiple values all at once:
+
+.xtiny-font.pull-left[
+```{r case-when-example, eval = FALSE}
+NCbirths %>%
+  mutate(
+    RaceMom = case_when(
+      RaceMom == 1 ~ "white",
+      RaceMom == 2 ~ "black",
+      RaceMom == 3 ~ "American Indian",
+      RaceMom == 4 ~ "Chinese",
+      RaceMom == 5 ~ "Japanese",
+      RaceMom == 6 ~ "Hawaiian",
+      RaceMom == 7 ~ "Filipino",
+      RaceMom == 8 ~ 
+        "Other Asian or Pacific Islander",
+      TRUE ~ NA_character_ # should never reach
+    )
+  ) %>%
+  pull(RaceMom)
+```
+]
+
+.xtiny-font.pull-right[
+```{r case-when-example-out, ref.label="case-when-example", echo=FALSE}
+```
+]
+
+---
+
+## Pay attention when reading in datasets
+
+.tiny-font[
+```{r}
+NCbirhts <- read_csv("https://wilkelab.org/DSC385/datasets/NCbirths.csv")
+```
+]
+
+
+---
+
+
+[//]: # "segment ends here"
+
+
+---
+
+## Further reading
+
+
+
+

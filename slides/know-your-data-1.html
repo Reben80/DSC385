@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Getting to know your data 1</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Claus O. Wilke" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="Wilke-slides-theme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, title-slide
+
+# Getting to know your data 1
+### Claus O. Wilke
+### last updated: 2021-09-12
+
+---
+
+
+
+
+---
+class: center middle
+
+## Data cleaning in R
+
+---
+
+## Recoding binary variables: `if_else()`
+
+Marital status is encoded as 1/2:
+
+.small-font[
+
+```r
+NCbirths %&gt;%
+  pull(Marital) # `pull()` extracts the given column
+```
+
+```
+   [1] 1 1 1 1 1 1 1 2 1 2 1 2 1 2 2 1 1 1 1 1 1 1 2 1 2 1 2 1 2
+  [30] 1 1 1 1 1 1 1 2 1 1 1 2 1 1 2 1 1 2 2 1 1 1 1 1 1 2 1 1 2
+  [59] 2 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+  [88] 2 1 2 1 1 1 1 2 1 1 1 1 1 1 1 1 1 2 1 1 1 2 1 1 1 1 2 1 1
+ [117] 1 1 2 1 2 1 1 2 1 2 1 1 1 2 1 2 1 1 1 1 1 1 1 1 2 1 1 1 1
+ [146] 1 1 1 1 1 1 1 2 1 1 1 2 1 1 2 2 1 2 1 1 1 1 1 1 2 1 1 1 1
+ [175] 1 1 1 1 1 1 1 1 1 2 1 1 2 2 1 2 1 2 1 1 1 1 2 1 1 1 1 1 1
+ [204] 2 2 1 1 1 1 1 1 2 1 2 2 1 1 2 1 1 1 1 1 2 2 1 1 2 1 1 1 1
+ [233] 1 2 2 1 1 1 2 1 2 1 1 2 2 1 2 1 2 1 1 1 1 1 2 1 1 1 2 1 1
+ [262] 2 2 1 2 1 1 1 2 2 1 1 1 1 1 2 1 2 1 2 1 1 1 1 1 1 1 2 1 1
+ [291] 1 1 1 1 1 1 1 1 1 1 1 2 2 1 1 1 1 1 2 1 2 1 1 1 1 1 1 1 1
+ [320] 1 2 1 1 1 1 1 1 2 2 1 1 2 1 1 2 1 1 2 1 1 1 1 1 1 2 1 1 1
+ [349] 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 2 2 1 1 2 1 1 2 1 1 1 1
+ [378] 1 1 1 1 1 1 1 1 2 1 2 1 1 1 1 2 1 1 1 1 2 1 1 2 2 1 2 2 1
+ [407] 1 1 2 1 2 1 1 2 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 2 1 1 1 1
+ [436] 1 1 1 2 1 2 1 1 1 1 1 1 2 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1
+ [465] 1 2 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 2 1 2
+ [494] 2 2 2 1 1 1 1 2 1 2 1 1 2 1 1 1 1 1 1 2 2 2 1 1 1 1 2 1 1
+ [523] 2 1 1 1 1 1 2 1 2 1 1 2 2 2 1 1 1 1 2 1 1 2 1 1 1 1 1 1 1
+ [552] 2 2 1 1 1 1 2 1 1 1 1 1 1 2 2 1 1 1 2 1 1 1 1 1 2 1 1 1 1
+ [581] 2 2 2 1 1 1 1 2 1 2 1 1 1 1 1 1 1 1 1 1 2 1 2 1 2 2 1 2 1
+ [610] 1 2 1 1 1 1 1 1 2 2 1 1 1 1 1 2 1 1 1 1 2 1 1 1 1 2 1 1 1
+ [639] 1 1 1 2 2 1 1 1 1 1 1 1 2 2 2 1 2 1 2 1 1 1 1 2 1 1 2 1 2
+ [668] 1 1 1 1 1 1 1 1 2 1 1 2 1 1 1 1 2 1 1 2 1 2 2 2 1 2 2 1 2
+ [697] 1 2 2 1 2 1 1 2 1 1 1 1 1 1 1 1 1 1 2 1 1 2 1 1 1 1 1 1 1
+ [726] 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 1 1 1 1 1 1
+ [755] 1 1 1 1 1 1 2 1 2 2 1 1 1 1 2 1 1 1 2 2 2 1 1 1 2 2 1 1 1
+ [784] 1 1 2 1 1 2 1 2 1 1 1 1 1 1 1 1 2 2 2 1 2 1 1 1 1 1 2 1 1
+ [813] 1 2 1 1 2 1 2 1 2 1 2 2 1 1 1 1 1 1 2 1 1 1 1 1 1 1 2 1 1
+ [842] 1 1 2 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 2 1 2 1 2 1 1 2 2 1 1
+ [871] 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 2 1 1 1 2 1 1 1 2 1 1 2 1
+ [900] 1 1 1 1 1 1 1 1 2 1 1 2 1 1 1 2 2 1 1 1 1 1 1 1 2 2 2 1 1
+ [929] 1 1 2 1 1 1 1 1 1 2 2 1 1 1 1 1 2 1 1 1 1 1 1 1 2 1 1 2 2
+ [958] 2 1 2 1 2 2 1 2 2 1 1 1 1 2 2 2 1 1 1 1 1 2 1 1 1 2 2 2 1
+ [987] 1 1 1 2 1 1 1 1 2 2 1 1 1 2
+ [ reached getOption("max.print") -- omitted 450 entries ]
+```
+]
+
+---
+
+## Recoding binary variables: `if_else()`
+
+Recode as `"married"`, `"not married"`:
+
+.small-font[
+
+```r
+NCbirths %&gt;%
+  mutate(
+    Marital = ifelse(Marital == 1, "married", "not married")
+  ) %&gt;%
+  pull(Marital)
+```
+
+```
+   [1] "married"     "married"     "married"     "married"    
+   [5] "married"     "married"     "married"     "not married"
+   [9] "married"     "not married" "married"     "not married"
+  [13] "married"     "not married" "not married" "married"    
+  [17] "married"     "married"     "married"     "married"    
+  [21] "married"     "married"     "not married" "married"    
+  [25] "not married" "married"     "not married" "married"    
+  [29] "not married" "married"     "married"     "married"    
+  [33] "married"     "married"     "married"     "married"    
+  [37] "not married" "married"     "married"     "married"    
+  [41] "not married" "married"     "married"     "not married"
+  [45] "married"     "married"     "not married" "not married"
+  [49] "married"     "married"     "married"     "married"    
+  [53] "married"     "married"     "not married" "married"    
+  [57] "married"     "not married" "not married" "married"    
+  [61] "married"     "married"     "married"     "not married"
+  [65] "married"     "married"     "married"     "married"    
+  [69] "married"     "married"     "married"     "married"    
+  [73] "married"     "married"     "married"     "married"    
+  [77] "married"     "married"     "married"     "married"    
+  [81] "married"     "married"     "married"     "married"    
+  [85] "married"     "married"     "married"     "not married"
+  [89] "married"     "not married" "married"     "married"    
+  [93] "married"     "married"     "not married" "married"    
+  [97] "married"     "married"     "married"     "married"    
+ [101] "married"     "married"     "married"     "married"    
+ [105] "not married" "married"     "married"     "married"    
+ [109] "not married" "married"     "married"     "married"    
+ [113] "married"     "not married" "married"     "married"    
+ [117] "married"     "married"     "not married" "married"    
+ [121] "not married" "married"     "married"     "not married"
+ [125] "married"     "not married" "married"     "married"    
+ [129] "married"     "not married" "married"     "not married"
+ [133] "married"     "married"     "married"     "married"    
+ [137] "married"     "married"     "married"     "married"    
+ [141] "not married" "married"     "married"     "married"    
+ [145] "married"     "married"     "married"     "married"    
+ [149] "married"     "married"     "married"     "married"    
+ [153] "not married" "married"     "married"     "married"    
+ [157] "not married" "married"     "married"     "not married"
+ [161] "not married" "married"     "not married" "married"    
+ [165] "married"     "married"     "married"     "married"    
+ [169] "married"     "not married" "married"     "married"    
+ [173] "married"     "married"     "married"     "married"    
+ [177] "married"     "married"     "married"     "married"    
+ [181] "married"     "married"     "married"     "not married"
+ [185] "married"     "married"     "not married" "not married"
+ [189] "married"     "not married" "married"     "not married"
+ [193] "married"     "married"     "married"     "married"    
+ [197] "not married" "married"     "married"     "married"    
+ [201] "married"     "married"     "married"     "not married"
+ [205] "not married" "married"     "married"     "married"    
+ [209] "married"     "married"     "married"     "not married"
+ [213] "married"     "not married" "not married" "married"    
+ [217] "married"     "not married" "married"     "married"    
+ [221] "married"     "married"     "married"     "not married"
+ [225] "not married" "married"     "married"     "not married"
+ [229] "married"     "married"     "married"     "married"    
+ [233] "married"     "not married" "not married" "married"    
+ [237] "married"     "married"     "not married" "married"    
+ [241] "not married" "married"     "married"     "not married"
+ [245] "not married" "married"     "not married" "married"    
+ [249] "not married" "married"     "married"     "married"    
+ [253] "married"     "married"     "not married" "married"    
+ [257] "married"     "married"     "not married" "married"    
+ [261] "married"     "not married" "not married" "married"    
+ [265] "not married" "married"     "married"     "married"    
+ [269] "not married" "not married" "married"     "married"    
+ [273] "married"     "married"     "married"     "not married"
+ [277] "married"     "not married" "married"     "not married"
+ [281] "married"     "married"     "married"     "married"    
+ [285] "married"     "married"     "married"     "not married"
+ [289] "married"     "married"     "married"     "married"    
+ [293] "married"     "married"     "married"     "married"    
+ [297] "married"     "married"     "married"     "married"    
+ [301] "married"     "not married" "not married" "married"    
+ [305] "married"     "married"     "married"     "married"    
+ [309] "not married" "married"     "not married" "married"    
+ [313] "married"     "married"     "married"     "married"    
+ [317] "married"     "married"     "married"     "married"    
+ [321] "not married" "married"     "married"     "married"    
+ [325] "married"     "married"     "married"     "not married"
+ [329] "not married" "married"     "married"     "not married"
+ [333] "married"     "married"     "not married" "married"    
+ [337] "married"     "not married" "married"     "married"    
+ [341] "married"     "married"     "married"     "married"    
+ [345] "not married" "married"     "married"     "married"    
+ [349] "married"     "married"     "married"     "married"    
+ [353] "married"     "married"     "married"     "married"    
+ [357] "not married" "married"     "married"     "married"    
+ [361] "married"     "married"     "married"     "married"    
+ [365] "married"     "not married" "not married" "married"    
+ [369] "married"     "not married" "married"     "married"    
+ [373] "not married" "married"     "married"     "married"    
+ [377] "married"     "married"     "married"     "married"    
+ [381] "married"     "married"     "married"     "married"    
+ [385] "married"     "not married" "married"     "not married"
+ [389] "married"     "married"     "married"     "married"    
+ [393] "not married" "married"     "married"     "married"    
+ [397] "married"     "not married" "married"     "married"    
+ [401] "not married" "not married" "married"     "not married"
+ [405] "not married" "married"     "married"     "married"    
+ [409] "not married" "married"     "not married" "married"    
+ [413] "married"     "not married" "married"     "married"    
+ [417] "married"     "married"     "married"     "married"    
+ [421] "married"     "married"     "not married" "married"    
+ [425] "married"     "married"     "married"     "married"    
+ [429] "married"     "married"     "not married" "married"    
+ [433] "married"     "married"     "married"     "married"    
+ [437] "married"     "married"     "not married" "married"    
+ [441] "not married" "married"     "married"     "married"    
+ [445] "married"     "married"     "married"     "not married"
+ [449] "married"     "married"     "married"     "married"    
+ [453] "not married" "married"     "married"     "married"    
+ [457] "married"     "married"     "married"     "married"    
+ [461] "married"     "married"     "married"     "married"    
+ [465] "married"     "not married" "married"     "married"    
+ [469] "married"     "married"     "not married" "married"    
+ [473] "married"     "married"     "married"     "married"    
+ [477] "married"     "married"     "married"     "married"    
+ [481] "married"     "married"     "married"     "married"    
+ [485] "married"     "married"     "married"     "not married"
+ [489] "married"     "married"     "not married" "married"    
+ [493] "not married" "not married" "not married" "not married"
+ [497] "married"     "married"     "married"     "married"    
+ [501] "not married" "married"     "not married" "married"    
+ [505] "married"     "not married" "married"     "married"    
+ [509] "married"     "married"     "married"     "married"    
+ [513] "not married" "not married" "not married" "married"    
+ [517] "married"     "married"     "married"     "not married"
+ [521] "married"     "married"     "not married" "married"    
+ [525] "married"     "married"     "married"     "married"    
+ [529] "not married" "married"     "not married" "married"    
+ [533] "married"     "not married" "not married" "not married"
+ [537] "married"     "married"     "married"     "married"    
+ [541] "not married" "married"     "married"     "not married"
+ [545] "married"     "married"     "married"     "married"    
+ [549] "married"     "married"     "married"     "not married"
+ [553] "not married" "married"     "married"     "married"    
+ [557] "married"     "not married" "married"     "married"    
+ [561] "married"     "married"     "married"     "married"    
+ [565] "not married" "not married" "married"     "married"    
+ [569] "married"     "not married" "married"     "married"    
+ [573] "married"     "married"     "married"     "not married"
+ [577] "married"     "married"     "married"     "married"    
+ [581] "not married" "not married" "not married" "married"    
+ [585] "married"     "married"     "married"     "not married"
+ [589] "married"     "not married" "married"     "married"    
+ [593] "married"     "married"     "married"     "married"    
+ [597] "married"     "married"     "married"     "married"    
+ [601] "not married" "married"     "not married" "married"    
+ [605] "not married" "not married" "married"     "not married"
+ [609] "married"     "married"     "not married" "married"    
+ [613] "married"     "married"     "married"     "married"    
+ [617] "married"     "not married" "not married" "married"    
+ [621] "married"     "married"     "married"     "married"    
+ [625] "not married" "married"     "married"     "married"    
+ [629] "married"     "not married" "married"     "married"    
+ [633] "married"     "married"     "not married" "married"    
+ [637] "married"     "married"     "married"     "married"    
+ [641] "married"     "not married" "not married" "married"    
+ [645] "married"     "married"     "married"     "married"    
+ [649] "married"     "married"     "not married" "not married"
+ [653] "not married" "married"     "not married" "married"    
+ [657] "not married" "married"     "married"     "married"    
+ [661] "married"     "not married" "married"     "married"    
+ [665] "not married" "married"     "not married" "married"    
+ [669] "married"     "married"     "married"     "married"    
+ [673] "married"     "married"     "married"     "not married"
+ [677] "married"     "married"     "not married" "married"    
+ [681] "married"     "married"     "married"     "not married"
+ [685] "married"     "married"     "not married" "married"    
+ [689] "not married" "not married" "not married" "married"    
+ [693] "not married" "not married" "married"     "not married"
+ [697] "married"     "not married" "not married" "married"    
+ [701] "not married" "married"     "married"     "not married"
+ [705] "married"     "married"     "married"     "married"    
+ [709] "married"     "married"     "married"     "married"    
+ [713] "married"     "married"     "not married" "married"    
+ [717] "married"     "not married" "married"     "married"    
+ [721] "married"     "married"     "married"     "married"    
+ [725] "married"     "married"     "not married" "married"    
+ [729] "married"     "married"     "married"     "married"    
+ [733] "married"     "married"     "married"     "married"    
+ [737] "married"     "married"     "married"     "married"    
+ [741] "married"     "married"     "married"     "married"    
+ [745] "married"     "married"     "not married" "not married"
+ [749] "married"     "married"     "married"     "married"    
+ [753] "married"     "married"     "married"     "married"    
+ [757] "married"     "married"     "married"     "married"    
+ [761] "not married" "married"     "not married" "not married"
+ [765] "married"     "married"     "married"     "married"    
+ [769] "not married" "married"     "married"     "married"    
+ [773] "not married" "not married" "not married" "married"    
+ [777] "married"     "married"     "not married" "not married"
+ [781] "married"     "married"     "married"     "married"    
+ [785] "married"     "not married" "married"     "married"    
+ [789] "not married" "married"     "not married" "married"    
+ [793] "married"     "married"     "married"     "married"    
+ [797] "married"     "married"     "married"     "not married"
+ [801] "not married" "not married" "married"     "not married"
+ [805] "married"     "married"     "married"     "married"    
+ [809] "married"     "not married" "married"     "married"    
+ [813] "married"     "not married" "married"     "married"    
+ [817] "not married" "married"     "not married" "married"    
+ [821] "not married" "married"     "not married" "not married"
+ [825] "married"     "married"     "married"     "married"    
+ [829] "married"     "married"     "not married" "married"    
+ [833] "married"     "married"     "married"     "married"    
+ [837] "married"     "married"     "not married" "married"    
+ [841] "married"     "married"     "married"     "not married"
+ [845] "married"     "married"     "married"     "not married"
+ [849] "married"     "married"     "married"     "married"    
+ [853] "married"     "married"     "married"     "married"    
+ [857] "married"     "married"     "married"     "not married"
+ [861] "married"     "not married" "married"     "not married"
+ [865] "married"     "married"     "not married" "not married"
+ [869] "married"     "married"     "married"     "married"    
+ [873] "married"     "married"     "married"     "married"    
+ [877] "married"     "not married" "married"     "married"    
+ [881] "married"     "married"     "married"     "married"    
+ [885] "married"     "married"     "not married" "married"    
+ [889] "married"     "married"     "not married" "married"    
+ [893] "married"     "married"     "not married" "married"    
+ [897] "married"     "not married" "married"     "married"    
+ [901] "married"     "married"     "married"     "married"    
+ [905] "married"     "married"     "married"     "not married"
+ [909] "married"     "married"     "not married" "married"    
+ [913] "married"     "married"     "not married" "not married"
+ [917] "married"     "married"     "married"     "married"    
+ [921] "married"     "married"     "married"     "not married"
+ [925] "not married" "not married" "married"     "married"    
+ [929] "married"     "married"     "not married" "married"    
+ [933] "married"     "married"     "married"     "married"    
+ [937] "married"     "not married" "not married" "married"    
+ [941] "married"     "married"     "married"     "married"    
+ [945] "not married" "married"     "married"     "married"    
+ [949] "married"     "married"     "married"     "married"    
+ [953] "not married" "married"     "married"     "not married"
+ [957] "not married" "not married" "married"     "not married"
+ [961] "married"     "not married" "not married" "married"    
+ [965] "not married" "not married" "married"     "married"    
+ [969] "married"     "married"     "not married" "not married"
+ [973] "not married" "married"     "married"     "married"    
+ [977] "married"     "married"     "not married" "married"    
+ [981] "married"     "married"     "not married" "not married"
+ [985] "not married" "married"     "married"     "married"    
+ [989] "married"     "not married" "married"     "married"    
+ [993] "married"     "married"     "not married" "not married"
+ [997] "married"     "married"     "married"     "not married"
+ [ reached getOption("max.print") -- omitted 450 entries ]
+```
+]
+
+---
+
+## Recoding multivariate variables: `case_when()`
+
+The mother's race is encoded as integers from 1 through 8:
+
+.small-font[
+
+```r
+NCbirths %&gt;%
+  pull(RaceMom)
+```
+
+```
+   [1] 1 1 1 1 1 1 1 1 1 1 1 1 1 5 1 5 1 1 1 5 1 1 5 1 5 1 1 1 5
+  [30] 1 1 1 5 1 1 1 5 5 5 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 5 1 1 1
+  [59] 1 1 1 1 5 1 5 1 1 5 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 5 1 5 1
+  [88] 5 1 1 1 1 1 1 1 1 1 1 1 5 1 1 1 5 1 1 1 1 1 1 1 1 1 1 1 5
+ [117] 1 5 1 1 1 1 1 1 1 5 1 1 5 1 1 1 1 1 5 1 1 1 1 1 1 1 5 1 1
+ [146] 5 5 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 5 1 5 1 5 5 1 1 1 5 1 1
+ [175] 1 5 5 1 5 1 1 1 1 1 1 1 1 1 1 1 5 1 1 5 1 1 1 1 1 1 1 1 1
+ [204] 1 1 1 1 5 1 1 1 1 1 1 1 1 1 5 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [233] 1 1 1 1 1 1 5 1 1 1 1 1 5 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [262] 5 5 1 1 1 1 5 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [291] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [320] 1 1 1 1 5 1 1 1 1 5 1 1 5 1 1 1 1 1 1 1 1 1 1 1 1 5 1 1 1
+ [349] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 5 1 1 1 1 1 1 1 1 1 5
+ [378] 1 1 1 1 1 1 1 1 5 1 1 1 1 1 1 5 1 1 1 1 5 1 5 1 1 1 5 1 1
+ [407] 1 1 1 1 1 1 1 5 1 1 1 1 1 5 1 1 5 1 1 1 1 5 1 1 5 1 1 1 1
+ [436] 1 1 1 1 1 1 1 1 1 1 5 1 5 1 1 1 1 1 1 1 1 1 1 5 1 1 5 1 1
+ [465] 1 5 1 1 1 1 5 1 1 5 1 1 1 1 1 5 1 1 1 1 1 1 1 5 1 1 1 1 1
+ [494] 1 5 1 1 1 1 5 1 1 1 1 1 1 1 1 1 1 1 5 1 1 1 5 1 1 1 5 1 1
+ [523] 1 1 1 1 1 1 1 1 1 1 1 5 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [552] 1 1 5 1 5 1 1 1 1 1 1 1 1 1 1 5 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [581] 5 5 1 1 1 1 1 5 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 5 5 5 5
+ [610] 1 5 1 1 1 5 5 1 5 1 1 1 1 1 5 1 1 1 1 1 1 1 1 1 1 1 1 1 5
+ [639] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 5 1 1 1 1 1 1 1 1 5 1 5 5 1 5
+ [668] 1 1 1 1 1 1 1 1 5 1 1 1 1 1 5 1 5 5 1 5 1 1 5 5 1 1 1 1 5
+ [697] 5 5 1 1 1 5 1 5 1 1 1 1 1 5 1 5 1 5 1 1 1 5 1 1 1 1 1 1 1
+ [726] 1 5 1 5 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 5 5 1 1 1 1 1 1
+ [755] 1 1 1 1 1 1 1 5 1 5 1 1 1 1 1 1 1 1 5 1 1 5 1 1 1 5 1 1 1
+ [784] 1 1 1 5 1 5 1 5 1 1 1 1 1 1 1 1 1 5 5 1 1 1 1 1 1 1 1 1 1
+ [813] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 5 1 1
+ [842] 1 1 1 1 1 1 5 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 5 1 1 1
+ [871] 1 5 1 1 1 1 1 1 1 1 1 1 1 1 1 1 5 5 1 1 1 1 5 1 5 1 1 5 1
+ [900] 5 1 1 1 1 1 1 1 1 5 1 1 1 1 1 5 1 1 1 1 1 1 5 1 1 1 5 1 1
+ [929] 5 1 1 1 1 1 1 1 1 1 5 1 1 1 1 5 1 1 5 5 1 5 1 1 5 1 5 1 5
+ [958] 5 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 5 5 1 1 1 5 5 1
+ [987] 1 5 1 1 1 1 1 1 1 1 1 1 1 5
+ [ reached getOption("max.print") -- omitted 450 entries ]
+```
+]
+
+---
+
+## Recoding multivariate variables: `case_when()`
+
+The mother's race is encoded as integers from 1 through 8:
+
+.small-font[
+
+```r
+NCbirths %&gt;%
+  pull(RaceMom) %&gt;%
+  unique() # list all the unique values (ordered by first occurrence)
+```
+
+```
+[1] 1 5 2 3 4 7 8
+```
+]
+
+---
+
+## Recoding multivariate variables: `case_when()`
+
+We use `case_when()` to recode multiple values all at once:
+
+.xtiny-font.pull-left[
+
+```r
+NCbirths %&gt;%
+  mutate(
+    RaceMom = case_when(
+      RaceMom == 1 ~ "white",
+      RaceMom == 2 ~ "black",
+      RaceMom == 3 ~ "American Indian",
+      RaceMom == 4 ~ "Chinese",
+      RaceMom == 5 ~ "Japanese",
+      RaceMom == 6 ~ "Hawaiian",
+      RaceMom == 7 ~ "Filipino",
+      RaceMom == 8 ~ 
+        "Other Asian or Pacific Islander",
+      TRUE ~ NA_character_ # should never reach
+    )
+  ) %&gt;%
+  pull(RaceMom)
+```
+]
+
+.xtiny-font.pull-right[
+
+```
+   [1] "white"    "white"    "white"    "white"    "white"   
+   [6] "white"    "white"    "white"    "white"    "white"   
+  [11] "white"    "white"    "white"    "Japanese" "white"   
+  [16] "Japanese" "white"    "white"    "white"    "Japanese"
+  [21] "white"    "white"    "Japanese" "white"    "Japanese"
+  [26] "white"    "white"    "white"    "Japanese" "white"   
+  [31] "white"    "white"    "Japanese" "white"    "white"   
+  [36] "white"    "Japanese" "Japanese" "Japanese" "white"   
+  [41] "white"    "white"    "white"    "white"    "white"   
+  [46] "white"    "white"    "white"    "white"    "white"   
+  [51] "white"    "white"    "white"    "white"    "Japanese"
+  [56] "white"    "white"    "white"    "white"    "white"   
+  [61] "white"    "white"    "Japanese" "white"    "Japanese"
+  [66] "white"    "white"    "Japanese" "white"    "white"   
+  [71] "white"    "white"    "white"    "white"    "white"   
+  [76] "white"    "white"    "white"    "white"    "white"   
+  [81] "white"    "white"    "white"    "Japanese" "white"   
+  [86] "Japanese" "white"    "Japanese" "white"    "white"   
+  [91] "white"    "white"    "white"    "white"    "white"   
+  [96] "white"    "white"    "white"    "white"    "Japanese"
+ [101] "white"    "white"    "white"    "Japanese" "white"   
+ [106] "white"    "white"    "white"    "white"    "white"   
+ [111] "white"    "white"    "white"    "white"    "white"   
+ [116] "Japanese" "white"    "Japanese" "white"    "white"   
+ [121] "white"    "white"    "white"    "white"    "white"   
+ [126] "Japanese" "white"    "white"    "Japanese" "white"   
+ [131] "white"    "white"    "white"    "white"    "Japanese"
+ [136] "white"    "white"    "white"    "white"    "white"   
+ [141] "white"    "white"    "Japanese" "white"    "white"   
+ [146] "Japanese" "Japanese" "white"    "white"    "white"   
+ [151] "white"    "white"    "white"    "white"    "white"   
+ [156] "white"    "white"    "white"    "white"    "white"   
+ [161] "white"    "white"    "Japanese" "white"    "Japanese"
+ [166] "white"    "Japanese" "Japanese" "white"    "white"   
+ [171] "white"    "Japanese" "white"    "white"    "white"   
+ [176] "Japanese" "Japanese" "white"    "Japanese" "white"   
+ [181] "white"    "white"    "white"    "white"    "white"   
+ [186] "white"    "white"    "white"    "white"    "white"   
+ [191] "Japanese" "white"    "white"    "Japanese" "white"   
+ [196] "white"    "white"    "white"    "white"    "white"   
+ [201] "white"    "white"    "white"    "white"    "white"   
+ [206] "white"    "white"    "Japanese" "white"    "white"   
+ [211] "white"    "white"    "white"    "white"    "white"   
+ [216] "white"    "white"    "Japanese" "white"    "white"   
+ [221] "white"    "white"    "white"    "white"    "white"   
+ [226] "white"    "white"    "white"    "white"    "white"   
+ [231] "white"    "white"    "white"    "white"    "white"   
+ [236] "white"    "white"    "white"    "Japanese" "white"   
+ [241] "white"    "white"    "white"    "white"    "Japanese"
+ [246] "white"    "white"    "white"    "white"    "white"   
+ [251] "white"    "white"    "white"    "white"    "white"   
+ [256] "white"    "white"    "white"    "white"    "white"   
+ [261] "white"    "Japanese" "Japanese" "white"    "white"   
+ [266] "white"    "white"    "Japanese" "white"    "white"   
+ [271] "white"    "white"    "white"    "white"    "white"   
+ [276] "white"    "white"    "white"    "white"    "white"   
+ [281] "white"    "white"    "white"    "white"    "white"   
+ [286] "white"    "white"    "white"    "white"    "white"   
+ [291] "white"    "white"    "white"    "white"    "white"   
+ [296] "white"    "white"    "white"    "white"    "white"   
+ [301] "white"    "white"    "white"    "white"    "white"   
+ [306] "white"    "white"    "white"    "white"    "white"   
+ [311] "white"    "white"    "white"    "white"    "white"   
+ [316] "white"    "white"    "white"    "white"    "white"   
+ [321] "white"    "white"    "white"    "Japanese" "white"   
+ [326] "white"    "white"    "white"    "Japanese" "white"   
+ [331] "white"    "Japanese" "white"    "white"    "white"   
+ [336] "white"    "white"    "white"    "white"    "white"   
+ [341] "white"    "white"    "white"    "white"    "Japanese"
+ [346] "white"    "white"    "white"    "white"    "white"   
+ [351] "white"    "white"    "white"    "white"    "white"   
+ [356] "white"    "white"    "white"    "white"    "white"   
+ [361] "white"    "white"    "white"    "white"    "white"   
+ [366] "white"    "Japanese" "white"    "white"    "white"   
+ [371] "white"    "white"    "white"    "white"    "white"   
+ [376] "white"    "Japanese" "white"    "white"    "white"   
+ [381] "white"    "white"    "white"    "white"    "white"   
+ [386] "Japanese" "white"    "white"    "white"    "white"   
+ [391] "white"    "white"    "Japanese" "white"    "white"   
+ [396] "white"    "white"    "Japanese" "white"    "Japanese"
+ [401] "white"    "white"    "white"    "Japanese" "white"   
+ [406] "white"    "white"    "white"    "white"    "white"   
+ [411] "white"    "white"    "white"    "Japanese" "white"   
+ [416] "white"    "white"    "white"    "white"    "Japanese"
+ [421] "white"    "white"    "Japanese" "white"    "white"   
+ [426] "white"    "white"    "Japanese" "white"    "white"   
+ [431] "Japanese" "white"    "white"    "white"    "white"   
+ [436] "white"    "white"    "white"    "white"    "white"   
+ [441] "white"    "white"    "white"    "white"    "white"   
+ [446] "Japanese" "white"    "Japanese" "white"    "white"   
+ [451] "white"    "white"    "white"    "white"    "white"   
+ [456] "white"    "white"    "white"    "Japanese" "white"   
+ [461] "white"    "Japanese" "white"    "white"    "white"   
+ [466] "Japanese" "white"    "white"    "white"    "white"   
+ [471] "Japanese" "white"    "white"    "Japanese" "white"   
+ [476] "white"    "white"    "white"    "white"    "Japanese"
+ [481] "white"    "white"    "white"    "white"    "white"   
+ [486] "white"    "white"    "Japanese" "white"    "white"   
+ [491] "white"    "white"    "white"    "white"    "Japanese"
+ [496] "white"    "white"    "white"    "white"    "Japanese"
+ [501] "white"    "white"    "white"    "white"    "white"   
+ [506] "white"    "white"    "white"    "white"    "white"   
+ [511] "white"    "Japanese" "white"    "white"    "white"   
+ [516] "Japanese" "white"    "white"    "white"    "Japanese"
+ [521] "white"    "white"    "white"    "white"    "white"   
+ [526] "white"    "white"    "white"    "white"    "white"   
+ [531] "white"    "white"    "white"    "Japanese" "white"   
+ [536] "white"    "white"    "white"    "white"    "white"   
+ [541] "white"    "white"    "white"    "white"    "white"   
+ [546] "white"    "white"    "white"    "white"    "white"   
+ [551] "white"    "white"    "white"    "Japanese" "white"   
+ [556] "Japanese" "white"    "white"    "white"    "white"   
+ [561] "white"    "white"    "white"    "white"    "white"   
+ [566] "white"    "Japanese" "white"    "white"    "white"   
+ [571] "white"    "white"    "white"    "white"    "white"   
+ [576] "white"    "white"    "white"    "white"    "white"   
+ [581] "Japanese" "Japanese" "white"    "white"    "white"   
+ [586] "white"    "white"    "Japanese" "white"    "white"   
+ [591] "white"    "white"    "white"    "white"    "white"   
+ [596] "white"    "white"    "white"    "white"    "white"   
+ [601] "white"    "white"    "white"    "white"    "white"   
+ [606] "Japanese" "Japanese" "Japanese" "Japanese" "white"   
+ [611] "Japanese" "white"    "white"    "white"    "Japanese"
+ [616] "Japanese" "white"    "Japanese" "white"    "white"   
+ [621] "white"    "white"    "white"    "Japanese" "white"   
+ [626] "white"    "white"    "white"    "white"    "white"   
+ [631] "white"    "white"    "white"    "white"    "white"   
+ [636] "white"    "white"    "Japanese" "white"    "white"   
+ [641] "white"    "white"    "white"    "white"    "white"   
+ [646] "white"    "white"    "white"    "white"    "white"   
+ [651] "white"    "white"    "Japanese" "white"    "white"   
+ [656] "white"    "white"    "white"    "white"    "white"   
+ [661] "white"    "Japanese" "white"    "Japanese" "Japanese"
+ [666] "white"    "Japanese" "white"    "white"    "white"   
+ [671] "white"    "white"    "white"    "white"    "white"   
+ [676] "Japanese" "white"    "white"    "white"    "white"   
+ [681] "white"    "Japanese" "white"    "Japanese" "Japanese"
+ [686] "white"    "Japanese" "white"    "white"    "Japanese"
+ [691] "Japanese" "white"    "white"    "white"    "white"   
+ [696] "Japanese" "Japanese" "Japanese" "white"    "white"   
+ [701] "white"    "Japanese" "white"    "Japanese" "white"   
+ [706] "white"    "white"    "white"    "white"    "Japanese"
+ [711] "white"    "Japanese" "white"    "Japanese" "white"   
+ [716] "white"    "white"    "Japanese" "white"    "white"   
+ [721] "white"    "white"    "white"    "white"    "white"   
+ [726] "white"    "Japanese" "white"    "Japanese" "white"   
+ [731] "white"    "white"    "white"    "white"    "white"   
+ [736] "white"    "white"    "white"    "white"    "white"   
+ [741] "white"    "white"    "white"    "white"    "white"   
+ [746] "white"    "Japanese" "Japanese" "white"    "white"   
+ [751] "white"    "white"    "white"    "white"    "white"   
+ [756] "white"    "white"    "white"    "white"    "white"   
+ [761] "white"    "Japanese" "white"    "Japanese" "white"   
+ [766] "white"    "white"    "white"    "white"    "white"   
+ [771] "white"    "white"    "Japanese" "white"    "white"   
+ [776] "Japanese" "white"    "white"    "white"    "Japanese"
+ [781] "white"    "white"    "white"    "white"    "white"   
+ [786] "white"    "Japanese" "white"    "Japanese" "white"   
+ [791] "Japanese" "white"    "white"    "white"    "white"   
+ [796] "white"    "white"    "white"    "white"    "white"   
+ [801] "Japanese" "Japanese" "white"    "white"    "white"   
+ [806] "white"    "white"    "white"    "white"    "white"   
+ [811] "white"    "white"    "white"    "white"    "white"   
+ [816] "white"    "white"    "white"    "white"    "white"   
+ [821] "white"    "white"    "white"    "white"    "white"   
+ [826] "white"    "white"    "white"    "white"    "white"   
+ [831] "white"    "white"    "white"    "white"    "white"   
+ [836] "white"    "white"    "white"    "Japanese" "white"   
+ [841] "white"    "white"    "white"    "white"    "white"   
+ [846] "white"    "white"    "Japanese" "white"    "white"   
+ [851] "white"    "white"    "white"    "white"    "white"   
+ [856] "white"    "white"    "white"    "white"    "white"   
+ [861] "white"    "white"    "white"    "white"    "white"   
+ [866] "white"    "Japanese" "white"    "white"    "white"   
+ [871] "white"    "Japanese" "white"    "white"    "white"   
+ [876] "white"    "white"    "white"    "white"    "white"   
+ [881] "white"    "white"    "white"    "white"    "white"   
+ [886] "white"    "Japanese" "Japanese" "white"    "white"   
+ [891] "white"    "white"    "Japanese" "white"    "Japanese"
+ [896] "white"    "white"    "Japanese" "white"    "Japanese"
+ [901] "white"    "white"    "white"    "white"    "white"   
+ [906] "white"    "white"    "white"    "Japanese" "white"   
+ [911] "white"    "white"    "white"    "white"    "Japanese"
+ [916] "white"    "white"    "white"    "white"    "white"   
+ [921] "white"    "Japanese" "white"    "white"    "white"   
+ [926] "Japanese" "white"    "white"    "Japanese" "white"   
+ [931] "white"    "white"    "white"    "white"    "white"   
+ [936] "white"    "white"    "white"    "Japanese" "white"   
+ [941] "white"    "white"    "white"    "Japanese" "white"   
+ [946] "white"    "Japanese" "Japanese" "white"    "Japanese"
+ [951] "white"    "white"    "Japanese" "white"    "Japanese"
+ [956] "white"    "Japanese" "Japanese" "white"    "white"   
+ [961] "white"    "white"    "white"    "white"    "white"   
+ [966] "white"    "white"    "white"    "white"    "white"   
+ [971] "white"    "white"    "white"    "white"    "white"   
+ [976] "white"    "white"    "white"    "Japanese" "Japanese"
+ [981] "white"    "white"    "white"    "Japanese" "Japanese"
+ [986] "white"    "white"    "Japanese" "white"    "white"   
+ [991] "white"    "white"    "white"    "white"    "white"   
+ [996] "white"    "white"    "white"    "white"    "Japanese"
+ [ reached getOption("max.print") -- omitted 450 entries ]
+```
+]
+
+---
+
+
+[//]: # "segment ends here"
+
+
+---
+
+## Further reading
+
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"slideNumberFormat": ""
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
