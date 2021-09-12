@@ -22,8 +22,13 @@ library(tidyverse)
 library(here)
 library(cowplot)
 
-NCbirths <- read_csv(here("datasets", "NCbirths.csv"), na = c("", "NA", "#N/A"))
-NCbirths2 <- read_csv(here("datasets", "NCbirths.csv"), na = c("", "NA"))
+NCbirths <- read_csv(here("datasets", "NCbirths.csv"), na = c("", "NA", "#N/A")) %>%
+  mutate(
+    Weeks = ifelse(Weeks < 0, NA_real_, Weeks)
+  )
+
+# increase number of characters per line
+options(width = 74)
 
 # ggplot2 settings so plots scale well for slide size 
 theme_set(theme_gray(16)) # 16 for full width, 18 for half width 
@@ -95,6 +100,10 @@ NCbirths %>%
 
 ## Recoding multivariate variables: `case_when()`
 
+```{r echo = FALSE}
+options(width = 60)
+```
+
 We use `case_when()` to recode multiple values all at once:
 
 .xtiny-font.pull-left[
@@ -123,16 +132,67 @@ NCbirths %>%
 ```
 ]
 
+```{r echo = FALSE}
+options(width = 74)
+```
+
+
 ---
 
 ## Pay attention when reading in datasets
 
-.tiny-font[
-```{r}
-NCbirhts <- read_csv("https://wilkelab.org/DSC385/datasets/NCbirths.csv")
+.small-font[
+```{r message = FALSE}
+NCbirths <- read_csv("https://wilkelab.org/DSC385/datasets/NCbirths.csv")
+
+NCbirths
 ```
 ]
 
+---
+
+## Pay attention when reading in datasets
+
+.small-font[
+```{r message = FALSE}
+NCbirths %>%
+  pull(Gained)
+```
+]
+
+---
+
+## Pay attention when reading in datasets
+
+Specify which data values should be considered to be missing:
+
+.small-font[
+```{r message = FALSE}
+NCbirths <- read_csv(
+  "https://wilkelab.org/DSC385/datasets/NCbirths.csv",
+  na = c("", "NA", "#N/A")
+)
+
+NCbirths
+```
+]
+
+---
+
+## Pay attention when reading in datasets
+
+Now the `NA` values show up correctly:
+
+.small-font[
+```{r message = FALSE}
+NCbirths %>%
+  pull(Gained)
+```
+]
+
+
+
+NCbirths <- read_csv(here("datasets", "NCbirths.csv"), na = c("", "NA", "#N/A"))
 
 ---
 

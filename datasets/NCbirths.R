@@ -7,8 +7,9 @@ library(Stat2Data)
 data("NCbirths")
 
 data <- NCbirths %>%
-  mutate(
-    Gained = replace_na(Gained, "#N/A")
+  mutate( # insert some problem cases
+    Gained = replace_na(Gained, "#N/A"),
+    Weeks = replace_na(Weeks, -999)
   )
 
 write_csv(data, here("datasets", "NCbirths.csv"))
