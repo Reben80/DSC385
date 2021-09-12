@@ -22,10 +22,10 @@ library(tidyverse)
 library(here)
 library(cowplot)
 
-NCbirths <- read_csv(here("datasets", "NCbirths.csv"), na = c("", "NA", "#N/A")) %>%
-  mutate(
-    Weeks = ifelse(Weeks < 0, NA_real_, Weeks)
-  )
+#NCbirths <- read_csv(here("datasets", "NCbirths.csv"), na = c("", "NA", "#N/A")) %>%
+#  mutate(
+#    Weeks = ifelse(Weeks < 0, NA_real_, Weeks)
+#  )
 
 # increase number of characters per line
 options(width = 74)
@@ -38,26 +38,317 @@ update_geom_defaults("point", list(size = 2)) # 2 for full width, 2.5 for half w
 ---
 class: center middle
 
-## Data cleaning in R
+## Inspecting and cleaning a dataset in R
 
 ---
 
-## Recoding binary variables: `if_else()`
+## Start with a cursory inspection
+
+```{r echo = FALSE}
+options(width = 95)
+```
+
+.tiny-font[
+```{r message = FALSE}
+NCbirths <- read_csv("https://wilkelab.org/DSC385/datasets/NCbirths.csv")
+```
+]
+
+--
+
+.tiny-font[
+```{r}
+NCbirths
+```
+]
+
+```{r echo = FALSE}
+options(width = 74)
+```
+
+---
+
+## Start with a cursory inspection
+
+What's going on with the `Gained` column?
+
+```{r echo = FALSE}
+options(width = 95)
+```
+
+.tiny-font[
+```{r message = FALSE}
+NCbirths %>%
+  pull(Gained)
+```
+]
+
+```{r echo = FALSE}
+options(width = 74)
+```
+
+---
+
+## Use the `na` argument to specify allowed `NA` values
+
+```{r echo = FALSE}
+options(width = 95)
+```
+
+.tiny-font[
+```{r message = FALSE}
+NCbirths <- read_csv(
+  "https://wilkelab.org/DSC385/datasets/NCbirths.csv",
+  na = c("", "NA", "#N/A")
+)
+```
+]
+
+--
+
+.tiny-font[
+```{r}
+NCbirths  # check entire data frame
+```
+]
+
+```{r echo = FALSE}
+options(width = 74)
+```
+
+---
+
+## Use the `na` argument to specify allowed `NA` values
+
+```{r echo = FALSE}
+options(width = 95)
+```
+
+.tiny-font[
+```{r eval = FALSE}
+NCbirths <- read_csv(
+  "https://wilkelab.org/DSC385/datasets/NCbirths.csv",
+  na = c("", "NA", "#N/A")
+)
+```
+]
+
+.tiny-font[
+```{r message = FALSE}
+NCbirths %>%   # check just the column `Gained`
+  pull(Gained)
+```
+]
+
+
+```{r echo = FALSE}
+options(width = 74)
+```
+
+
+---
+
+## Detailed quality checks: Look at all column names
+
+.small-font[
+```{r}
+names(NCbirths)
+```
+]
+
+--
+
+What's the difference between `RaceMom` and `MomRace`?
+
+---
+
+## Detailed quality checks: Look at all column names
+
+From the data dictionary:
+
+- `RaceMom`<br>Mother's race: 1=white, 2=black, 3=American Indian, 4=Chinese,
+5=Japanese, 6=Hawaiian, 7=Filipino, or 8=Other Asian or Pacific Islander
+
+- `MomRace`<br>Mother's race: `black`, `hispanic`, `other`, or `white`
+
+--
+
+These are similar but not the same. Important not to confuse them!
+
+---
+
+## Detailed quality checks: Look at every data column
+
+.tiny-font.pull-left.width-50[
+```{r}
+summary(NCbirths$ID) # five number summary
+```
+]
+---
+
+## Detailed quality checks: Look at every data column
+
+.tiny-font.pull-left.width-50[
+```{r}
+summary(NCbirths$ID) # five number summary
+```
+
+```{r echo = FALSE}
+options(width = 50)
+```
+
+```{r}
+unique(NCbirths$ID)  # all unique values
+```
+
+```{r echo = FALSE}
+options(width = 74)
+```
+]
+
+--
+
+.xtiny-font.pull-right[
+```{r ID-histogram, fig.width=6., fig.asp = 0.618, dev = "svg"}
+ggplot(NCbirths, aes(ID)) +
+  geom_histogram() # histogram
+```
+]
+
+---
+
+## Detailed quality checks: Look at every data column
+
+.tiny-font.pull-left.width-50[
+```{r}
+summary(NCbirths$Plural) # five number summary
+```
+]
+
+---
+
+## Detailed quality checks: Look at every data column
+
+.tiny-font.pull-left.width-50[
+```{r}
+summary(NCbirths$Plural) # five number summary
+```
+
+```{r}
+unique(NCbirths$Plural)  # all unique values
+```
+]
+
+--
+
+.xtiny-font.pull-right[
+```{r plural-births-histogram, fig.width=6., fig.asp = 0.618, dev = "svg"}
+ggplot(NCbirths, aes(Plural)) +
+  geom_histogram() # histogram
+```
+]
+
+
+---
+
+## Detailed quality checks: Look at every data column
+
+```{r echo = FALSE}
+options(width = 50)
+```
+
+.tiny-font.pull-left.width-50[
+```{r}
+summary(NCbirths$Weeks) # five number summary
+```
+]
+
+---
+
+## Detailed quality checks: Look at every data column
+
+.tiny-font.pull-left.width-50[
+```{r}
+summary(NCbirths$Weeks) # five number summary
+```
+
+```{r}
+unique(NCbirths$Weeks)  # all unique values
+```
+
+```{r echo = FALSE}
+options(width = 74)
+```
+]
+
+--
+
+.xtiny-font.pull-right[
+```{r weeks-histogram, fig.width=6., fig.asp = 0.618, dev = "svg"}
+ggplot(NCbirths, aes(Weeks)) +
+  geom_histogram() # histogram
+```
+]
+
+--
+
+What's the meaning of -999 weeks?
+
+---
+
+## In some cases, nonsensical values indicate missingness
+
+--
+
+We need to make sure to catch those cases:
+
+.tiny-font[
+```{r message = FALSE}
+NCbirths <- read_csv(
+  "https://wilkelab.org/DSC385/datasets/NCbirths.csv",
+  na = c("", "NA", "#N/A")
+) %>%
+  mutate(
+    Weeks = ifelse(Weeks < 0, NA, Weeks)
+  )
+```
+]
+
+--
+
+.tiny-font[
+```{r}
+summary(NCbirths$Weeks)
+```
+]
+
+--
+
+.tiny-font[
+```{r}
+unique(NCbirths$Weeks)
+```
+]
+
+
+---
+
+## Consider recoding categorical variables
 
 Marital status is encoded as 1/2:
 
 .small-font[
 ```{r}
 NCbirths %>%
-  pull(Marital) # `pull()` extracts the given column
+  pull(Marital)
 ```
 ]
 
 ---
 
-## Recoding binary variables: `if_else()`
+## Consider recoding categorical variables
 
-Recode as `"married"`, `"not married"`:
+Recode as `"married"`/`"not married"`:
 
 .small-font[
 ```{r}
@@ -71,7 +362,7 @@ NCbirths %>%
 
 ---
 
-## Recoding multivariate variables: `case_when()`
+## Recode multiple categories with `case_when()`
 
 The mother's race is encoded as integers from 1 through 8:
 
@@ -84,7 +375,7 @@ NCbirths %>%
 
 ---
 
-## Recoding multivariate variables: `case_when()`
+## Recode multiple categories with `case_when()`
 
 The mother's race is encoded as integers from 1 through 8:
 
@@ -98,7 +389,42 @@ NCbirths %>%
 
 ---
 
-## Recoding multivariate variables: `case_when()`
+## Recode multiple categories with `case_when()`
+
+```{r echo = FALSE}
+options(width = 60)
+```
+
+We use `case_when()` to recode multiple values all at once:
+
+.xtiny-font.pull-left[
+```{r eval = FALSE}
+NCbirths %>%
+  mutate(
+    RaceMom = case_when(
+      RaceMom == 1 ~ "white",
+      RaceMom == 2 ~ "black",
+      RaceMom == 3 ~ "American Indian",
+      RaceMom == 4 ~ "Chinese",
+      RaceMom == 5 ~ "Japanese",
+      RaceMom == 6 ~ "Hawaiian",
+      RaceMom == 7 ~ "Filipino",
+      RaceMom == 8 ~ 
+        "Other Asian or Pacific Islander",
+      TRUE ~ NA_character_ # should never reach
+    )
+  )
+```
+]
+
+```{r echo = FALSE}
+options(width = 74)
+```
+
+
+---
+
+## Recode multiple categories with `case_when()`
 
 ```{r echo = FALSE}
 options(width = 60)
@@ -136,63 +462,6 @@ NCbirths %>%
 options(width = 74)
 ```
 
-
----
-
-## Pay attention when reading in datasets
-
-.small-font[
-```{r message = FALSE}
-NCbirths <- read_csv("https://wilkelab.org/DSC385/datasets/NCbirths.csv")
-
-NCbirths
-```
-]
-
----
-
-## Pay attention when reading in datasets
-
-.small-font[
-```{r message = FALSE}
-NCbirths %>%
-  pull(Gained)
-```
-]
-
----
-
-## Pay attention when reading in datasets
-
-Specify which data values should be considered to be missing:
-
-.small-font[
-```{r message = FALSE}
-NCbirths <- read_csv(
-  "https://wilkelab.org/DSC385/datasets/NCbirths.csv",
-  na = c("", "NA", "#N/A")
-)
-
-NCbirths
-```
-]
-
----
-
-## Pay attention when reading in datasets
-
-Now the `NA` values show up correctly:
-
-.small-font[
-```{r message = FALSE}
-NCbirths %>%
-  pull(Gained)
-```
-]
-
-
-
-NCbirths <- read_csv(here("datasets", "NCbirths.csv"), na = c("", "NA", "#N/A"))
 
 ---
 
