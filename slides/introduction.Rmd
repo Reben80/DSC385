@@ -1,5 +1,5 @@
 ---
-title: "SDS 375—Data Visualization in R"
+title: "Introduction"
 author: "Claus O. Wilke"
 date: "last updated: `r Sys.Date()`"
 output:
@@ -119,6 +119,15 @@ RStudio hex stickers [are distributed](https://github.com/rstudio/hex-stickers) 
 
 ---
 
+[//]: # "segment ends here"
+
+---
+class: center middle
+
+## The first core concept: Markdown
+
+---
+
 ## The first core concept: Markdown
 
 .small-font[
@@ -142,7 +151,7 @@ This is a sentence in Markdown, containing `code`, **bold text**, and *italics*.
 
 ---
 
-## The first core concept: Markdown
+## R Markdown combines Markdown and R code
 
 .small-font[
 **Input:**
@@ -168,31 +177,16 @@ rnorm(5) # create 5 normal variates
 
 ---
 
-## Edupod login: https://edupod.cns.utexas.edu
+[//]: # "segment ends here"
 
-.center[
-<img src = "introduction_files/edupod-landing.png", width = 60%, style = "position:relative; top:-42px;"></img>
-]
+---
+class: center middle
+
+## Using R Markdown in RStudio
 
 ---
 
-## Edupod login: https://edupod.cns.utexas.edu
-
-.center[
-<img src = "introduction_files/edupod-landing-edited.png", width = 60%, style = "position:relative; top:-42px;"></img>
-]
-
----
-
-## Edupod login: https://edupod.cns.utexas.edu
-
-.center[
-<img src = "introduction_files/edupod-login.png", width = 60%, style = "position:relative; top:-42px;"></img>
-]
-
----
-
-## Using RStudio
+## Using R Markdown in RStudio
 
 .center[
 <img src = "introduction_files/RStudio-clean.png", width = 80%, style = "position:relative; top:-52px;"></img>
@@ -200,7 +194,7 @@ rnorm(5) # create 5 normal variates
 
 ---
 
-## Using RStudio
+## Using R Markdown in RStudio
 
 .center[
 <img src = "introduction_files/RStudio-clean-edited.png", width = 80%, style = "position:relative; top:-52px;"></img>
@@ -262,6 +256,10 @@ rnorm(5) # create 5 normal variates
 .center[
 <img src = "introduction_files/markdown-knitted-pdf-edited.png", width = 80%, style = "position:relative; top:-52px;"></img>
 ]
+
+---
+
+[//]: # "segment ends here"
 
 ---
 
