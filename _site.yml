@@ -39,7 +39,9 @@ navbar:
         - text: "Class 11: Visualizing proportions"
           href: slides/visualizing-proportions.html
         - text: "Class 12: Getting to know your data 1"
+          href: slides/know-your-data-1.html
         - text: "Class 13: Getting to know your data 2"
+          href: slides/know-your-data-2.html
         - text: "Class 14: Getting things into the right order"
           href: slides/getting-things-in-order.html
         - text: "Class 15: Figure design"

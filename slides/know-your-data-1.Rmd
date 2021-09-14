@@ -24,7 +24,7 @@ library(cowplot)
 
 #NCbirths <- read_csv(here("datasets", "NCbirths.csv"), na = c("", "NA", "#N/A")) %>%
 #  mutate(
-#    Weeks = ifelse(Weeks < 0, NA_real_, Weeks)
+#    Weeks = if_else(Weeks < 0, NA_real_, Weeks)
 #  )
 
 # increase number of characters per line
@@ -35,22 +35,25 @@ theme_set(theme_gray(16)) # 16 for full width, 18 for half width
 update_geom_defaults("point", list(size = 2)) # 2 for full width, 2.5 for half width
 ```
 
-```{r echo = FALSE, eval = FALSE}
-Possibly interesting datasets:
-https://www.kaggle.com/uciml/pima-indians-diabetes-database
-(excellent, has license, but no missing values, no categories; also has no data dictionary)
+## Any data analysis should start with basic quality control
 
-https://www.kaggle.com/abcsds/pokemon
-(excellent, has missing values, has license, has data dictionary, has no categories)
+1. Assess data relevance<br>
+  (Can the data answer your question in principle?)
 
-https://www.kaggle.com/nicapotato/womens-ecommerce-clothing-reviews
+--
 
-```
+2. Assess data providence<br>
+  (Where does the data come from? Is it reliable?)
 
----
-class: center, middle
+--
 
-## Assessing data quality
+3. Clean data if required<br>
+  (In practice, this is 70-80% of data analysis work)
+  
+--
+
+4. Perform descriptive analysis and sanity checks<br>
+  (Inspect summary statistics, distributions, scatter plots, etc.)
 
 ---
 
@@ -300,9 +303,55 @@ Can you use the data to address your question?
 ]
 
 ---
+
+[//]: # "segment ends here"
+
+
+---
 class: center middle
 
 ## Inspecting and cleaning a dataset in R
+
+---
+
+```{css echo = FALSE}
+.move-up-8em {
+  margin-top: -8em;
+}
+```
+
+## The dataset: Births in NC
+
+--
+
+.pull-left.small-font.width-45.move-up-1em[
+**Details and Source**<br>
+This dataset contains data on a sample of 1450 birth records from 2001 that statistician John Holcomb at Cleveland State University selected from the North Carolina State Center for Health and Environmental Statistics.
+
+The dataset has 1450 observations on 15 variables.
+]
+
+--
+
+.pull-right.xtiny-font.move-up-8em.width-50[
+Variable       | Description
+----------:    | :-----------
+`ID`           | Patient ID code
+`Plural`       | `1`=single birth, `2`=twins, `3`=triplets
+`Sex`          | Sex of the baby: `1`=male `2`=female
+`MomAge`	     | Mother's age (in years)
+`Weeks`        | Completed weeks of gestation
+`Marital`      | Marital status: `1`=married or `2`=not married
+`RaceMom`	     | Mother's race: `1`=white, `2`=black, `3`=American Indian, `4`=Chinese, `5`=Japanese, `6`=Hawaiian, `7`=Filipino, or `8`=Other Asian or Pacific Islander
+`HispMom`	     | Hispanic origin of mother: `C`=Cuban, `M`=Mexican, `N`=not Hispanic, `O`=Other Hispanic, `P`=Puerto Rico, `S`=Central/South America
+`Gained`       | Weight gained during pregnancy (in pounds)
+`Smoke`        | Smoker mom? `1`=yes or `0`=no
+`BirthWeightOz` |	Birth weight in ounces
+`BirthWeightGm` | Birth weight in grams
+`Low`           |	Indicator for low birth weight: `1`=2500 grams or less
+`Premie`       |	Indicator for premature birth: `1`=36 weeks or sooner
+`MomRace`      |	Mother's race: `black`, `hispanic`, `other`, or `white`
+]
 
 ---
 
@@ -430,8 +479,8 @@ What's the difference between `RaceMom` and `MomRace`?
 
 From the data dictionary:
 
-- `RaceMom`<br>Mother's race: 1=white, 2=black, 3=American Indian, 4=Chinese,
-5=Japanese, 6=Hawaiian, 7=Filipino, or 8=Other Asian or Pacific Islander
+- `RaceMom`<br>Mother's race: `1`=white, `2`=black, `3`=American Indian, `4`=Chinese,
+`5`=Japanese, `6`=Hawaiian, `7`=Filipino, or `8`=Other Asian or Pacific Islander
 
 - `MomRace`<br>Mother's race: `black`, `hispanic`, `other`, or `white`
 
@@ -556,7 +605,7 @@ ggplot(NCbirths, aes(Weeks)) +
 
 --
 
-What's the meaning of -999 weeks?
+What is the meaning of -999 weeks?
 
 ---
 
@@ -568,15 +617,15 @@ We need to make sure to catch those cases:
 
 .tiny-font[
 ```{r message = FALSE}
+library(naniar) # library for handling missing values
+
 NCbirths <- read_csv(
   "https://wilkelab.org/DSC385/datasets/NCbirths.csv",
   na = c("", "NA", "#N/A")
-) %>%
-  mutate(
-    Weeks = ifelse(Weeks < 0, NA, Weeks)
-  )
+) %>% replace_with_na_at("Weeks", ~.x < 0) # only change column "Weeks" to be safe
 ```
 ]
+
 
 --
 
@@ -648,7 +697,7 @@ Recode as `"male"`/`"female"`:
 ```{r}
 NCbirths %>%
   mutate(
-    Sex = ifelse(Sex == 1, "male", "female")
+    Sex = if_else(Sex == 1, "male", "female")
   ) %>%
   pull(Sex)
 ```
@@ -765,7 +814,7 @@ options(width = 74)
 ```{r echo = FALSE}
 NCbirths <- NCbirths %>%
   mutate(
-    Sex = ifelse(Sex == 1, "male", "female")
+    Sex = if_else(Sex == 1, "male", "female")
   )
 ```
 
@@ -797,6 +846,10 @@ ggplot(NCbirths, aes(Weeks, Gained, color = Sex)) + geom_point(position = "jitte
 ```
 ]
 
+--
+
+If possible, make scatter plots of every variable against every other variable
+
 ---
 
 
@@ -807,6 +860,10 @@ ggplot(NCbirths, aes(Weeks, Gained, color = Sex)) + geom_point(position = "jitte
 
 ## Further reading
 
-Wikipedia: [Data dictionary](https://en.wikipedia.org/wiki/Data_dictionary)
+- Wikipedia: [Data dictionary](https://en.wikipedia.org/wiki/Data_dictionary)
+- **dplyr** reference documentation: [if_else()](https://dplyr.tidyverse.org/reference/if_else.html)
+- **dplyr** reference documentation: [case_when()](https://dplyr.tidyverse.org/reference/case_when.html)
+- **naniar** documentation: [Getting started with naniar](http://naniar.njtierney.com/articles/getting-started-w-naniar.html)
+- **naniar** reference documentation: [replace_with_na_at()](http://naniar.njtierney.com/reference/replace_with_na_at.html)
 
 

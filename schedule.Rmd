@@ -13,6 +13,13 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Lectures
 
+### 1. Introduction
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/introduction.html)  
+- *Worksheet in preparation*
+
 ### 2. Aesthetic mappings
 
 <p class="nospace">Materials:</p>
@@ -82,13 +89,19 @@ knitr::opts_chunk$set(echo = FALSE)
 - [Slides](slides/visualizing-proportions.html)  
 - [Worksheet](worksheets/visualizing-proportions.Rmd)
 
-### 12. Getting to know your data 1: Data providence
+### 12. Getting to know your data 1
 
-*Materials in preparation*
+<p class="nospace">Materials:</p>
 
-### 13. Getting to know your data 2: Data quality and relevance   
+- [Slides](slides/know-your-data-1.html)  
+- *Worksheet in preparation*
 
-*Materials in preparation*
+### 13. Getting to know your data 2:   
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/know-your-data-2.html)  
+- *Worksheet in preparation*
 
 ### 14. Getting things into the right order
 
