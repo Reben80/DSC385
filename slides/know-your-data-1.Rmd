@@ -769,9 +769,6 @@ options(width = 74)
 
 ## Recode multiple categories with `case_when()`
 
-```{r echo = FALSE}
-options(width = 60)
-```
 
 We use `case_when()` to recode multiple values all at once:
 
@@ -796,8 +793,25 @@ NCbirths %>%
 ```
 ]
 
-.xtiny-font.pull-right[
-```{r case-when-example-out, ref.label="case-when-example", echo=FALSE}
+.xtiny-font.pull-right.width-50[
+```{r echo=FALSE}
+options(width = 60)
+
+NCbirths %>%
+  mutate(
+    RaceMom = case_when(
+      RaceMom == 1 ~ "white",
+      RaceMom == 2 ~ "black",
+      RaceMom == 3 ~ "American I",
+      RaceMom == 4 ~ "Chinese",
+      RaceMom == 5 ~ "Japanese",
+      RaceMom == 6 ~ "Hawaiian",
+      RaceMom == 7 ~ "Filipino",
+      RaceMom == 8 ~ "Other A/PI",
+      TRUE ~ NA_character_ # should never reach
+    )
+  ) %>%
+  pull(RaceMom)
 ```
 ]
 

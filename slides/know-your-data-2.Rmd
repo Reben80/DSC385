@@ -328,6 +328,8 @@ dataset, is there a mechanism for them to do so?
 
 ## Providence at a glance: Data Nutritional Labels
 
+--
+
 <img src="know-your-data-2_files/datanutrition.png" width = 80%>
 
 .absolute-bottom-right.tiny-font[
