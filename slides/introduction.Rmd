@@ -114,8 +114,6 @@ https://clauswilke.com/dataviz
 <img src = "introduction_files/ggplot2-website-footer.png", width = 60%></img>
 ]
 
----
-
 [//]: # "segment ends here"
 
 ---
@@ -213,8 +211,6 @@ rnorm(5) # create 5 normal variates
 ```
 ]
 
----
-
 [//]: # "segment ends here"
 
 ---
@@ -246,9 +242,6 @@ class: center middle
 .center[
 <img src = "introduction_files/markdown-knitted.png", width = 80%, style = "position:relative; top:-52px;"></img>
 ]
-
-
----
 
 [//]: # "segment ends here"
 

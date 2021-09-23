@@ -806,7 +806,6 @@ palette: SunsetDark
 ]
 
 
----
 [//]: # "segment ends here"
 
 ---
@@ -1059,7 +1058,6 @@ ggplot(blue_jays, aes(body_mass_g, head_length_mm)) +
 ```
 ]
 
----
 [//]: # "segment ends here"
 
 ---

@@ -336,8 +336,6 @@ dataset, is there a mechanism for them to do so?
 The Data Nutrition Project<br>https://datanutrition.org/
 ]
 
----
-
 [//]: # "segment ends here"
 
 ---
@@ -356,8 +354,6 @@ Let's review three datasets on Kaggle:
 - [Pokemon](https://www.kaggle.com/abcsds/pokemon)
 
 - [Women's E-Commerce Clothing Reviews](https://www.kaggle.com/nicapotato/womens-ecommerce-clothing-reviews)
-
----
 
 [//]: # "segment ends here"
 
@@ -638,8 +634,6 @@ Can show them with the **naniar** package
 ```{r NCbirths-plot-missing2-out, ref.label = "NCbirths-plot-missing2", echo = FALSE, fig.width = 6, fig.height = 0.618*6, dev = "svg"}
 ```
 ]
-
----
 
 [//]: # "segment ends here"
 

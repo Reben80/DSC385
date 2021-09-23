@@ -14,7 +14,7 @@ class: center, middle, title-slide
 
 # Data wrangling 1
 ### Claus O. Wilke
-### last updated: 2021-07-23
+### last updated: 2021-09-23
 
 ---
 
@@ -65,7 +65,7 @@ head(penguins)
 ```
 
 ```
-# A tibble: 6 x 8
+# A tibble: 6 × 8
   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
 1 Adelie  Torge…           39.1          18.7              181        3750 male 
@@ -92,7 +92,7 @@ penguins %&gt;%
 ```
 
 ```
-# A tibble: 6 x 8
+# A tibble: 6 × 8
   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt; &lt;fct&gt;
 1 Adelie  Torge…           39.1          18.7              181        3750 male 
@@ -202,7 +202,7 @@ penguins %&gt;%
 ```
 
 ```
-# A tibble: 124 x 8
+# A tibble: 124 × 8
    species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
    &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
  1 Gentoo  Biscoe           46.1          13.2               211        4500
@@ -231,7 +231,7 @@ penguins %&gt;%
 ```
 
 ```
-# A tibble: 52 x 8
+# A tibble: 52 × 8
    species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
    &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
  1 Gentoo  Biscoe           50.2          14.3               218        5700
@@ -271,7 +271,7 @@ penguins %&gt;%
 ```
 
 ```
-# A tibble: 344 x 3
+# A tibble: 344 × 3
    species island    sex   
    &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt; 
  1 Adelie  Torgersen male  
@@ -310,7 +310,7 @@ penguins %&gt;%
 ```
 
 ```
-# A tibble: 344 x 8
+# A tibble: 344 × 8
    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
  1 Adelie  Dream               32.1          15.5               188        3050
@@ -339,7 +339,7 @@ penguins %&gt;%
 ```
 
 ```
-# A tibble: 344 x 8
+# A tibble: 344 × 8
    species   island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
    &lt;fct&gt;     &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
  1 Gentoo    Biscoe           59.6          17                 230        6050
@@ -376,7 +376,7 @@ penguins
 ```
 
 ```
-# A tibble: 344 x 8
+# A tibble: 344 × 8
    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
  1 Adelie  Torgersen           39.1          18.7               181        3750
@@ -406,7 +406,7 @@ penguins %&gt;%
 
 
 ```
-# A tibble: 3 x 2
+# A tibble: 3 × 2
   species       n
   &lt;fct&gt;     &lt;int&gt;
 1 Adelie      152
@@ -427,7 +427,7 @@ penguins %&gt;%
 ```
 
 ```
-# A tibble: 5 x 3
+# A tibble: 5 × 3
   species   island        n
   &lt;fct&gt;     &lt;fct&gt;     &lt;int&gt;
 1 Adelie    Biscoe       44
@@ -450,7 +450,7 @@ penguins %&gt;%
 ```
 
 ```
-# A tibble: 152 x 8
+# A tibble: 152 × 8
    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
  1 Adelie  Torgersen           39.1          18.7               181        3750
@@ -480,7 +480,7 @@ penguins %&gt;%
 ```
 
 ```
-# A tibble: 152 x 2
+# A tibble: 152 × 2
    island    sex   
    &lt;fct&gt;     &lt;fct&gt; 
  1 Torgersen male  
@@ -512,7 +512,7 @@ penguins %&gt;%
 ```
 
 ```
-# A tibble: 8 x 3
+# A tibble: 8 × 3
   island    sex        n
   &lt;fct&gt;     &lt;fct&gt;  &lt;int&gt;
 1 Biscoe    female    22
@@ -555,7 +555,7 @@ penguins %&gt;%
 ```
 
 ```
-# A tibble: 344 x 3
+# A tibble: 344 × 3
    species island    flipper_length_mm
    &lt;fct&gt;   &lt;fct&gt;                 &lt;int&gt;
  1 Adelie  Torgersen               181
@@ -585,7 +585,7 @@ penguins %&gt;%
 ```
 
 ```
-# A tibble: 344 x 4
+# A tibble: 344 × 4
    species island    flipper_length_mm flipper_length_cm
    &lt;fct&gt;   &lt;fct&gt;                 &lt;int&gt;             &lt;dbl&gt;
  1 Adelie  Torgersen               181              18.1
@@ -618,7 +618,7 @@ penguins %&gt;%
 ```
 
 ```
-# A tibble: 344 x 5
+# A tibble: 344 × 5
    species island    flipper_length_mm flipper_length_cm flipper_length_in
    &lt;fct&gt;   &lt;fct&gt;                 &lt;int&gt;             &lt;dbl&gt;             &lt;dbl&gt;
  1 Adelie  Torgersen               181              18.1              7.13

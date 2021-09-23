@@ -312,7 +312,6 @@ Example of figure in article or book
 
 Figure from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.](https://clauswilke.com/dataviz)
 
----
 
 [//]: # "segment ends here"
 
@@ -531,7 +530,6 @@ Titles and captions
 ```
 ]
 
----
 
 [//]: # "segment ends here"
 

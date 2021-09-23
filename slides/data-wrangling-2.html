@@ -14,7 +14,7 @@ class: center, middle, title-slide
 
 # Data wrangling 2
 ### Claus O. Wilke
-### last updated: 2021-07-23
+### last updated: 2021-09-23
 
 ---
 
@@ -123,7 +123,7 @@ penguins %&gt;%
 
 
 ```
-# A tibble: 3 x 2
+# A tibble: 3 × 2
   species       n
   &lt;fct&gt;     &lt;int&gt;
 1 Adelie      152
@@ -151,7 +151,7 @@ penguins
 ```
 
 ```
-# A tibble: 344 x 8
+# A tibble: 344 × 8
    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
  1 Adelie  Torgersen           39.1          18.7               181        3750
@@ -184,7 +184,7 @@ penguins %&gt;%
 ```
 
 ```
-# A tibble: 344 x 8
+# A tibble: 344 × 8
 # Groups:   species [3]
    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
@@ -222,7 +222,7 @@ penguins %&gt;%
 
 
 ```
-# A tibble: 3 x 2
+# A tibble: 3 × 2
   species       n
   &lt;fct&gt;     &lt;int&gt;
 1 Adelie      152
@@ -249,7 +249,7 @@ penguins %&gt;%
 ```
 
 ```
-# A tibble: 344 x 8
+# A tibble: 344 × 8
 # Groups:   species, island [5]
    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
@@ -289,7 +289,7 @@ penguins %&gt;%
 ```
 
 ```
-# A tibble: 5 x 3
+# A tibble: 5 × 3
 # Groups:   species [3]
   species   island        n
   &lt;fct&gt;     &lt;fct&gt;     &lt;int&gt;
@@ -321,7 +321,7 @@ penguins %&gt;%
 
 
 ```
-# A tibble: 3 x 2
+# A tibble: 3 × 2
   species       n
   &lt;fct&gt;     &lt;int&gt;
 1 Adelie      152
@@ -346,7 +346,7 @@ penguins %&gt;%
 
 
 ```
-# A tibble: 3 x 2
+# A tibble: 3 × 2
   species       n
   &lt;fct&gt;     &lt;int&gt;
 1 Adelie      152
@@ -387,7 +387,7 @@ penguins %&gt;%
 
 
 ```
-# A tibble: 3 x 5
+# A tibble: 3 × 5
   species       n mean_mass max_flipper_length percent_female
   &lt;fct&gt;     &lt;int&gt;     &lt;dbl&gt;              &lt;int&gt;          &lt;dbl&gt;
 1 Adelie      152       NA                  NA           NA  
@@ -428,7 +428,7 @@ penguins %&gt;%
 
 
 ```
-# A tibble: 3 x 5
+# A tibble: 3 × 5
   species       n mean_mass max_flipper_length percent_female
   &lt;fct&gt;     &lt;int&gt;     &lt;dbl&gt;              &lt;int&gt;          &lt;dbl&gt;
 1 Adelie      152     3701.                210          0.5  
@@ -472,7 +472,7 @@ penguins %&gt;%
 ```
 
 ```
-# A tibble: 5 x 3
+# A tibble: 5 × 3
   species   island        n
   &lt;fct&gt;     &lt;fct&gt;     &lt;int&gt;
 1 Adelie    Biscoe       44
@@ -497,7 +497,7 @@ penguins %&gt;%
 ```
 
 ```
-# A tibble: 3 x 4
+# A tibble: 3 × 4
   species   Biscoe Dream Torgersen
   &lt;fct&gt;      &lt;int&gt; &lt;int&gt;     &lt;int&gt;
 1 Adelie        44    56        52
@@ -525,7 +525,7 @@ penguins_wide %&gt;%
 ```
 
 ```
-# A tibble: 9 x 3
+# A tibble: 9 × 3
   species   island        n
   &lt;fct&gt;     &lt;chr&gt;     &lt;int&gt;
 1 Adelie    Biscoe       44
@@ -557,7 +557,7 @@ penguins_wide %&gt;%
 ```
 
 ```
-# A tibble: 9 x 3
+# A tibble: 9 × 3
   species   island        n
   &lt;fct&gt;     &lt;chr&gt;     &lt;int&gt;
 1 Adelie    Biscoe       44
@@ -589,7 +589,7 @@ penguins_wide %&gt;%
 ```
 
 ```
-# A tibble: 9 x 3
+# A tibble: 9 × 3
   species   island        n
   &lt;fct&gt;     &lt;chr&gt;     &lt;int&gt;
 1 Adelie    Biscoe       44
@@ -621,7 +621,7 @@ penguins_wide %&gt;%
 ```
 
 ```
-# A tibble: 9 x 3
+# A tibble: 9 × 3
   species   island        n
   &lt;fct&gt;     &lt;chr&gt;     &lt;int&gt;
 1 Adelie    Biscoe       44
@@ -666,7 +666,7 @@ band_members
 ```
 
 ```
-# A tibble: 3 x 2
+# A tibble: 3 × 2
   name  band   
   &lt;chr&gt; &lt;chr&gt;  
 1 Mick  Stones 
@@ -685,7 +685,7 @@ band_instruments
 ```
 
 ```
-# A tibble: 3 x 2
+# A tibble: 3 × 2
   name  plays 
   &lt;chr&gt; &lt;chr&gt; 
 1 John  guitar
@@ -707,7 +707,7 @@ Joining, by = "name"
 ```
 
 ```
-# A tibble: 3 x 3
+# A tibble: 3 × 3
   name  band    plays 
   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; 
 1 Mick  Stones  &lt;NA&gt;  
@@ -728,7 +728,7 @@ band_members
 ```
 
 ```
-# A tibble: 3 x 2
+# A tibble: 3 × 2
   name  band   
   &lt;chr&gt; &lt;chr&gt;  
 1 Mick  Stones 
@@ -745,7 +745,7 @@ band_instruments
 ```
 
 ```
-# A tibble: 3 x 2
+# A tibble: 3 × 2
   name  plays 
   &lt;chr&gt; &lt;chr&gt; 
 1 John  guitar
@@ -765,7 +765,7 @@ Joining, by = "name"
 ```
 
 ```
-# A tibble: 3 x 3
+# A tibble: 3 × 3
   name  band    plays 
   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; 
 1 John  Beatles guitar
@@ -787,7 +787,7 @@ band_members
 ```
 
 ```
-# A tibble: 3 x 2
+# A tibble: 3 × 2
   name  band   
   &lt;chr&gt; &lt;chr&gt;  
 1 Mick  Stones 
@@ -804,7 +804,7 @@ band_instruments
 ```
 
 ```
-# A tibble: 3 x 2
+# A tibble: 3 × 2
   name  plays 
   &lt;chr&gt; &lt;chr&gt; 
 1 John  guitar
@@ -824,7 +824,7 @@ Joining, by = "name"
 ```
 
 ```
-# A tibble: 2 x 3
+# A tibble: 2 × 3
   name  band    plays 
   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; 
 1 John  Beatles guitar
@@ -845,7 +845,7 @@ band_members
 ```
 
 ```
-# A tibble: 3 x 2
+# A tibble: 3 × 2
   name  band   
   &lt;chr&gt; &lt;chr&gt;  
 1 Mick  Stones 
@@ -862,7 +862,7 @@ band_instruments
 ```
 
 ```
-# A tibble: 3 x 2
+# A tibble: 3 × 2
   name  plays 
   &lt;chr&gt; &lt;chr&gt; 
 1 John  guitar
@@ -882,7 +882,7 @@ Joining, by = "name"
 ```
 
 ```
-# A tibble: 4 x 3
+# A tibble: 4 × 3
   name  band    plays 
   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; 
 1 Mick  Stones  &lt;NA&gt;  

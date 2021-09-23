@@ -302,8 +302,6 @@ Do you have access to the data? Can you obtain it?
 Can you use the data to address your question?
 ]
 
----
-
 [//]: # "segment ends here"
 
 
@@ -863,8 +861,6 @@ ggplot(NCbirths, aes(Weeks, Gained, color = Sex)) + geom_point(position = "jitte
 --
 
 If possible, make scatter plots of every variable against every other variable
-
----
 
 
 [//]: # "segment ends here"

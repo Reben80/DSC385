@@ -492,12 +492,6 @@ ggplot(temperatures, aes(month, temperature, color = location)) +
 
 ---
 
-class: center middle
-
-## Further reading
-
----
-
 ## Further reading
 
 - Fundamentals of Data Visualization: [Chapter 2: Visualizing data](https://clauswilke.com/dataviz/aesthetic-mapping.html)
