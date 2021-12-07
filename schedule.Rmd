@@ -101,7 +101,7 @@ knitr::opts_chunk$set(echo = FALSE)
 <p class="nospace">Materials:</p>
 
 - [Slides](slides/know-your-data-2.html)  
-- *Worksheet in preparation*
+- [Worksheet](worksheets/know-your-data-2.Rmd)
 
 ### 14. Getting things into the right order
 
