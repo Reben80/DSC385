@@ -65,6 +65,7 @@ navbar:
         - text: "Class 24: Hierarchical clustering"
           href: slides/hierarchical-clustering.html
         - text: "Class 25: Data ethics"
+          href: slides/data-ethics-Sinead-Williamson.pdf
         - text: "Class 26: Visualizing geospatial data"
           href: slides/geospatial-data.html
         - text: "Class 27: Redundant coding, text annotations"
