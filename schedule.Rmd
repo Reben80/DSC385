@@ -129,7 +129,8 @@ knitr::opts_chunk$set(echo = FALSE)
 <p class="nospace">Materials:</p>
 
 - [Slides](slides/functional-programming.html)  
-- *Worksheet in preparation*
+- [Worksheet](worksheets/functional-programming.Rmd)
+
 
 ### 18. Visualizing trends
 
@@ -182,7 +183,11 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ### 25. Data ethics
 
-*Materials in preparation*
+Guest lecture by Sinead Williamson.
+
+<p class="nospace">Materials:</p>
+
+- [Slides](slides/data-ethics-Sinead-Williamson.pdf)  
 
 ### 26. Visualizing geospatial data
 
