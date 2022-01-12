@@ -179,7 +179,7 @@ knitr::opts_chunk$set(echo = FALSE)
 <p class="nospace">Materials:</p>
 
 - [Slides](slides/hierarchical-clustering.html)  
-- *Worksheet in preparation*
+- [Worksheet](worksheets/hierarchical-clustering.Rmd)
 
 ### 25. Data ethics
 
