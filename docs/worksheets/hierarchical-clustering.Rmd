@@ -58,7 +58,7 @@ penguins_sampled
 
 ## Calculating a distance matrix
 
-Many hierarchical clustering algorithms start with calculating a distance matrix. This is done with the built-in R function `dist()`. Before calculating distances, though, you should first scale the data to zero mean and unit variance, just like we have done previously for PCR and other multivariate techniques. As a reminder, you scale a dataset with the function `scale()`.
+Many hierarchical clustering algorithms start with calculating a distance matrix. This is done with the built-in R function `dist()`. Before calculating distances, though, you should first scale the data to zero mean and unit variance, just like we have done previously for PCA and other multivariate techniques. As a reminder, you scale a dataset with the function `scale()`.
 
 ```{r distance-calc, exercise = TRUE}
 penguins_sampled %>%
@@ -119,9 +119,9 @@ penguins_sampled %>%
   dist(method = "minkowski")
 ```
 
-When using the Minkowski distance, you should also set the parameter `p`. The Minkowski distance is a generalization of both the Euklidean and the Manhattan distance, and the parameter `p` interpolates between these distance types.
+When using the Minkowski distance, you should also set the parameter `p`. The Minkowski distance is a generalization of both the Euclidean and the Manhattan distance, and the parameter `p` interpolates between these distance types.
 
-Verify that the Minkowski distance is identical to the Eucledian distance for `p = 2` and identical to the Manhattan distance for `p = 1`. The simplest way to do this is to calculate the two distance matrices and then subtract them from each other and check that the values are 0.
+Verify that the Minkowski distance is identical to the Euclidean distance for `p = 2` and identical to the Manhattan distance for `p = 1`. The simplest way to do this is to calculate the two distance matrices and then subtract them from each other and check that the values are 0.
 
 ```{r distance-calc-mikowski, exercise = TRUE}
 
