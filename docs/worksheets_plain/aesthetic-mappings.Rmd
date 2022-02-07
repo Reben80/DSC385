@@ -1,0 +1,136 @@
+---
+title: "Aesthetic mappings"
+author: "Claus O. Wilke"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(lubridate)
+knitr::opts_chunk$set(echo = TRUE, comment = "")
+
+# data prep
+temperatures <- read_csv("https://wilkelab.org/SDS375/datasets/tempnormals.csv") %>%
+  mutate(
+    location = factor(
+      location, levels = c("Death Valley", "Houston", "San Diego", "Chicago")
+    )
+  ) %>%
+  select(location, day_of_year, month, temperature)
+
+temps_houston <- filter(temperatures, location == "Houston")
+```
+
+## Introduction
+
+In this worksheet, we will discuss a core concept of ggplot, the mapping of data values onto aesthetics.
+
+We will be using the R package **tidyverse**, which includes `ggplot()` and related functions.
+
+```{r library-calls, echo = TRUE, eval = FALSE}
+# load required library
+library(tidyverse)
+```
+
+The dataset we will be working with contains the average temperature for each day of the year for Houston, TX:
+```{r temps-houston, echo = TRUE}
+temps_houston
+```
+
+## Basic use of ggplot
+
+In the most basic use of ggplot, we call the `ggplot()` function with a dataset and an aesthetic mapping (created with `aes()`), and then we add a geom, such as `geom_line()` to draw lines or `geom_point()` to draw points.
+
+Try this for yourself. Map the column `day_of_year` onto the x axis and the column `temperature` onto the y axis, and use `geom_line()` to display the data.
+
+```{r ggplot, eval = FALSE}
+ggplot(temps_houston, aes(x = ___, y = ___)) +
+  ___()
+```
+
+Try again. Now use `geom_point()` instead of `geom_line()`.
+
+```{r ggplot2, eval = FALSE}
+ggplot(temps_houston, aes(x = day_of_year, y = temperature)) +
+  ___()
+```
+
+And now swap which column you map to x and which to y.
+
+```{r ggplot3, eval = FALSE}
+ggplot(temps_houston, aes(x = ___, y = ___)) +
+  geom_point()
+```
+
+## More complex geoms
+
+You can use other geoms to make different types of plots. For example, `geom_boxplot()` will make boxplots. For boxplots, we frequently want categorical data on the x or y axis. For example, we might want a separate boxplot for each month. Try this out. Puth `month` on the x axis, `temperature` on the y axis, and use `geom_boxplot()`.
+
+```{r ggplot-boxplot, eval = FALSE}
+ggplot(temps_houston, aes(x = ___, y = ___)) +
+  ___()
+```
+
+Now put the month on the y axis and the temperature on the x axis.
+
+```{r ggplot-boxplot2, eval = FALSE}
+ggplot(___) +
+  ___()
+```
+
+## Adding color
+
+Next we will be working with the dataset `temperatures`, which is similar to `temps_houston` but contains data for three more locations:
+```{r temperatures, echo = TRUE}
+temperatures
+```
+
+Make a line plot of `temperature` against `day_of_year`, using the `color` aesthetic to color the lines by location. 
+
+```{r ggplot-color, eval = FALSE}
+ggplot(temperatures, aes(x = ___, y = ___, color = ___)) +
+  ___()
+```
+
+Try again, this time using `location` as the location along the y axis and `temperature` for the color. This plot requires `geom_point()` to look good.
+
+```{r ggplot-color2, eval = FALSE}
+ggplot(___) +
+  ___()
+```
+
+(Hint: Try `geom_point(size = 5)` to create larger points.)
+
+## Using the `fill` aesthetic
+
+Some geoms use a `fill` aesthetic, which is similar to `color` but applies to shaded areas. (`color` applies to lines and points.) For example, we can use the `fill` aesthetic with `geom_boxplot()` to color the interior of the box. Try this yourself. Plot `month` on x, `temperature` on y, and color the interior of the box by location.
+
+```{r ggplot-fill, eval = FALSE}
+ggplot(temperatures, ___) +
+  ___()
+```
+
+Can you color the lines of the boxplot by location and the interior by month? Try it.
+
+```{r ggplot-color-fill, eval = FALSE}
+ggplot(temperatures, ___) +
+  geom_boxplot()
+```
+
+## Using aesthetics as parameters
+
+Many of the aesthetics (such as `color`, `fill`, and also `size` to change line size or point thickness) can be used as parameters inside a geom rather than inside an `aes()` statement. The difference is that when you use an aesthetic as a parameter, you specify a specific value, such as `color = "blue"`, rather than a mapping, such as `aes(color = location)`. Notice the difference: Inside the `aes()` function, we don't actually specify the specific color values, ggplot does that for us. We only say that we want the data values of the `location` column to correspond to different colors. (We will learn later how to tell ggplot to use specific colors in this mapping.)
+
+Try this with the boxplot example from the previous section. Map `location` onto the `fill` aesthetic but set the color of the lines to `"navyblue"`.
+
+```{r ggplot-params, eval = FALSE}
+ggplot(temperatures, ___) +
+  ___(___)
+```
+
+Now do the reverse. Map `location` onto the line colors but fill the box with the color `"navyblue"`.
+
+```{r ggplot-params2, eval = FALSE}
+ggplot(temperatures, ___) +
+  ___(___)
+```
