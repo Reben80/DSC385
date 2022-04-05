@@ -1,0 +1,160 @@
+---
+title: "Redundant coding, text annotations"
+author: "Claus O. Wilke"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(ggrepel)
+knitr::opts_chunk$set(echo = TRUE, comment = "")
+
+data <- tibble(
+  x = c(1, 2, 3),
+  y = c(1, 3, 2),
+  label = c("alpha", "beta", "gamma")
+)
+
+cars93 <- read_csv("https://wilkelab.org/SDS375/datasets/cars93.csv")
+```
+
+## Introduction
+
+In this worksheet, we will **complete sentence**
+
+In addition to **tidyverse**, we will be using the **ggrepel** package which allows us to draw text labels that don't overlap with each other.
+
+```{r library-calls, echo = TRUE, eval = FALSE}
+# load required libraries
+library(tidyverse)
+library(ggrepel)
+```
+
+We will be working with two datasets, `iris` and `cars93`. The `iris` dataset contains measurements on the flowers of three *Iris* species.
+
+```{r echo = TRUE}
+head(iris)
+```
+
+The `cars93` dataset contains information about various passenger cars that were on the market in 1993.
+
+```{r echo = TRUE}
+cars93
+```
+
+## Mapping variables to color and shape
+
+First, we will do an exercise to practice using multiple visual channels (color and shape) to represent the same qualitative variable. We will do this exercise with the `iris` dataset.
+
+Make a plot of `Sepal.Width` versus `Sepal.Length` for the three species in the `iris` dataset. Map `Species` to both `color` and `shape`.
+
+```{r iris-scatter}
+
+```
+
+You can set the shapes with `scale_shape_manual()`, just like you do with colors. There are five special shapes, 21 through 25, that have a line color and a fill color. Modify the plot from the previous exercise so it uses these shapes. Hint: This means you should use the `fill` aesthetic rather than the `color` aesthetic.
+
+```{r iris-scatter2}
+
+```
+
+## Manually applying text labels
+
+We can place text labels with `geom_text()`. Oftentimes it makes sense to manually fine-tune exactly where the text labels will be located. To practice this, we will work with a simple dataset that contains three points:
+
+```{r}
+data <- tibble(
+  x = c(1, 2, 3),
+  y = c(1, 3, 2),
+  label = c("alpha", "beta", "gamma")
+)
+```
+
+
+Plot these three points with `geom_point()`, and use `geom_text()` to add the label text to the right side of each point. Remember that `hjust = 0` plots text left-justified. Hints: Add `xlim(1, 4)` to ensure the text labels don't run beyond the edge of the plot panel.
+
+```{r labeled-three-points}
+
+```
+
+Now place the text labels centered below the points. Remember: `hjust = 0.5` means horizontally centered, and `vjust = 1` means vertically below the reference point. You may also have to adjust x and y limits to make sure all labels are within the plot area.
+
+```{r labeled-three-points2}
+
+```
+
+Finally, place each label in a different relative orientation to the point. Place "alpha" horizontally centered underneath the point, "beta" vertically centered left of the point, and "gamma" horizontally centered above the point. This will require adding justification data columns to the data table and then mapping them to `hjust` and `vjust` in `geom_text()`.
+
+
+```{r labeled-three-points3, eval = FALSE}
+data <- tibble(
+  x = c(1, 2, 3),
+  y = c(1, 3, 2),
+  label = c("alpha", "beta", "gamma"),
+  ___
+)
+
+ggplot(data, aes(x, y)) +
+  geom_point() +
+  geom_text(
+    ___
+  ) +
+  xlim(0.5, 3.5) +
+  ylim(0.5, 3)
+```
+
+## Non-overlapping text labels
+
+When there are many points to be labeled, we frequently run into the issue that labels overlap and become unreadable. This problem can be resolved with `geom_text_repel()` from the **ggrepel** package. This geom ensures that none of the text labels overlap. It is also highly customizable, and nearly any labeling problem can be solved with it.
+
+Consider the following plot of fuel-tank capacity versus price, for cars costing more than $30k.
+
+```{r echo = TRUE}
+cars93 %>%
+  filter(Price > 30) %>%
+  ggplot(aes(Price, Fuel.tank.capacity)) +
+  geom_point()
+```
+
+Use `geom_text_repel()` to add a text label to each point that shows the make of the car (column `Make`). Hint: Set `max.overlaps = Inf` to avoid a warning about unlabeled data points.
+
+```{r text-repel, eval = FALSE}
+cars93 %>%
+  filter(Price > 30) %>%
+  ggplot(aes(Price, Fuel.tank.capacity)) +
+  geom_point() +
+  geom_text_repel(
+    ___
+  )
+```
+
+The value of the argument `box.padding` determines how far the labels are drawn from the data points. The default is `box.padding = 0.25`. Try out what larger values do. E.g., use 0.8 or 1.2.
+
+```{r text-repel2, eval = FALSE}
+cars93 %>%
+  filter(Price > 30) %>%
+  ggplot(aes(Price, Fuel.tank.capacity)) +
+  geom_point() +
+  geom_text_repel(
+    aes(label = Make),
+    max.overlaps = Inf,
+    ___
+  )
+```
+
+See if you can align all the text labels on the left edge of the plot. This will require using the arguments `force_pull`, `hjust`, `nudge_x`, and `direction`. It will also require manual setting of the x limits. For additional hints, see the **ggrepel** documentation [here.](https://ggrepel.slowkow.com/articles/examples.html#align-labels-on-the-top-or-bottom-edge-1)
+
+```{r text-repel3, eval = FALSE}
+cars93 %>%
+  filter(Price > 30) %>%
+  ggplot(aes(Price, Fuel.tank.capacity)) +
+  geom_point() +
+  geom_text_repel(
+    aes(label = Make),
+    max.overlaps = Inf,
+    ___
+  ) +
+  ___
+```
+
+Experiment with the various options for `force_pull`, `hjust`/`vjust`, `nudge_x`/`nudge_y`, and `direction` to get a sense of how they work.

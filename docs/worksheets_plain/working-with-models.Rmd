@@ -1,0 +1,164 @@
+---
+title: "Working with models"
+author: "Claus O. Wilke"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(broom)
+library(glue)
+library(palmerpenguins)
+knitr::opts_chunk$set(echo = TRUE, comment = "")
+
+# fitted models, used in last section
+penguins_fits <- penguins %>%
+  nest(data = -species) %>%     # nest the data table by species
+  mutate(
+    # use map() to fit a model to each nested data table
+    fit = map(data, ~lm(bill_length_mm ~ body_mass_g, data = .x)),
+    # use map to apply glance() to each model fit
+    glance_out = map(fit, glance)
+  ) %>%
+  unnest(cols = glance_out) %>% # unnest output from glance
+  select(-data, -fit)           # remove columns data and fit
+
+```
+
+## Introduction
+
+In this worksheet, we will discuss how to efficiently fit statistical models (such as linear regressions) to subsets of data and then use for plotting.
+
+In addition to **tidyverse**, we will be using the following R packages: The **broom** package provides the functions `tidy()` and `glance()` to turn model fits into tidy data tables. The **glue** package makes it easy to embed the contents of values into text messages. The **palmerpenguins** package provides the `penguins` dataset.
+
+```{r library-calls, echo = TRUE, eval = FALSE}
+# load required libraries
+library(tidyverse)
+library(broom)
+library(glue)
+library(palmerpenguins)
+```
+
+We will be working with the dataset `penguins` containing data on individual penguins on Antarctica.
+```{r echo = TRUE}
+penguins
+```
+
+## Inserting data into text output
+
+There are several utility functions we need to understand before we can fit models, process them with **broom**, and ultimately plot. These include nesting and unnesting of data tables, using `map()` to apply a function to all the values in a data column, and using `glue()` to generate generate text. We have discussed nesting/unnesting and `map()` in the lecture on functional programming, and you may want to review this material if it is unclear to you. Here, we will discuss how to insert data into text output.
+
+The `glue()` function allows you to place variables into a text string. This is frequently useful when we want to process multiple subsets of a larger data table and generate output for each subset.
+
+For example:
+```{r echo = TRUE}
+dog <- "Buddy"
+glue("I have a dog named {dog}.")
+```
+
+This also works for vectorized input.
+```{r echo = TRUE}
+pet <- c("dog", "dog", "cat")
+pet_name <- c("Buddy", "Lucy", "Oscar")
+glue("I have a {pet} named {pet_name}.")
+```
+
+Try this for yourself. Create variables holding your first and last name and then print out your complete name using `glue()`.
+
+```{r glue-exercise, eval = FALSE}
+first_name <- ___
+last_name <- ___
+
+glue("My name is ___")
+```
+
+
+## Cleaning up models with **broom**
+
+R has powerful functions to fit statistical models to data, such as `lm()` to fit linear regression models. However, many of these functions have been written for interactive use and don't work well in an automated data processing pipeline. For example, consider the following code to perform a linear regression analysis on the penguins dataset (ignoring for a moment that there are multiple species):
+
+```{r echo = TRUE}
+fit <- lm(bill_length_mm ~ body_mass_g, data = penguins)
+fit
+summary(fit)
+```
+
+The `fit` object stores information about the linear regression, and `summary(fit)` shows us this information in a nice, human-readable form. But what if we want the relevant information in a data table? This is where the **broom** package comes in. The `glance()` function extracts model-level summary data from a fitted object, and the `tidy()` function extracts information about individual regression coefficients.
+
+```{r echo = TRUE}
+glance(fit)
+tidy(fit)
+```
+
+Try this yourself. Fit a model of bill length versus bill depth (formula: `bill_length_mm ~ bill_depth_mm`), look at the model fit with `summary()`, and then look at the model fit via `glance()` and `tidy()`.
+
+```{r glance-tidy, eval = FALSE}
+# fit linear model
+fit <- lm(___)
+
+# inspect model fit with summary()
+
+# inspect model fit with glance() and tidy()
+```
+
+
+The real power of `glance()` and `tidy()` becomes apparent in a more complex data analysis pipeline, when we fit a model to subsets of data via `map()` and then combine the results from the individual fits into one large table.
+
+```{r echo = TRUE}
+penguins %>%
+  nest(data = -species) %>%     # nest the data table by species
+  mutate(
+    # use map() to fit a model to each nested data table
+    fit = map(data, ~lm(bill_length_mm ~ body_mass_g, data = .x)),
+    # use map to apply glance() to each model fit
+    glance_out = map(fit, glance)
+  ) %>%
+  unnest(cols = glance_out) %>% # unnest output from glance
+  select(-data, -fit)           # remove columns data and fit
+```
+
+Now run this code yourself one line at a time and make sure you understand at each step what is happening. Review the materials from the class on functional programming if anything is unclear. (Hint: The individual stages of the calculation are provided as hints, so you can just click through the hints one-by-one and run each piece.)
+
+```{r broom-map}
+penguins %>%
+  nest(data = -species)         # nest the data table by species
+```
+
+
+## Plotting model fits
+
+Finally, we use the results from the model fit to plot a *p* value on each facet of a regression plot. The plot we'll be working with is the following:
+
+```{r regression-plot-simple, echo = TRUE}
+ggplot(penguins, aes(body_mass_g, bill_length_mm)) +
+  geom_point(na.rm = TRUE) +
+  geom_smooth(method = "lm", na.rm = TRUE) +
+  facet_wrap(vars(species))
+```
+
+The fitted data is available as the variable `penguins_fits`:
+
+```{r echo = TRUE}
+penguins_fits
+```
+
+Now, do the following. First, use `mutate()`, `glue()`, and `select()` to convert this table into one that has four columns, `species`, `body_mass_g`, `bill_length_mm`, and `label`. The `species` column holds the penguin species. The next two columns will hold the coordinates of the text label, e.g. `body_mass_g = 5500` and `bill_length_mm = 32`. The last column will hold labels, generated with `glue()`, of the form "p = 7.48e-06". You can use `signif(p.value, 3)` to round *p* values to three significant digits.
+
+Once you have this table, use `geom_text()` to add the labels to the above plot.
+
+```{r regression-plot-exercise, eval = FALSE}
+# first do the data table manipulation
+labels_data <- penguins_fits %>%
+  mutate(
+    ___
+  )
+labels_data
+  
+# then plot
+```
+
+Once you have successfully made the plot, you can try a few more things:
+
+- Place the labels for the different facets in different locations within each facet
+- Use `hjust` and `vjust` in `geom_text()` to fine-tune where labels are placed
+- Make labels that contain the *R*<sup>2</sup> value in addition to the *p* value
