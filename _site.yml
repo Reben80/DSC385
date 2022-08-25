@@ -4,6 +4,7 @@ description: |
   DSC 385
 output_dir: "docs"
 theme: "theme.css"
+repository_url: https://github.com/wilkelab/DSC385
 include: [".nojekyll"]
 navbar:
   source_url: true
