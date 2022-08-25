@@ -534,15 +534,55 @@ class: center middle
 
 ---
 
-## Scale functions customize the x and y axes
+## Getting the data
 
-```{r boxoffice-tibble, echo = FALSE}
+The `boxoffice` dataset:
+
+.tiny-font[
+```{r message = FALSE}
 boxoffice <- tibble(
   rank = 1:5,
   title = c("Star Wars", "Jumanji", "Pitch Perfect 3", "Greatest Showman", "Ferdinand"),
   amount = c(71.57, 36.17, 19.93, 8.81, 7.32) # million USD
 )
 ```
+]
+
+--
+
+The `tx_counties` dataset:
+
+.tiny-font[
+```{r message = FALSE}
+tx_counties <- read_csv("https://wilkelab.org/DSC385/datasets/US_census.csv") %>% 
+  filter(state == "Texas") %>%
+  mutate(popratio = pop2010/median(pop2010)) %>%
+  arrange(desc(popratio)) %>%
+  mutate(index = 1:n())
+```
+]
+
+---
+
+## Getting the data
+
+The `temperatures` dataset:
+
+.tiny-font[
+```{r message = FALSE}
+temperatures <- read_csv("https://wilkelab.org/DSC385/datasets/tempnormals.csv") %>%
+  mutate(
+    location = factor(
+      location, levels = c("Death Valley", "Houston", "San Diego", "Chicago")
+    )
+  ) %>%
+  select(location, station_id, day_of_year, month, temperature)
+```
+]
+
+---
+
+## Scale functions customize the x and y axes
 
 Recall the box-office example from a prior lecture
 
