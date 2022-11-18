@@ -1,0 +1,308 @@
+---
+title: "How to succeed in this class"
+author: "Claus O. Wilke"
+date: "last updated: `r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: [default, "Wilke-slides-theme.css"]
+    lib_dir: libs
+    nature:
+      ratio: '16:9'
+      highlightStyle: github
+      highlightLines: true
+      slideNumberFormat: ''
+      titleSlideClass: [center, middle]
+---
+
+```{r setup, include=FALSE, echo=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(comment = "")
+```
+
+## Syllabus
+
+- Read the syllabus
+
+---
+
+## Homework and project submissions
+
+- Make sure you actually submit your assignment
+
+--
+
+- Before submission, verify you have submitted the right files
+
+---
+
+## In case of problems with submission, grading, etc.
+
+--
+
+Please do the following:
+
+- Send email to: <a href="mailto:onlinedataexploration@austin.utexas.edu">onlinedataexploration@austin.utexas.edu</a>
+
+--
+
+- Include your edX user name
+
+--
+
+- Attach any assignment files if applicable
+
+--
+
+<br>
+
+Please **do not:**
+- post on Piazza
+- send email directly to instructor or TA
+- try to message on edX
+- try to message on Canvas
+
+---
+
+[//]: # "segment ends here"
+
+---
+class: center middle
+
+## Making a reproducible example
+
+---
+
+## Making a reproducible example
+
+--
+
+- For questions on Piazza, please include a reproducible example (reprex)
+
+--
+
+- A reprex must include **all** code necessary to reproduce the problem
+
+--
+
+- A reprex should be as small as possible; delete what isn't needed
+
+--
+
+- It is always possible to create a good reprex, but sometimes it's a bit of work
+
+
+---
+
+## Include **all** code necessary to reproduce the problem
+
+Example: Why does this code not run?
+
+```{r eval = FALSE}
+mtcars %>%
+  ggplot(aes(disp, mpg)) + geom_point()
+```
+
+--
+
+Error obtained:
+
+```
+## Error in mtcars %>% ggplot(aes(disp, mpg)) : 
+##   could not find function "%>%"
+```
+
+---
+
+## Include **all** code necessary to reproduce the problem
+
+Complete code as run by student:
+
+```{r eval = FALSE}
+library(ggplot2)
+
+mtcars %>%
+  ggplot(aes(disp, mpg)) + geom_point()
+```
+
+```
+## Error in mtcars %>% ggplot(aes(disp, mpg)) : 
+##   could not find function "%>%"
+```
+
+
+---
+
+## Include **all** code necessary to reproduce the problem
+
+Complete code as run by student:
+
+```{r eval = FALSE}
+library(ggplot2)
+
+mtcars %>%
+  ggplot(aes(disp, mpg)) + geom_point()
+```
+
+```
+## Error in mtcars %>% ggplot(aes(disp, mpg)) : 
+##   could not find function "%>%"
+```
+
+
+Problem: Missing `library(tidyverse)`
+
+---
+
+## Include **all** code necessary to reproduce the problem
+
+This code works:
+
+```{r mtcars_working, eval = FALSE}
+library(tidyverse)
+
+mtcars %>%
+  ggplot(aes(disp, mpg)) + geom_point()
+```
+
+.pull-left.width-35[
+```{r mtcars_working-out, ref.label="mtcars_working", fig.width = 4, fig.asp = 0.75, echo=FALSE, warning=FALSE, message = FALSE, dev = "svg"}
+```
+]
+
+--
+
+.pull-right.width-60[
+The problem is often not where you are looking for it.
+
+]
+
+---
+
+## Make up data if necessary
+
+A common concern: <br>
+
+I cannot share my complete code. It would reveal my solution to the homework / assignment / etc.
+
+--
+
+<br>
+
+Solution: <br>
+
+Prepare a simplified example with made-up data
+
+---
+
+## Make up data if necessary
+
+Example: Why are the data points not colored?
+
+.tiny-font.pull-left[
+```{r iris_broken, eval = FALSE}
+library(tidyverse)
+
+ggplot(iris) +
+  aes(Sepal.Length, Sepal.Width) +
+  aes(colr = Species) +
+  geom_point(size = 2) +
+  ggtitle("Measurements on iris flowers") +
+  xlab("Sepal Length") +
+  ylab("Sepal Width") +
+  theme_bw()
+```
+]
+
+.pull-right[
+```{r iris_broken-out, ref.label="iris_broken", fig.width = 4, fig.asp = 0.75, echo=FALSE, warning=FALSE, message = FALSE, dev = "svg"}
+```
+]
+
+---
+
+## Make up data if necessary
+
+Same example with made-up data:
+
+.tiny-font.pull-left[
+```{r madeup_broken, eval = FALSE}
+library(tidyverse)
+
+data <- tibble(
+  x = 1:3,
+  y = c(2, 1, 3),
+  letter = c("A", "B", "C")
+)
+
+ggplot(data) +
+  aes(x, y) + 
+  aes(colr = letter) + # problem is here
+  geom_point()
+  # note: irrelevant code has been removed
+```
+]
+
+.pull-right[
+```{r madeup_broken-out, ref.label="madeup_broken", fig.width = 4, fig.asp = 0.75, echo=FALSE, warning=FALSE, message = FALSE, dev = "svg"}
+```
+]
+---
+
+## Make up data if necessary
+
+Same example with made-up data:
+
+.tiny-font.pull-left[
+```{r madeup_fixed, eval = FALSE}
+library(tidyverse)
+
+data <- tibble(
+  x = 1:3,
+  y = c(2, 1, 3),
+  letter = c("A", "B", "C")
+)
+
+ggplot(data) +
+  aes(x, y) + 
+  aes(color = letter) + # now it's fixed
+  geom_point()
+  # note: irrelevant code has been removed
+```
+]
+
+.pull-right[
+```{r madeup_fixed-out, ref.label="madeup_fixed", fig.width = 4.7, fig.asp = 0.618, echo=FALSE, warning=FALSE, message = FALSE, dev = "svg"}
+```
+]
+
+---
+
+## Closing thoughts about reproducible examples
+
+--
+
+- It can be a lot of effort to prepare a good, minimal example!
+
+--
+
+- You often solve the problem as you try to isolate the issue
+
+--
+
+- Use the **reprex** package to format your example: https://reprex.tidyverse.org/
+
+--
+
+- **reprex** works great with Piazza
+
+--
+
+- Copy and paste your actual code, not a screenshot; again, the **reprex** package helps
+
+---
+
+## Further reading
+
+- All slides and worksheets: [wilkelab.org/DSC385](https://wilkelab.org/DSC385/)
+- Github repo of class materials: [https://github.com/wilkelab/DSC385](https://github.com/wilkelab/DSC385)
+- **reprex** package: [https://reprex.tidyverse.org/](https://reprex.tidyverse.org/)

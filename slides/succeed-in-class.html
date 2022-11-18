@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>How to succeed in this class</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Claus O. Wilke" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="Wilke-slides-theme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, title-slide
+
+.title[
+# How to succeed in this class
+]
+.author[
+### Claus O. Wilke
+]
+.date[
+### last updated: 2022-11-17
+]
+
+---
+
+
+
+
+## Syllabus
+
+- Read the syllabus
+
+---
+
+## Homework and project submissions
+
+- Make sure you actually submit your assignment
+
+--
+
+- Before submission, verify you have submitted the right files
+
+---
+
+## In case of problems with submission, grading, etc.
+
+--
+
+Please do the following:
+
+- Send email to: &lt;a href="mailto:onlinedataexploration@austin.utexas.edu"&gt;onlinedataexploration@austin.utexas.edu&lt;/a&gt;
+
+--
+
+- Include your edX user name
+
+--
+
+- Attach any assignment files if applicable
+
+--
+
+&lt;br&gt;
+
+Please **do not:**
+- post on Piazza
+- send email directly to instructor or TA
+- try to message on edX
+- try to message on Canvas
+
+---
+
+[//]: # "segment ends here"
+
+---
+class: center middle
+
+## Making a reproducible example
+
+---
+
+## Making a reproducible example
+
+--
+
+- For questions on Piazza, please include a reproducible example (reprex)
+
+--
+
+- A reprex must include **all** code necessary to reproduce the problem
+
+--
+
+- A reprex should be as small as possible; delete what isn't needed
+
+--
+
+- It is always possible to create a good reprex, but sometimes it's a bit of work
+
+
+---
+
+## Include **all** code necessary to reproduce the problem
+
+Example: Why does this code not run?
+
+
+```r
+mtcars %&gt;%
+  ggplot(aes(disp, mpg)) + geom_point()
+```
+
+--
+
+Error obtained:
+
+```
+## Error in mtcars %&gt;% ggplot(aes(disp, mpg)) : 
+##   could not find function "%&gt;%"
+```
+
+---
+
+## Include **all** code necessary to reproduce the problem
+
+Complete code as run by student:
+
+
+```r
+library(ggplot2)
+
+mtcars %&gt;%
+  ggplot(aes(disp, mpg)) + geom_point()
+```
+
+```
+## Error in mtcars %&gt;% ggplot(aes(disp, mpg)) : 
+##   could not find function "%&gt;%"
+```
+
+
+---
+
+## Include **all** code necessary to reproduce the problem
+
+Complete code as run by student:
+
+
+```r
+library(ggplot2)
+
+mtcars %&gt;%
+  ggplot(aes(disp, mpg)) + geom_point()
+```
+
+```
+## Error in mtcars %&gt;% ggplot(aes(disp, mpg)) : 
+##   could not find function "%&gt;%"
+```
+
+
+Problem: Missing `library(tidyverse)`
+
+---
+
+## Include **all** code necessary to reproduce the problem
+
+This code works:
+
+
+```r
+library(tidyverse)
+
+mtcars %&gt;%
+  ggplot(aes(disp, mpg)) + geom_point()
+```
+
+.pull-left.width-35[
+![](succeed-in-class_files/figure-html/mtcars_working-out-1.svg)&lt;!-- --&gt;
+]
+
+--
+
+.pull-right.width-60[
+The problem is often not where you are looking for it.
+
+]
+
+---
+
+## Make up data if necessary
+
+A common concern: &lt;br&gt;
+
+I cannot share my complete code. It would reveal my solution to the homework / assignment / etc.
+
+--
+
+&lt;br&gt;
+
+Solution: &lt;br&gt;
+
+Prepare a simplified example with made-up data
+
+---
+
+## Make up data if necessary
+
+Example: Why are the data points not colored?
+
+.tiny-font.pull-left[
+
+```r
+library(tidyverse)
+
+ggplot(iris) +
+  aes(Sepal.Length, Sepal.Width) +
+  aes(colr = Species) +
+  geom_point(size = 2) +
+  ggtitle("Measurements on iris flowers") +
+  xlab("Sepal Length") +
+  ylab("Sepal Width") +
+  theme_bw()
+```
+]
+
+.pull-right[
+![](succeed-in-class_files/figure-html/iris_broken-out-1.svg)&lt;!-- --&gt;
+]
+
+---
+
+## Make up data if necessary
+
+Same example with made-up data:
+
+.tiny-font.pull-left[
+
+```r
+library(tidyverse)
+
+data &lt;- tibble(
+  x = 1:3,
+  y = c(2, 1, 3),
+  letter = c("A", "B", "C")
+)
+
+ggplot(data) +
+  aes(x, y) + 
+  aes(colr = letter) + # problem is here
+  geom_point()
+  # note: irrelevant code has been removed
+```
+]
+
+.pull-right[
+![](succeed-in-class_files/figure-html/madeup_broken-out-1.svg)&lt;!-- --&gt;
+]
+---
+
+## Make up data if necessary
+
+Same example with made-up data:
+
+.tiny-font.pull-left[
+
+```r
+library(tidyverse)
+
+data &lt;- tibble(
+  x = 1:3,
+  y = c(2, 1, 3),
+  letter = c("A", "B", "C")
+)
+
+ggplot(data) +
+  aes(x, y) + 
+  aes(color = letter) + # now it's fixed
+  geom_point()
+  # note: irrelevant code has been removed
+```
+]
+
+.pull-right[
+![](succeed-in-class_files/figure-html/madeup_fixed-out-1.svg)&lt;!-- --&gt;
+]
+
+---
+
+## Closing thoughts about reproducible examples
+
+--
+
+- It can be a lot of effort to prepare a good, minimal example!
+
+--
+
+- You often solve the problem as you try to isolate the issue
+
+--
+
+- Use the **reprex** package to format your example: https://reprex.tidyverse.org/
+
+--
+
+- **reprex** works great with Piazza
+
+--
+
+- Copy and paste your actual code, not a screenshot; again, the **reprex** package helps
+
+---
+
+## Further reading
+
+- All slides and worksheets: [wilkelab.org/DSC385](https://wilkelab.org/DSC385/)
+- Github repo of class materials: [https://github.com/wilkelab/DSC385](https://github.com/wilkelab/DSC385)
+- **reprex** package: [https://reprex.tidyverse.org/](https://reprex.tidyverse.org/)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"slideNumberFormat": ""
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
