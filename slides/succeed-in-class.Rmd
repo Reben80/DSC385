@@ -21,17 +21,93 @@ knitr::opts_chunk$set(comment = "")
 
 ## Syllabus
 
+--
+
 - Read the syllabus
+
+--
+
+- The syllabus is available on the edX platform
+
+--
+
+- There may be minor changes in syllabus from semester to semester;  
+  in case of doubt, the version posted on edX is binding
+
+---
+
+## Course materials
+
+--
+
+- All slides and worksheets are also available at:  
+  https://wilkelab.org/DSC385/
+
+--
+
+- For the curious, the source materials for the slides are here:  
+  https://github.com/wilkelab/DSC385
+  
+--
+
+- You can keep a local copy of the class site by downloading the `docs` folder and opening `index.html` in your browser:  
+  https://github.com/wilkelab/DSC385/tree/main/docs
+
+--
+
+- The class uses extensive materials from my book, available here:  
+  https://clauswilke.com/dataviz
 
 ---
 
 ## Homework and project submissions
+
+--
 
 - Make sure you actually submit your assignment
 
 --
 
 - Before submission, verify you have submitted the right files
+
+--
+
+- Once submitted, you can no longer resubmit
+
+--
+
+- You will need to peer grade before receiving your own grade
+
+--
+
+- EdX calculates the overall grade as the median of the first *n* grades
+
+---
+
+## Assignment format for submissions
+
+We ask that you submit two files:
+
+--
+
+1. A pdf document representing your submission
+
+--
+
+2. A zip file containing the source files (.Rmd file, data files, etc) to reproduce the pdf
+
+--
+
+The pdf should be separate from the zip file, not included inside it, as that helps us to quickly look at an assignment.
+
+--
+
+Add some random letters or numbers to the file name: `project1_dlxdle.pdf`
+
+--
+
+**Do not** include your name or EID in the document or file name.
+
 
 ---
 
@@ -60,6 +136,86 @@ Please **do not:**
 - send email directly to instructor or TA
 - try to message on edX
 - try to message on Canvas
+
+---
+
+## Peer grading
+
+--
+
+- Peer grading is an important component of this class
+
+--
+
+- The main purpose is for you to engage with the work of your peers
+
+--
+
+- There are two types of graded assignments: homeworks and projects
+
+---
+
+## Peer grading of homeworks
+
+--
+
+- Homeworks are primarily graded on effort:  
+  Did the student make an honest attempt to complete the assignment?
+  
+--
+
+- Homeworks **do not** have to match the example solution 1:1
+
+--
+
+- Please provide written comments justifying your grade
+
+--
+
+- Read the grading rubric!
+
+--
+
+- Project 1 is treated as a homework
+
+---
+
+## Peer grading of projects
+
+--
+
+- Projects have more complex rubrics. They differ somewhat among projects!
+
+--
+
+- Projects **do not** have to match the example solution 1:1
+
+--
+
+- Some projects do not have an example solution
+
+--
+
+- Please provide written comments justifying your grade
+
+---
+
+## Grading the reproducibility of a submission
+
+--
+
+- An assignment is reproducible if you can take the source files and reproduce the submitted pdf
+
+--
+
+- The following error is **not** a reproducibility problem:  
+  `pdflatex: command not found`  
+    
+  You can resolve it by clicking the button to knit to HTML
+  
+--
+
+- Assignments should only rely on the R packages listed as required in the syllabus
 
 ---
 
@@ -285,7 +441,7 @@ ggplot(data) +
 
 --
 
-- You often solve the problem as you try to isolate the issue
+- You often end up solving the problem as you try to isolate it
 
 --
 
@@ -298,6 +454,11 @@ ggplot(data) +
 --
 
 - Copy and paste your actual code, not a screenshot; again, the **reprex** package helps
+
+---
+
+[//]: # "segment ends here"
+
 
 ---
 

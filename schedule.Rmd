@@ -19,6 +19,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 - [Slides](slides/introduction.html)  
 - [Worksheet](worksheets/intro-rmarkdown.Rmd)
+- [How to succeed in this class](slides/succeed-in-class.html)
 
 ### 2. Aesthetic mappings
 

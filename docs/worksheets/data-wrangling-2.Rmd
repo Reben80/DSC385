@@ -404,7 +404,7 @@ Notice how the arguments `names_from` and `values_from` in `pivot_wider()` are e
 
 Finally, we sometimes encounter the situation where we have two data sets that contain different pieces of information about the same subjects or objects, and we need to merge these tables for further analysis. In this situation, we need to perform a join, and there are multiple different types of joins available: `left_join()`, `right_join()`, `inner_join()`, `full_join()`. These joins all differ in how they handle cases where an observation is present in only one of the two tables but missing in the other.
 
-Two explore joins, consider the following two datasets, which contain the population number of three Texas cities and the city areas, respectively. The cities in the two tables are not the same, on purpose.
+To explore joins, consider the following two datasets, which contain the population number of three Texas cities and the city areas, respectively. The cities in the two tables are not the same, on purpose.
 
 ```{r echo = TRUE}
 TX_population
