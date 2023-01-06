@@ -788,6 +788,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   d-article table.gt_table td,
   d-article table.gt_table th {
     border-bottom: none;
+    font-size: 100%;
   }
 
   .html-widget {
@@ -1860,15 +1861,21 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
-          var fn = $(this).children()[0]
+        const citeChild = $(this).children()[0]
+        // Do not process if @xyz has been used without escaping and without bibliography activated
+        // https://github.com/rstudio/distill/issues/466
+        if (citeChild === undefined) return true
+
+        if (citeChild.nodeName == "D-FOOTNOTE") {
+          var fn = citeChild
           $(this).html(fn.shadowRoot.querySelector("sup"))
           $(this).id = fn.id
           fn.remove()
         }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
-          return "<p>" + $('#ref-' + ref).html() + "</p>";
+          // Could use CSS.escape too here, we insure backward compatibility in navigator
+          return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
         }).join("\n");
         window.tippy(this, {
           allowHTML: true,
@@ -2408,7 +2415,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.19/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2505,24 +2512,30 @@ Slides
 <p>To run any of the materials locally on your own machine, you will need the following:</p>
 <ul>
 <li>A recent version of R, <a href="https://cloud.r-project.org/">download from here.</a></li>
-<li>A recent version of RStudio, <a href="https://rstudio.com/products/rstudio/download/#download">download from here.</a></li>
+<li>A recent version of RStudio, <a href="https://posit.co/download/rstudio-desktop/#download">download from here.</a></li>
 <li>The following R packages:<br />
-broom, cluster, colorspace, cowplot, distill, gapminder, GGally, gganimate, ggiraph, ggdendro, ggdist, ggforce, ggplot2movies, ggrepel, ggridges, ggthemes, gifski, glue, knitr, learnr, naniar, margins, MASS, Matrix, nycflights13, palmerpenguins, patchwork, rgdal, rmarkdown, sf, tidyverse, transformr, umap, xaringan</li>
+broom, cluster, colorspace, cowplot, distill, gapminder, GGally, gganimate, ggiraph, ggdendro, ggdist, ggforce, ggplot2movies, ggrepel, ggridges, ggthemes, gifski, glue, knitr, learnr, naniar, margins, MASS, Matrix, nycflights13, palmerpenguins, patchwork, rgdal, rmarkdown, rnaturalearth, rnaturalearthhires, sf, shinyjs, tidyverse, transformr, umap, xaringan</li>
 </ul>
 <p>You can install all required R packages at once by running the following code in the R command line:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span><span class='op'>(</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
-    <span class='st'>"broom"</span>, <span class='st'>"cluster"</span>, <span class='st'>"colorspace"</span>, <span class='st'>"cowplot"</span>, <span class='st'>"distill"</span>, <span class='st'>"gapminder"</span>, 
-    <span class='st'>"GGally"</span>, <span class='st'>"gganimate"</span>, <span class='st'>"ggiraph"</span>, <span class='st'>"ggdendro"</span>, <span class='st'>"ggdist"</span>, <span class='st'>"ggforce"</span>,
-    <span class='st'>"ggplot2movies"</span>, <span class='st'>"ggrepel"</span>, <span class='st'>"ggridges"</span>, <span class='st'>"ggthemes"</span>, <span class='st'>"gifski"</span>, <span class='st'>"glue"</span>,
-    <span class='st'>"knitr"</span>, <span class='st'>"learnr"</span>, <span class='st'>"naniar"</span>, <span class='st'>"margins"</span>, <span class='st'>"MASS"</span>, <span class='st'>"Matrix"</span>,
-    <span class='st'>"nycflights13"</span>, <span class='st'>"palmerpenguins"</span>, <span class='st'>"patchwork"</span>, <span class='st'>"rgdal"</span>, <span class='st'>"rmarkdown"</span>,
-    <span class='st'>"sf"</span>, <span class='st'>"tidyverse"</span>, <span class='st'>"transformr"</span>, <span class='st'>"umap"</span>, <span class='st'>"xaringan"</span>
-  <span class='op'>)</span>
-<span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># first run:</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span><span class='op'>(</span></span>
+<span>  <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span></span>
+<span>    <span class='st'>"broom"</span>, <span class='st'>"cluster"</span>, <span class='st'>"colorspace"</span>, <span class='st'>"cowplot"</span>, <span class='st'>"distill"</span>, <span class='st'>"gapminder"</span>, </span>
+<span>    <span class='st'>"GGally"</span>, <span class='st'>"gganimate"</span>, <span class='st'>"ggiraph"</span>, <span class='st'>"ggdendro"</span>, <span class='st'>"ggdist"</span>, <span class='st'>"ggforce"</span>,</span>
+<span>    <span class='st'>"ggplot2movies"</span>, <span class='st'>"ggrepel"</span>, <span class='st'>"ggridges"</span>, <span class='st'>"ggthemes"</span>, <span class='st'>"gifski"</span>, <span class='st'>"glue"</span>,</span>
+<span>    <span class='st'>"knitr"</span>, <span class='st'>"learnr"</span>, <span class='st'>"naniar"</span>, <span class='st'>"margins"</span>, <span class='st'>"MASS"</span>, <span class='st'>"Matrix"</span>,</span>
+<span>    <span class='st'>"nycflights13"</span>, <span class='st'>"palmerpenguins"</span>, <span class='st'>"patchwork"</span>, <span class='st'>"rgdal"</span>, <span class='st'>"rmarkdown"</span>,</span>
+<span>    <span class='st'>"rnaturalearth"</span>, <span class='st'>"sf"</span>, <span class='st'>"shinyjs"</span>, <span class='st'>"tidyverse"</span>, <span class='st'>"transformr"</span>, <span class='st'>"umap"</span>,</span>
+<span>    <span class='st'>"xaringan"</span></span>
+<span>  <span class='op'>)</span></span>
+<span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'># then run:</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span><span class='op'>(</span></span>
+<span>  <span class='st'>"rnaturalearthhires"</span>, repos <span class='op'>=</span> <span class='st'>"https://packages.ropensci.org"</span>, type <span class='op'>=</span> <span class='st'>"source"</span></span>
+<span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <h2 class="appendix" id="reuse">Reuse</h2>
