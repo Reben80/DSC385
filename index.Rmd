@@ -29,7 +29,7 @@ To run any of the materials locally on your own machine, you will need the follo
 You can install all required R packages at once by running the following code in the R command line:
 
 ```{r eval = FALSE, echo = TRUE}
-# first run:
+# first run this command:
 install.packages(
   c(
     "broom", "cluster", "colorspace", "cowplot", "distill", "gapminder", 
@@ -42,7 +42,7 @@ install.packages(
   )
 )
 
-# then run:
+# then run this command:
 install.packages(
   "rnaturalearthhires", repos = "https://packages.ropensci.org", type = "source"
 )
