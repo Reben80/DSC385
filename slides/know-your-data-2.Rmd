@@ -465,27 +465,11 @@ c(1, 2, NA_character_)
 
 ## Sometimes the type matters
 
-.small-font[
-This does not work, type mismatch:
 ```{r}
-#if_else(TRUE, "result if true", NA)
+typeof(c(1, 2, NA))
+typeof(c(1, 2, NA_real_))
+typeof(c(1, 2, NA_character_))
 ```
-
-This works:
-```{r}
-if_else(TRUE, "result if true", NA_character_)
-```
-]
-
---
-
-.small-font[
-Similarly:
-```{r}
-#if_else(TRUE, 1234, NA)      # does not work
-if_else(TRUE, 1234, NA_real_) # works
-```
-]
 
 ---
 

@@ -19,7 +19,7 @@ class: center, middle, title-slide
 ### Claus O. Wilke
 ]
 .date[
-### last updated: 2022-12-12
+### last updated: 2023-02-21
 ]
 
 ---
@@ -522,38 +522,30 @@ c(1, 2, NA_character_)
 
 ## Sometimes the type matters
 
-.small-font[
-This does not work, type mismatch:
 
 ```r
-#if_else(TRUE, "result if true", NA)
+typeof(c(1, 2, NA))
 ```
 
-This works:
+```
+[1] "double"
+```
 
 ```r
-if_else(TRUE, "result if true", NA_character_)
+typeof(c(1, 2, NA_real_))
 ```
 
 ```
-[1] "result if true"
+[1] "double"
 ```
-]
-
---
-
-.small-font[
-Similarly:
 
 ```r
-#if_else(TRUE, 1234, NA)      # does not work
-if_else(TRUE, 1234, NA_real_) # works
+typeof(c(1, 2, NA_character_))
 ```
 
 ```
-[1] 1234
+[1] "character"
 ```
-]
 
 ---
 
