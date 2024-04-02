@@ -154,7 +154,7 @@ ggplot(texas_income) +
   scale_fill_continuous_sequential(palette = "Lajolla")
 ```
 
-Finally, make a plot that highlights the 10 smallest counties in Texas. This will require you to join `texas_income` and `texas_counties` first.
+Finally, make a plot that highlights the 5 smallest counties in Texas. This will require you to join `texas_income` and `texas_counties` first.
 
 ```{r geom-sf-join, exercise = TRUE}
 
